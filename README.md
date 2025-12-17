@@ -3,7 +3,7 @@
 
 > **Purpose**: This README provides comprehensive context for GitHub Copilot to generate precise, production-ready code for the Encounter Coffee e-commerce platform with SEO optimization, UI/UX best practices, and integrated heatmap analytics.
 
-> **⚠️ ARCHITECTURE NOTE**: The website is fully developed in **WordPress** (pure code), but the e-commerce functionality (product catalog, cart, checkout) is integrated as an **iframe** embedded within WordPress HTML pages. This is a hybrid architecture where WordPress manages content, SEO, and storytelling, while the external e-commerce platform (embedded via iframe) handles transactions.
+> **⚠️ ARCHITECTURE NOTE**: The website is built using a **static HTML template** (TemplateMo 587 - Tiya Golf Club adapted for Encounter Coffee), with the e-commerce functionality (product catalog, cart, checkout) integrated as an **iframe** embedded within HTML pages. This is a hybrid architecture where the static HTML site manages content, SEO, and storytelling, while the external e-commerce platform (embedded via iframe) handles transactions.
 
 ---
 
@@ -264,64 +264,78 @@ Our added value is transforming a traditionally anonymous chain into a human and
 
 ### Core Platform
 ```yaml
-CMS: WordPress 6.4+ (Content Management)
-E-Commerce: External Platform (Embedded via iframe in WordPress pages)
-Architecture: Hybrid - WordPress frontend + iframe e-commerce integration
-PHP Version: 8.1+
-MySQL: 8.0+ (WordPress database)
-Web Server: Apache 2.4+ or Nginx 1.20+
+Base Template: TemplateMo 587 (Tiya Golf Club) - Adapted for Encounter Coffee
+Architecture: Static HTML/CSS/JavaScript + iframe e-commerce integration
+HTML: HTML5 semantic markup
+CSS: Bootstrap 5.3.x + Custom CSS (templatemo-tiya-golf-club.css)
+JavaScript: Vanilla JS + jQuery 3.x
+Fonts: Google Fonts (DM Sans)
+Icons: Bootstrap Icons
+Web Server: Apache 2.4+ or Nginx 1.20+ (for static hosting)
+Hosting: GitHub Pages, Netlify, Vercel, or traditional web hosting
 ```
 
 ### Architecture Overview
-**Important**: The website is fully developed in WordPress (pure code), but the e-commerce functionality is integrated as an **iframe** embedded within WordPress HTML pages. This hybrid approach allows:
-- **WordPress handles**: Content pages, blog, storytelling, grower profiles, SEO, navigation
+**Important**: The website is built on a **static HTML template** (customized TemplateMo 587), with e-commerce functionality integrated as an **iframe** embedded within HTML pages. This hybrid approach allows:
+- **Static HTML handles**: Content pages, storytelling, grower profiles, SEO, navigation, events
 - **iframe e-commerce handles**: Product catalog, cart, checkout, payment processing, order management
 - **Seamless visual integration** while maintaining separation of concerns
+- **No backend/database required** for content - pure frontend with optional form handlers
 
 ### iframe E-Commerce Integration
 ```yaml
-Integration Method: HTML iframe element embedded in WordPress pages
+Integration Method: HTML iframe element embedded in static HTML page (shop.html)
 Communication: PostMessage API for cross-origin messaging
 Responsive Handling: JavaScript-based dynamic iframe resizing
-Styling: CSS to match WordPress theme aesthetics
+Styling: CSS to match template aesthetics (Bootstrap 5 + custom CSS)
 Security: CSP headers, iframe sandboxing, HTTPS enforcement
 E-Commerce Platform: [Specify: Shopify, WooCommerce standalone, Custom, etc.]
+Form Handling: Formspree, Netlify Forms, or custom backend API
 ```
 
 ### Benefits of iframe Architecture
-- ✅ **Separation of Concerns**: WordPress focuses on content, external platform handles transactions
+- ✅ **Separation of Concerns**: Static site focuses on content/branding, external platform handles transactions
 - ✅ **Security**: PCI compliance managed by e-commerce platform
-- ✅ **Flexibility**: Can swap e-commerce platforms without WordPress rebuild
+- ✅ **Flexibility**: Can swap e-commerce platforms without static site rebuild
 - ✅ **Performance**: E-commerce platform optimized independently
-- ✅ **Maintenance**: Updates to shop don't affect WordPress core
+- ✅ **Maintenance**: Updates to shop don't affect static site content
 
 ### Considerations
 - ⚠️ **Cross-Origin Communication**: Requires PostMessage API implementation
 - ⚠️ **SEO**: Product pages may need API integration for server-side rendering
 - ⚠️ **Analytics**: Event tracking requires iframe-to-parent messaging
-- ⚠️ **Styling Consistency**: iframe content must match WordPress theme
+- ⚠️ **Styling Consistency**: iframe content must match static site theme
 
-### Theme Framework
+### Template Framework
 ```yaml
-Base Theme: Custom Child Theme (Astra/GeneratePress parent recommended)
-CSS Framework: Bootstrap 5.3.x (already in use)
-CSS Preprocessor: SASS/SCSS
-Build Tool: Gulp or Webpack
+Base Template: TemplateMo 587 - Tiya Golf Club (Free HTML Template)
+Template URL: https://templatemo.com/tm-587-tiya-golf-club
+CSS Framework: Bootstrap 5.3.x (bootstrap.min.css)
+Custom CSS: templatemo-tiya-golf-club.css (adapted for Encounter branding)
+CSS Preprocessor: Optional SASS/SCSS for development
+Build Tool: Optional - Gulp, Webpack, or Parcel for asset optimization
+Version Control: Git
 ```
 
-### Required Plugins
+### Required Tools & Libraries
 ```yaml
-SEO: Rank Math Pro or Yoast SEO Premium
-Caching: WP Rocket or W3 Total Cache
-Security: Wordfence or Solid Security
-Forms: WPForms or Gravity Forms
-Analytics: Site Kit by Google
-Heatmap: Microsoft Clarity (free) or Hotjar
-Page Builder: Elementor Pro (optional)
-iframe Integration: Advanced iFrames or Custom iframe handler
-Email: Mailchimp for WordPress
-Performance: Smush Pro, Autoptimize
-Custom Code: Code Snippets (for iframe communication scripts)
+Core Libraries (Already Included):
+  - jQuery 3.x (jquery.min.js)
+  - Bootstrap 5.3.x Bundle (bootstrap.bundle.min.js)
+  - Bootstrap Icons (bootstrap-icons.css)
+  - Animated Headline (animated-headline.js)
+  - Smooth Scroll (click-scroll.js)
+  - Sticky Navigation (jquery.sticky.js)
+  - Modernizr (modernizr.js)
+
+Additional Integrations:
+  - SEO: HTML meta tags, Schema.org JSON-LD, Open Graph
+  - Forms: Formspree, Netlify Forms, or EmailJS
+  - Analytics: Google Analytics 4 (gtag.js)
+  - Heatmap: Microsoft Clarity or Hotjar (script injection)
+  - Email Marketing: Mailchimp embedded forms
+  - Image Optimization: TinyPNG, ImageOptim, or WebP conversion
+  - CDN: Cloudflare (for caching and performance)
 ```
 
 ### Hosting Environment
@@ -334,11 +348,14 @@ Backups: UpdraftPlus or BackupBuddy (daily automated)
 
 ### Development Tools
 ```yaml
-Version Control: Git
-Task Runner: Gulp/npm scripts
-Package Manager: npm or Yarn
-Local Development: Local by Flywheel or XAMPP
-Code Editor: VS Code with WordPress extensions
+Version Control: Git + GitHub
+Code Editor: VS Code with Live Server extension
+Local Development: Live Server, XAMPP, or any static web server
+Task Runner: Optional - Gulp, npm scripts, or Parcel
+Package Manager: Optional - npm or Yarn (for build tools)
+Browser DevTools: Chrome/Firefox DevTools for debugging
+Image Optimization: TinyPNG, Squoosh, ImageOptim
+Deployment: GitHub Pages, Netlify, Vercel, or FTP/SFTP
 ```
 
 ### iframe E-Commerce Integration
@@ -357,62 +374,79 @@ E-Commerce Platform: [External platform - Shopify, custom, etc.]
 
 ### File Structure
 ```
-wp-content/
-├── themes/
-│   └── encountercoffee-child/
-│       ├── style.css
-│       ├── functions.php
-│       ├── header.php
-│       ├── footer.php
-│       ├── page-shop.php         # Shop page with iframe integration
-│       ├── template-parts/
-│       ├── inc/
-│       │   ├── customizer.php
-│       │   ├── template-functions.php
-│       │   └── iframe-integration.php  # iframe communication handlers
-│       ├── assets/
-│       │   ├── css/
-│       │   │   └── iframe-styles.css   # Styling for iframe container
-│       │   ├── js/
-│       │   │   └── iframe-handler.js   # PostMessage API, resizing
-│       │   ├── images/
-│       │   └── fonts/
-│       └── languages/
-└── plugins/
-    └── encountercoffee-custom/    # Custom functionality plugin
+encountercoffee/
+├── index.html                    # Homepage
+├── about.html                    # About / Our Story page
+├── shop.html                     # Shop page with iframe integration
+├── growers.html                  # Coffee growers spotlight
+├── events.html                   # Events listing (adapted from event-listing.html)
+├── event-detail.html             # Individual event details
+├── contact.html                  # Contact page
+├── css/
+│   ├── bootstrap.min.css         # Bootstrap 5.3.x
+│   ├── bootstrap-icons.css       # Icon library
+│   ├── templatemo-tiya-golf-club.css  # Original template CSS
+│   ├── encounter-custom.css      # Encounter Coffee brand overrides
+│   └── iframe-styles.css         # iframe container styling
+├── js/
+│   ├── jquery.min.js             # jQuery 3.x
+│   ├── bootstrap.bundle.min.js   # Bootstrap JS
+│   ├── animated-headline.js      # Text animation
+│   ├── click-scroll.js           # Smooth scrolling
+│   ├── jquery.sticky.js          # Sticky navigation
+│   ├── modernizr.js              # Feature detection
+│   ├── custom.js                 # Template custom JS
+│   └── iframe-handler.js         # iframe communication (NEW)
+├── images/
+│   ├── logo.png                  # Encounter Coffee logo
+│   ├── hero/                     # Hero section images
+│   ├── growers/                  # Coffee grower photos
+│   ├── products/                 # Product photography
+│   └── events/                   # Event images
+├── fonts/                        # Web fonts (if self-hosted)
+├── .htaccess                     # Apache configuration (optional)
+└── README.md                     # This file
 ```
 
-### PHP Naming Conventions
-```php
-// Function names: lowercase with underscores, prefixed
-function ec_get_featured_products() {}
+### HTML Naming Conventions
+```html
+<!-- Use semantic HTML5 elements -->
+<section id="about-section" class="about-section section-padding">
+<article class="product-card">
+<nav class="navbar navbar-expand-lg">
 
-// Class names: PascalCase, prefixed
-class EC_Product_Manager {}
-
-// Constants: uppercase with underscores
-define( 'EC_VERSION', '1.0.0' );
-
-// Hooks: lowercase with underscores, prefixed
-add_action( 'ec_after_product_title', 'callback_function' );
-
-// Variables: lowercase with underscores
-$product_data = array();
+<!-- Use BEM methodology for custom classes -->
+<div class="product-card">
+  <div class="product-card__image-wrapper">
+    <img class="product-card__image" />
+  </div>
+  <div class="product-card__content">
+    <h3 class="product-card__title"></h3>
+  </div>
+</div>
 ```
 
 ### JavaScript Naming Conventions
 ```javascript
 // Variables: camelCase
 const productPrice = 29.99;
+const cartItems = [];
 
 // Functions: camelCase
-function calculateDiscountPrice() {}
+function calculateDiscountPrice(price, discount) {}
+function updateCartCount(count) {}
 
 // Classes: PascalCase
 class ProductCarousel {}
+class IframeHandler {}
 
 // Constants: UPPER_SNAKE_CASE
-const API_ENDPOINT = '/wp-json/ec/v1/products';
+const API_ENDPOINT = 'https://api.encountercoffee.com';
+const MAX_CART_ITEMS = 20;
+
+// jQuery collections: $ prefix
+const $navbar = $('.navbar');
+const $cartIcon = $('#cart-icon');
 ```
 
 ### CSS/SCSS Conventions (BEM Methodology)
@@ -437,18 +471,30 @@ const API_ENDPOINT = '/wp-json/ec/v1/products';
 ```
 
 ### Comment Standards
-```php
+```javascript
 /**
  * Retrieve featured coffee products for homepage display
- *
+ * 
+ * @param {number} limit - Number of products to retrieve
+ * @param {string} category - Optional category slug
+ * @returns {Array} Array of product objects
  * @since 1.0.0
- * @param int    $limit Number of products to retrieve
- * @param string $category Optional category slug
- * @return array Array of WC_Product objects
  */
-function ec_get_featured_products( $limit = 4, $category = '' ) {
+function getFeaturedProducts(limit = 4, category = '') {
     // Implementation
 }
+```
+
+```html
+<!-- Hero Section - Colombian Coffee Storytelling -->
+<section class="hero-section" id="section_1">
+    <!-- Hero content here -->
+</section>
+
+<!-- Product Card Component -->
+<article class="product-card">
+    <!-- Card content -->
+</article>
 ```
 
 ---
@@ -605,11 +651,12 @@ Every coffee we serve has a real story behind it: territory, climate, family, tr
 ### Sitemap Structure
 ```
 sitemap.xml (index)
-├── post-sitemap.xml (blog posts)
-├── page-sitemap.xml (static pages)
-├── product-sitemap.xml (WooCommerce products)
-├── product_cat-sitemap.xml (product categories)
-└── event-sitemap.xml (custom post type)
+├── home.xml (homepage)
+├── story.xml (about/mission page)
+├── growers.xml (meet our growers page)
+├── events.xml (coffee events)
+├── shop.xml (e-commerce iframe page)
+└── contact.xml (contact page)
 ```
 
 ### Core Web Vitals Targets
@@ -1285,9 +1332,259 @@ if (jQuery('body').hasClass('single-product')) {
 
 ---
 
-## 🔧 WordPress & iframe E-Commerce Integration Specifications
+## 🔧 Static HTML Template Specifications
 
-### Child Theme Structure
+### Template Customization
+
+#### Adapting Base Template for Encounter Coffee
+```html
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- SEO Meta Tags -->
+        <meta name="description" content="Authentic Colombian specialty coffee connecting growers with coffee lovers. Premium drip bags & single-origin beans with real traceability.">
+        <meta name="author" content="Encounter Coffee">
+        <meta name="keywords" content="Colombian coffee, specialty coffee, coffee growers, drip bags, premium coffee">
+        
+        <title>Encounter Coffee - Colombian Specialty Coffee | Direct from Grower to Cup</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+        <!-- CSS FILES -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet">
+        <link href="css/encounter-custom.css" rel="stylesheet">
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="images/favicon.png">
+    </head>
+    
+    <body>
+        <main>
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg">                
+                <div class="container">
+                    <a class="navbar-brand d-flex align-items-center" href="index.html">
+                        <img src="images/logo.png" class="navbar-brand-image img-fluid" alt="Encounter Coffee Logo">
+                        <span class="navbar-brand-text">
+                            Encounter
+                            <small>Coffee</small>
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_2">Our Story</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="growers.html">Coffee Growers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="shop.html">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="events.html">Events</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                            </li>
+                        </ul>
+
+                        <div class="d-none d-lg-block ms-lg-3">
+                            <a href="shop.html" class="btn custom-btn custom-border-btn">
+                                <i class="bi-cart3 me-2"></i>Shop Coffee
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Content sections -->
+        </main>
+        
+        <!-- Footer -->
+        <footer class="site-footer">
+            <!-- Footer content -->
+        </footer>
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/animated-headline.js"></script>
+        <script src="js/modernizr.js"></script>
+        <script src="js/custom.js"></script>
+        
+        <!-- Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+        </script>
+    </body>
+</html>
+```
+
+### Custom CSS Override File (encounter-custom.css)
+```css
+/**
+ * Encounter Coffee - Custom Brand Overrides
+ * File: css/encounter-custom.css
+ * 
+ * This file overrides the base template (templatemo-tiya-golf-club.css)
+ * with Encounter Coffee brand colors and styling
+ */
+
+/* Override template CSS variables with Encounter Coffee brand colors */
+:root {
+  /* Encounter Coffee Brand Colors */
+  --primary-color: #FBF6E0;        /* Warm Cream */
+  --secondary-color: #2F4466;       /* Deep Navy Blue */
+  --custom-btn-bg-color: #E69E2C;   /* Vibrant Orange */
+  --custom-btn-bg-hover-color: #D18A1F; /* Darker Orange */
+  --section-bg-color: #F9F4E6;      /* Light Cream Section BG */
+  --link-hover-color: #DDC165;      /* Golden Harvest */
+  
+  /* Additional Encounter Colors */
+  --color-gold: #DDC165;            /* Golden Harvest */
+  --color-accent-red: #892A25;      /* Coffee Berry Red */
+  --color-text-primary: #2F4466;    /* Deep Navy */
+  --color-text-secondary: #5A6B7D;  /* Muted Blue-Gray */
+  
+  /* Typography */
+  --body-font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --heading-font-family: 'Playfair Display', Georgia, serif;
+  
+  /* Spacing */
+  --spacing-unit: 8px;
+}
+
+/* Update navbar brand styling */
+.navbar-brand-text {
+  color: var(--secondary-color);
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+.navbar-brand-text small {
+  color: var(--color-gold);
+  display: block;
+  font-size: 0.7em;
+  letter-spacing: 2px;
+}
+
+/* Custom button styling with Encounter colors */
+.custom-btn {
+  background-color: var(--custom-btn-bg-color);
+  border-color: var(--custom-btn-bg-color);
+  color: var(--primary-color);
+}
+
+.custom-btn:hover {
+  background-color: var(--custom-btn-bg-hover-color);
+  border-color: var(--custom-btn-bg-hover-color);
+}
+
+.custom-border-btn {
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.custom-border-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* Hero section customization */
+.hero-section {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--color-text-secondary) 100%);
+}
+
+.hero-section h1, 
+.hero-section h2 {
+  font-family: var(--heading-font-family);
+  color: var(--primary-color);
+}
+
+/* Section headings */
+h1, h2, h3 {
+  font-family: var(--heading-font-family);
+  color: var(--secondary-color);
+}
+
+/* Product card styling */
+.product-card {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(47, 68, 102, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(47, 68, 102, 0.15);
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 4px 12px;
+  background: var(--custom-btn-bg-color);
+  color: var(--primary-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.product-card__badge--new {
+  background: var(--color-gold);
+  color: var(--secondary-color);
+}
+
+.product-card__price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+/* Footer styling */
+.site-footer {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --h1-font-size: 32px;
+    --h2-font-size: 28px;
+  }
+}
+```
+
+### Shop Page with iframe Integration (shop.html)
 ```php
 /**
  * Theme Name: Encounter Coffee
@@ -1319,87 +1616,148 @@ function ec_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'ec_enqueue_styles' );
 ```
 
-### Custom Post Types (Events)
-```php
-/**
- * Register Coffee Events Custom Post Type
- */
-function ec_register_events_cpt() {
-    $labels = array(
-        'name'                  => 'Coffee Events',
-        'singular_name'         => 'Event',
-        'menu_name'             => 'Events',
-        'add_new'               => 'Add New Event',
-        'add_new_item'          => 'Add New Event',
-        'edit_item'             => 'Edit Event',
-        'new_item'              => 'New Event',
-        'view_item'             => 'View Event',
-        'search_items'          => 'Search Events',
-        'not_found'             => 'No events found',
-        'not_found_in_trash'    => 'No events found in Trash',
-    );
+### Event Pages Structure (Static HTML)
+```html
+<!-- event-listing.html - Coffee Events Listing Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee Events - Encounter Coffee</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/templatemo-tiya-golf-club.css">
+    <link rel="stylesheet" href="css/encounter-custom.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/encounter-logo.png" alt="Encounter Coffee">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="story.html">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="growers.html">Meet Our Growers</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="event-listing.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    $args = array(
-        'labels'                => $labels,
-        'public'                => true,
-        'has_archive'           => true,
-        'publicly_queryable'    => true,
-        'show_ui'               => true,
-        'show_in_menu'          => true,
-        'show_in_rest'          => true,
-        'menu_icon'             => 'dashicons-calendar-alt',
-        'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-        'rewrite'               => array( 'slug' => 'events' ),
-    );
+    <!-- Events Section -->
+    <section class="events-section section-padding">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Coffee Events & Experiences</h2>
+            
+            <!-- Event Card -->
+            <div class="row event-item mb-4">
+                <div class="col-lg-4">
+                    <img src="images/events/cupping-session.jpg" class="img-fluid rounded" alt="Virtual Cupping Session">
+                </div>
+                <div class="col-lg-8">
+                    <h3>Virtual Cupping Session with Colombian Growers</h3>
+                    <p class="event-date"><i class="bi bi-calendar"></i> January 15, 2026 | 7:00 PM EST</p>
+                    <p class="event-description">Join us for an interactive virtual cupping session where you'll taste three single-origin Colombian coffees while meeting the farmers who grew them.</p>
+                    <a href="event-detail.html?event=cupping-jan2026" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- More event cards follow same pattern -->
+        </div>
+    </section>
 
-    register_post_type( 'coffee_event', $args );
-}
-add_action( 'init', 'ec_register_events_cpt' );
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>
 ```
 
 ### iframe E-Commerce Integration
 
-#### Responsive iframe Container
-```php
-/**
- * Create shop page template with embedded iframe
- * Template Name: Shop (iframe E-Commerce)
- */
-<?php get_header(); ?>
-
-<div class="shop-page-wrapper">
-    <div class="shop-header">
-        <h1><?php the_title(); ?></h1>
-        <p class="shop-subtitle">Authentic Colombian Coffee - Direct from Growers to Your Cup</p>
-    </div>
-    
-    <div id="ecommerce-iframe-container" class="iframe-container">
-        <div class="iframe-loader">
-            <div class="loading-spinner"></div>
-            <p>Loading our coffee collection...</p>
+#### Shop Page with iframe Container
+```html
+<!-- shop.html - E-Commerce Shop Page with iframe Integration -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shop - Encounter Coffee</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/templatemo-tiya-golf-club.css">
+    <link rel="stylesheet" href="css/encounter-custom.css">
+</head>
+<body>
+    <!-- Navigation (same as other pages) -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/encounter-logo.png" alt="Encounter Coffee">
+            </a>
+            <!-- Navigation menu here -->
         </div>
-        
-        <iframe 
-            id="ecommerce-iframe"
-            src="<?php echo esc_url( get_option( 'ec_ecommerce_url', 'https://shop.encountercoffee.com' ) ); ?>"
-            frameborder="0"
-            scrolling="no"
-            title="Encounter Coffee Shop"
-            allow="payment; geolocation"
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
-            loading="lazy">
-        </iframe>
-    </div>
-</div>
+    </nav>
 
-<?php get_footer(); ?>
+    <!-- Shop Header -->
+    <section class="shop-hero">
+        <div class="container text-center">
+            <h1>Authentic Colombian Coffee</h1>
+            <p class="shop-subtitle">Direct from Growers to Your Cup</p>
+        </div>
+    </section>
+    
+    <!-- iframe E-Commerce Container -->
+    <div class="shop-page-wrapper">
+        <div id="ecommerce-iframe-container" class="iframe-container">
+            <div class="iframe-loader">
+                <div class="loading-spinner"></div>
+                <p>Loading our coffee collection...</p>
+            </div>
+            
+            <iframe 
+                id="ecommerce-iframe"
+                src="https://shop.encountercoffee.com"
+                frameborder="0"
+                scrolling="no"
+                title="Encounter Coffee Shop"
+                allow="payment; geolocation"
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Encounter Coffee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/iframe-handler.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>
 ```
 
 #### iframe Communication Handler (JavaScript)
 ```javascript
 /**
  * PostMessage API for iframe communication
- * File: assets/js/iframe-handler.js
+ * File: js/iframe-handler.js
  */
 (function($) {
     'use strict';
@@ -1410,14 +1768,15 @@ add_action( 'init', 'ec_register_events_cpt' );
         
         init: function() {
             this.iframe = document.getElementById('ecommerce-iframe');
+            if (!this.iframe) return;
+            
             this.iframeOrigin = new URL(this.iframe.src).origin;
             
             // Listen for messages from iframe
             window.addEventListener('message', this.handleMessage.bind(this), false);
             
-            // Send WordPress user data to iframe (if logged in)
+            // Handle iframe load
             this.iframe.onload = () => {
-                this.sendUserData();
                 this.hideLoader();
             };
             
@@ -1460,7 +1819,7 @@ add_action( 'init', 'ec_register_events_cpt' );
         },
         
         updateCartCount: function(count, total) {
-            // Update WordPress header cart indicator
+            // Update header cart indicator
             const cartBadge = document.querySelector('.cart-count');
             if (cartBadge) {
                 cartBadge.textContent = count;
@@ -1473,7 +1832,7 @@ add_action( 'init', 'ec_register_events_cpt' );
                 cartTotal.textContent = '$' + total.toFixed(2);
             }
             
-            // Trigger custom event for other scripts
+            // Trigger custom event
             document.dispatchEvent(new CustomEvent('ecCartUpdated', {
                 detail: { count, total }
             }));
@@ -1730,187 +2089,397 @@ function ec_iframe_security_headers() {
 add_action( 'send_headers', 'ec_iframe_security_headers' );
 ```
 
-### Custom Product Fields (for WordPress Content)
-```php
-/**
- * Add custom fields to product (Roast Level, Region, Grower Info, Tasting Notes)
- */
-function ec_add_custom_product_fields() {
-    echo '<div class="options_group">';
-    
-    // Roast Level
-    woocommerce_wp_select( array(
-        'id'      => '_roast_level',
-        'label'   => __( 'Roast Level', 'encountercoffee' ),
-        'options' => array(
-            ''       => __( 'Select Roast Level', 'encountercoffee' ),
-            'light'  => __( 'Light Roast', 'encountercoffee' ),
-            'medium' => __( 'Medium Roast', 'encountercoffee' ),
-            'dark'   => __( 'Dark Roast', 'encountercoffee' ),
-        )
-    ));
-    
-    // Colombian Region
-    woocommerce_wp_text_input( array(
-        'id'          => '_coffee_region',
-        'label'       => __( 'Colombian Region', 'encountercoffee' ),
-        'placeholder' => __( 'e.g., Huila, Antioquia, Nariño', 'encountercoffee' ),
-        'desc_tip'    => true,
-        'description' => __( 'Enter the Colombian region of origin', 'encountercoffee' ),
-    ));
-    
-    // Grower Name
-    woocommerce_wp_text_input( array(
-        'id'          => '_grower_name',
-        'label'       => __( 'Coffee Grower Name', 'encountercoffee' ),
-        'placeholder' => __( 'e.g., Juan Pérez', 'encountercoffee' ),
-        'desc_tip'    => true,
-        'description' => __( 'Name of the coffee grower/producer', 'encountercoffee' ),
-    ));
-    
-    // Grower Story
-    woocommerce_wp_textarea_input( array(
-        'id'          => '_grower_story',
-        'label'       => __( 'Grower Story', 'encountercoffee' ),
-        'placeholder' => __( 'Share the story behind this coffee and its grower...', 'encountercoffee' ),
-        'desc_tip'    => true,
-        'description' => __( 'The human story connecting origin to cup', 'encountercoffee' ),
-    ));
-    
-    // Tasting Notes
-    woocommerce_wp_textarea_input( array(
-        'id'          => '_tasting_notes',
-        'label'       => __( 'Tasting Notes', 'encountercoffee' ),
-        'placeholder' => __( 'e.g., Chocolate, Berry, Citrus, Caramel', 'encountercoffee' ),
-        'desc_tip'    => true,
-        'description' => __( 'Describe the flavor profile', 'encountercoffee' ),
-    ));
-    
-    // Altitude
-    woocommerce_wp_text_input( array(
-        'id'          => '_coffee_altitude',
-        'label'       => __( 'Altitude (m.a.s.l.)', 'encountercoffee' ),
-        'placeholder' => __( 'e.g., 1800', 'encountercoffee' ),
-        'type'        => 'number',
-        'desc_tip'    => true,
-        'description' => __( 'Altitude in meters above sea level', 'encountercoffee' ),
-    ));
-    
-    echo '</div>';
-}
-add_action( 'woocommerce_product_options_general_product_data', 'ec_add_custom_product_fields' );
+### Product Display Components (Static HTML)
 
-/**
- * Save custom product fields
- */
-function ec_save_custom_product_fields( $post_id ) {
-    $roast_level = isset( $_POST['_roast_level'] ) ? sanitize_text_field( $_POST['_roast_level'] ) : '';
-    update_post_meta( $post_id, '_roast_level', $roast_level );
+#### Product Card Component
+```html
+<!-- Reusable product card component -->
+<div class="product-card" data-product-id="drip-bag-001">
+    <div class="product-image">
+        <img src="images/products/huila-drip-bag.jpg" alt="Huila Drip Bag Coffee" loading="lazy">
+        <div class="product-badge">Best Seller</div>
+    </div>
     
-    $origin = isset( $_POST['_coffee_origin'] ) ? sanitize_text_field( $_POST['_coffee_origin'] ) : '';
-    update_post_meta( $post_id, '_coffee_origin', $origin );
-    
-    $tasting_notes = isset( $_POST['_tasting_notes'] ) ? sanitize_textarea_field( $_POST['_tasting_notes'] ) : '';
-    update_post_meta( $post_id, '_tasting_notes', $tasting_notes );
-}
-add_action( 'woocommerce_process_product_meta', 'ec_save_custom_product_fields' );
+    <div class="product-info">
+        <h3 class="product-title">Colombian Huila - Drip Bag</h3>
+        <p class="product-region"><i class="bi bi-geo-alt"></i> Huila, Colombia</p>
+        
+        <div class="product-features">
+            <span class="roast-level medium">Medium Roast</span>
+            <span class="altitude">1800m</span>
+        </div>
+        
+        <div class="tasting-notes">
+            <strong>Tasting Notes:</strong>
+            <span class="note">Chocolate</span>
+            <span class="note">Caramel</span>
+            <span class="note">Citrus</span>
+        </div>
+        
+        <div class="grower-info">
+            <p class="grower-name"><strong>Grower:</strong> María González</p>
+            <p class="grower-story">Third-generation coffee farmer from the mountains of Huila...</p>
+        </div>
+        
+        <div class="product-footer">
+            <span class="product-price">$15.99</span>
+            <button class="btn btn-primary add-to-cart" data-product-id="drip-bag-001">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+</div>
 ```
 
-#### Display Custom Fields on Product Page
-```php
+#### Product Grid Layout
+```html
+<!-- products.html - Product listing page -->
+<section class="products-section section-padding">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Our Coffee Collection</h2>
+        
+        <!-- Filter Controls -->
+        <div class="product-filters mb-4">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="drip-bags">Drip Bags</button>
+            <button class="filter-btn" data-filter="pods">Coffee Pods</button>
+            <button class="filter-btn" data-filter="bags">340g Bags</button>
+            <button class="filter-btn" data-filter="special">Special Editions</button>
+        </div>
+        
+        <!-- Product Grid -->
+        <div class="row product-grid" id="productGrid">
+            <!-- Product cards inserted here -->
+        </div>
+    </div>
+</section>
+```
+
+#### Product JavaScript Handler
+```javascript
 /**
- * Display custom fields on single product page
+ * Product display and filtering
+ * File: js/products.js
  */
-function ec_display_custom_fields() {
-    global $product;
+const EC_Products = {
+    products: [],
     
-    $roast_level = get_post_meta( $product->get_id(), '_roast_level', true );
-    $origin = get_post_meta( $product->get_id(), '_coffee_origin', true );
-    $tasting_notes = get_post_meta( $product->get_id(), '_tasting_notes', true );
+    init: function() {
+        this.loadProducts();
+        this.initFilters();
+        this.initAddToCart();
+    },
     
-    if ( $roast_level || $origin || $tasting_notes ) {
-        echo '<div class="product-custom-fields">';
+    loadProducts: function() {
+        // Load products from JSON file or API
+        fetch('data/products.json')
+            .then(response => response.json())
+            .then(data => {
+                this.products = data;
+                this.renderProducts(data);
+            })
+            .catch(error => console.error('Error loading products:', error));
+    },
+    
+    renderProducts: function(products) {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = '';
         
-        if ( $roast_level ) {
-            echo '<p class="roast-level"><strong>Roast Level:</strong> ' . esc_html( ucfirst( $roast_level ) ) . '</p>';
+        products.forEach(product => {
+            const card = this.createProductCard(product);
+            grid.appendChild(card);
+        });
+    },
+    
+    createProductCard: function(product) {
+        const col = document.createElement('div');
+        col.className = 'col-lg-4 col-md-6 mb-4';
+        col.setAttribute('data-category', product.category);
+        
+        col.innerHTML = `
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-region"><i class="bi bi-geo-alt"></i> ${product.region}</p>
+                    <div class="product-features">
+                        <span class="roast-level ${product.roastLevel}">${product.roastLevel} Roast</span>
+                        <span class="altitude">${product.altitude}m</span>
+                    </div>
+                    <div class="tasting-notes">
+                        <strong>Tasting Notes:</strong>
+                        ${product.tastingNotes.map(note => `<span class="note">${note}</span>`).join('')}
+                    </div>
+                    <div class="product-footer">
+                        <span class="product-price">$${product.price}</span>
+                        <button class="btn btn-primary add-to-cart" data-product-id="${product.id}">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        return col;
+    },
+    
+    initFilters: function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const filter = e.target.dataset.filter;
+                this.filterProducts(filter);
+                
+                // Update active state
+                filterBtns.forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+            });
+        });
+    },
+    
+    filterProducts: function(category) {
+        const products = document.querySelectorAll('.product-grid > div');
+        
+        products.forEach(product => {
+            if (category === 'all' || product.dataset.category === category) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    },
+    
+    initAddToCart: function() {
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart')) {
+                const productId = e.target.dataset.productId;
+                this.addToCart(productId);
+            }
+        });
+    },
+    
+    addToCart: function(productId) {
+        // Send message to iframe e-commerce
+        const iframe = document.getElementById('ecommerce-iframe');
+        if (iframe) {
+            iframe.contentWindow.postMessage({
+                action: 'addToCart',
+                productId: productId
+            }, 'https://shop.encountercoffee.com');
         }
         
-        if ( $origin ) {
-            echo '<p class="coffee-origin"><strong>Origin:</strong> ' . esc_html( $origin ) . '</p>';
-        }
+        // Show confirmation
+        this.showNotification('Product added to cart!');
+    },
+    
+    showNotification: function(message) {
+        // Create toast notification
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
         
-        if ( $tasting_notes ) {
-            echo '<div class="tasting-notes"><strong>Tasting Notes:</strong><br>' . esc_html( $tasting_notes ) . '</div>';
-        }
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
         
-        echo '</div>';
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
     }
-}
-add_action( 'woocommerce_single_product_summary', 'ec_display_custom_fields', 25 );
+};
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('productGrid')) {
+        EC_Products.init();
+    }
+});
 ```
 
 ### Performance Optimization
 
-#### Image Lazy Loading
-```php
+#### Image Optimization and Lazy Loading
+```javascript
 /**
- * Enable native lazy loading for product images
+ * Optimize images with lazy loading and modern formats
+ * File: js/image-optimization.js
  */
-function ec_lazy_load_product_images( $html, $post_id ) {
-    return str_replace( '<img', '<img loading="lazy"', $html );
-}
-add_filter( 'post_thumbnail_html', 'ec_lazy_load_product_images', 10, 2 );
-```
-
-#### Database Query Optimization
-```php
-/**
- * Optimize WooCommerce product queries
- */
-function ec_optimize_product_queries( $query_args ) {
-    if ( ! is_admin() ) {
-        $query_args['no_found_rows'] = true;
-        $query_args['update_post_meta_cache'] = false;
-        $query_args['update_post_term_cache'] = false;
-    }
-    return $query_args;
-}
-add_filter( 'woocommerce_product_query', 'ec_optimize_product_queries' );
-```
-
-### Security Hardening
-
-#### Disable XML-RPC
-```php
-add_filter( 'xmlrpc_enabled', '__return_false' );
-```
-
-#### Remove WordPress Version
-```php
-remove_action( 'wp_head', 'wp_generator' );
-```
-
-#### Limit Login Attempts (if not using plugin)
-```php
-/**
- * Track failed login attempts
- */
-function ec_check_failed_logins( $username ) {
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $transient_key = 'failed_login_' . md5( $ip );
-    $failed_count = get_transient( $transient_key );
+document.addEventListener('DOMContentLoaded', function() {
+    // Native lazy loading for all images
+    const images = document.querySelectorAll('img[loading="lazy"]');
     
-    if ( $failed_count >= 5 ) {
-        wp_die( 'Too many failed login attempts. Please try again in 15 minutes.' );
+    // Add intersection observer for older browsers fallback
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        });
+        
+        images.forEach(img => imageObserver.observe(img));
     }
-}
-add_action( 'wp_login_failed', 'ec_check_failed_logins' );
+    
+    // WebP support detection
+    function supportsWebP() {
+        const canvas = document.createElement('canvas');
+        return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    }
+    
+    if (supportsWebP()) {
+        document.documentElement.classList.add('webp-support');
+    }
+});
+```
 
-function ec_reset_failed_logins( $username ) {
-    $ip = $_SERVER['REMOTE_ADDR'];
-    delete_transient( 'failed_login_' . md5( $ip ) );
-}
-add_action( 'wp_login', 'ec_reset_failed_logins' );
+#### CSS and JavaScript Minification
+```javascript
+/**
+ * Production build script for CSS/JS minification
+ * File: build.js (Node.js script)
+ */
+const fs = require('fs');
+const cleanCSS = require('clean-css');
+const uglifyJS = require('uglify-js');
+
+// Minify CSS
+const cssInput = fs.readFileSync('css/encounter-custom.css', 'utf8');
+const cssOutput = new cleanCSS({}).minify(cssInput);
+fs.writeFileSync('css/encounter-custom.min.css', cssOutput.styles);
+
+// Minify JavaScript
+const jsFiles = [
+    'js/products.js',
+    'js/iframe-handler.js',
+    'js/image-optimization.js'
+];
+
+jsFiles.forEach(file => {
+    const jsInput = fs.readFileSync(file, 'utf8');
+    const jsOutput = uglifyJS.minify(jsInput);
+    const outputFile = file.replace('.js', '.min.js');
+    fs.writeFileSync(outputFile, jsOutput.code);
+});
+
+console.log('Build complete!');
+```
+
+### Security Best Practices
+
+#### Content Security Policy Headers
+```html
+<!-- Add to all HTML pages in <head> -->
+<meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdn.jsdelivr.net https://www.google-analytics.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    img-src 'self' data: https:;
+    font-src 'self' https://fonts.gstatic.com;
+    frame-src https://shop.encountercoffee.com https://www.youtube.com;
+    connect-src 'self' https://shop.encountercoffee.com https://www.google-analytics.com;
+">
+```
+
+#### Form Validation and Sanitization
+```javascript
+/**
+ * Contact form validation and sanitization
+ * File: js/form-validation.js
+ */
+const EC_FormValidation = {
+    init: function() {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', this.handleSubmit.bind(this));
+        }
+    },
+    
+    handleSubmit: function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        // Validate
+        if (!this.validateName(name)) {
+            this.showError('name', 'Please enter a valid name');
+            return false;
+        }
+        
+        if (!this.validateEmail(email)) {
+            this.showError('email', 'Please enter a valid email address');
+            return false;
+        }
+        
+        if (!this.validateMessage(message)) {
+            this.showError('message', 'Message must be at least 10 characters');
+            return false;
+        }
+        
+        // Submit via Formspree or Netlify Forms
+        this.submitForm({ name, email, message });
+    },
+    
+    validateEmail: function(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    },
+    
+    validateName: function(name) {
+        return name.length >= 2 && name.length <= 50;
+    },
+    
+    validateMessage: function(message) {
+        return message.length >= 10 && message.length <= 1000;
+    },
+    
+    showError: function(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const errorDiv = field.nextElementSibling;
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+        field.classList.add('error');
+    },
+    
+    submitForm: function(data) {
+        // Use Formspree or Netlify Forms
+        fetch('https://formspree.io/f/YOUR_FORM_ID', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            this.showSuccess('Message sent successfully!');
+        })
+        .catch(error => {
+            this.showError('form', 'Failed to send message. Please try again.');
+        });
+    },
+    
+    showSuccess: function(message) {
+        const successDiv = document.createElement('div');
+        successDiv.className = 'alert alert-success';
+        successDiv.textContent = message;
+        document.getElementById('contactForm').prepend(successDiv);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    EC_FormValidation.init();
+});
 ```
 
 ---
@@ -1919,78 +2488,84 @@ add_action( 'wp_login', 'ec_reset_failed_logins' );
 
 ### SEO Meta Generation
 ```
-// Generate meta tags for WooCommerce product page including dynamic product name, 
-// category, price, and roast level. Target keyword: "specialty coffee beans online"
+// Generate meta tags for coffee product page including dynamic product name, 
+// category, price, and roast level. Target keyword: "Colombian specialty coffee"
 // Include Open Graph and Twitter Card markup. Max description length: 155 characters.
+// Output as HTML meta tags to insert in <head> section.
 ```
 
 ### UI Component Creation
 ```
 // Build responsive product card component with 1:1 image ratio, hover lift effect,
-// sale badge overlay, product title, origin label, price display, and add-to-cart button.
-// Follow BEM naming convention and use CSS custom properties for colors/spacing.
-// Support grid layouts of 2/3/4 columns with appropriate breakpoints.
+// sale badge overlay, product title, Colombian region label, price display, and add-to-cart button.
+// Follow BEM naming convention and use CSS custom properties for Encounter Coffee brand colors:
+// #FBF6E0 (Warm Cream), #2F4466 (Deep Navy), #DDC165 (Golden), #E69E2C (Orange), #892A25 (Red).
+// Support grid layouts of 2/3/4 columns with Bootstrap 5 breakpoints.
 ```
 
 ### iframe Integration Implementation
 ```
-// Create WordPress page template with responsive iframe container for e-commerce.
+// Create static HTML shop page with responsive iframe container for e-commerce.
 // Implement PostMessage API for height adjustment and cart count updates.
-// Add loading spinner during iframe load. Style container to match site theme.
+// Add loading spinner during iframe load with CSS animations.
 // Ensure HTTPS, proper CSP headers, and mobile-responsive iframe sizing.
+// Use vanilla JavaScript (no jQuery dependency for this feature).
 ```
 
 ### Schema Markup Generation
 ```
 // Generate Product schema for coffee products with properties: name, image,
-// description, SKU, brand (Encounter Coffee), price, currency, availability, aggregate rating.
-// Data source: External e-commerce platform API or manual entry in WordPress.
-// Include custom fields: roast level, region, grower name, tasting notes. Output as JSON-LD format.
+// description, SKU, brand (Encounter Coffee), price, currency (CAD), availability.
+// Include custom fields: roast level, Colombian region, grower name, tasting notes, altitude.
+// Output as JSON-LD format to insert in <head> section. Follow schema.org standards.
 ```
 
-### Heatmap Integration
+### Grower Story Page Creation
 ```
-// Create WordPress admin page for heatmap analytics dashboard with Microsoft Clarity embed.
-// Include quick access buttons for heatmaps, session recordings, and full dashboard.
-// Restrict access to administrators and shop managers only. Add custom styling.
+// Create HTML page showcasing Colombian coffee growers with profile cards.
+// Include grower photo, name, region, farm altitude, years of experience, story paragraph.
+// Add image gallery slider for farm photos. Use Bootstrap carousel component.
+// Implement filter by region (Huila, Antioquia, Nariño, Cauca). Mobile-responsive grid layout.
 ```
 
 ### Form Validation
 ```
-// Implement client-side validation for WordPress contact/inquiry forms with real-time feedback.
-// Validate email format, phone number pattern, required fields. Show inline error messages
-// with smooth animations. Prevent form submission until all validations pass.
-// Note: E-commerce checkout validation handled within iframe by external platform.
+// Implement client-side validation for contact/inquiry forms with real-time feedback.
+// Validate email format, phone number pattern (Canadian/US), required fields.
+// Show inline error messages with smooth animations. Prevent form submission until all validations pass.
+// Use vanilla JavaScript (no jQuery). Submit via Formspree or Netlify Forms.
 ```
 
 ### iframe Communication Handler
 ```
-// Create PostMessage API communication system between WordPress and iframe e-commerce.
-// Listen for events: cart updates, height changes, page navigation. Send user data for
-// personalization. Implement dynamic iframe resizing based on content. Add fallback for
-// PostMessage not supported. Log communication for debugging.
+// Create PostMessage API communication system between static site and iframe e-commerce.
+// Listen for events: cart updates, height changes, page navigation. 
+// Implement dynamic iframe resizing based on content height.
+// Add security checks to verify message origin. Log communication for debugging.
 ```
 
-### Custom Gutenberg Block
+### Homepage Hero Section
 ```
-// Build custom Gutenberg block "Featured Coffee Products" with options to select number
-// of products, filter by category, choose layout (grid/carousel), and set columns.
-// Include live preview in editor. Follow WordPress block development best practices.
+// Build homepage hero section with parallax background image of Colombian coffee plantation.
+// Include headline "The Soul of Colombia Served in Your Cup", subheadline, CTA button to shop.
+// Add video background option with YouTube iframe (optional).
+// Implement scroll indicator animation. Mobile-responsive with optimized images.
 ```
 
 ### Performance Optimization
 ```
-// Optimize WooCommerce product image loading with progressive JPEG, WebP format with fallback,
-// native lazy loading, and blur-up placeholder technique. Implement responsive images with
-// srcset. Ensure cumulative layout shift (CLS) score < 0.1.
+// Optimize product image loading with WebP format, native lazy loading attribute,
+// blur-up placeholder technique, and responsive images with srcset.
+// Implement preload for critical CSS and fonts. Ensure cumulative layout shift (CLS) score < 0.1.
+// Minify CSS/JS files for production. Use CDN for Bootstrap and jQuery libraries.
 ```
 
-### WordPress Email Template Customization
+### Email Template Creation
 ```
-// Customize WordPress transactional email templates (contact form, inquiry, newsletter) with
-// brand colors, logo header, and social media links. Ensure mobile responsive and email client
-// compatibility (Gmail, Outlook, Apple Mail). Note: Order confirmation emails handled by
-// external e-commerce platform within iframe.
+// Create HTML email template for contact form confirmations with Encounter Coffee branding.
+// Include logo header, warm cream (#FBF6E0) background, deep navy (#2F4466) text, social media icons.
+// Ensure mobile responsive and email client compatibility (Gmail, Outlook, Apple Mail).
+// Use inline CSS for maximum compatibility. Test with Litmus or Email on Acid.
 ```
 
 ---
@@ -1999,35 +2574,38 @@ add_action( 'wp_login', 'ec_reset_failed_logins' );
 
 ### HTML Best Practices
 - Use semantic HTML5 elements (`<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<footer>`)
-- Include proper ARIA labels for accessibility
+- Include proper ARIA labels for accessibility (WCAG 2.1 AA compliance)
 - Use data attributes for JavaScript hooks instead of classes
-- Ensure all images have descriptive `alt` attributes
+- Ensure all images have descriptive `alt` attributes (important for coffee product imagery)
 - Maintain proper heading hierarchy (h1 → h2 → h3)
+- Validate HTML with W3C validator before deployment
 
 ### CSS Best Practices
-- Use BEM naming convention for maintainability
-- Leverage CSS custom properties for theme values
-- Mobile-first media queries
+- Use BEM naming convention for maintainability (.product-card__title)
+- Leverage CSS custom properties for Encounter Coffee brand colors
+- Mobile-first media queries (min-width approach)
 - Avoid `!important` declarations (use specificity correctly)
 - Use flexbox/grid for layouts (avoid floats)
-- Implement CSS containment for performance
+- Implement CSS containment for performance on product grids
+- Prefix custom classes with `ec-` to avoid conflicts
 
 ### JavaScript Best Practices
 - Use ES6+ syntax (const/let, arrow functions, template literals)
-- Minimize jQuery usage; prefer vanilla JavaScript
+- Minimize jQuery usage; prefer vanilla JavaScript for better performance
 - Implement error handling with try/catch blocks
-- Use event delegation for dynamic content
-- Debounce/throttle expensive operations (scroll, resize)
-- Load scripts asynchronously when possible
+- Use event delegation for dynamic product content
+- Debounce/throttle expensive operations (scroll, resize, filter)
+- Load scripts asynchronously when possible (async/defer attributes)
+- Namespace custom code under `EC_` object to avoid global pollution
 
-### PHP/WordPress Best Practices
-- Follow WordPress Coding Standards
-- Escape all output with `esc_html()`, `esc_attr()`, `esc_url()`
-- Sanitize all input with appropriate functions
-- Use nonces for form security
-- Implement proper capability checks
-- Use transients for caching expensive queries
-- Prefix all custom functions/classes with `ec_`
+### Static Site Development Standards
+- Maintain consistent file structure and naming conventions
+- Use relative paths for internal links (enables local testing)
+- Separate concerns: HTML (structure), CSS (presentation), JS (behavior)
+- Comment complex sections with clear explanations
+- Keep JavaScript functions small and focused (single responsibility)
+- Test on multiple browsers: Chrome, Firefox, Safari, Edge
+- Optimize for Core Web Vitals (LCP < 2.5s, FID < 100ms, CLS < 0.1)
 
 ### Accessibility Standards (WCAG 2.1 AA)
 - Color contrast ratio minimum 4.5:1 for text
@@ -2162,78 +2740,91 @@ wp-content/themes/encountercoffee-child/
 
 ## �📝 Implementation Checklist
 
-### Phase 1: Foundation Setup
-- [ ] Install WordPress 6.4+ on hosting environment
-- [ ] Install and activate WooCommerce 8.5+
-- [ ] Set up child theme with proper structure
-- [ ] Install required plugins (SEO, caching, security)
-- [ ] Configure permalink structure (Post name)
-- [ ] Set up SSL certificate and force HTTPS
-- [ ] Create database backup schedule
+### Phase 1: Template Customization
+- [ ] Replace TemplateMo branding with Encounter Coffee logo and name
+- [ ] Update color scheme in encounter-custom.css with brand colors
+- [ ] Customize navigation menu items (Home, Our Story, Growers, Events, Shop, Contact)
+- [ ] Replace hero section content with Encounter Coffee messaging
+- [ ] Update all placeholder images with actual coffee product photos
+- [ ] Create favicon and app icons with Encounter branding
+- [ ] Set up Google Fonts (DM Sans, Playfair Display)
 
-### Phase 2: Design Implementation
-- [ ] Implement custom typography system
-- [ ] Apply brand color palette throughout site
-- [ ] Create reusable UI components (buttons, cards, forms)
-- [ ] Build responsive navigation menu
-- [ ] Design and implement homepage layout
-- [ ] Create product page templates
-- [ ] Implement iframe e-commerce integration design
+### Phase 2: Content Pages Creation
+- [ ] Adapt index.html to Encounter Coffee homepage
+- [ ] Create story.html page with company mission and vision
+- [ ] Create growers.html page showcasing Colombian farmers
+- [ ] Adapt event-listing.html for coffee events (cupping sessions, grower spotlights)
+- [ ] Adapt event-detail.html for individual event pages
+- [ ] Create shop.html with iframe e-commerce integration
+- [ ] Create contact.html with contact form (Formspree or Netlify Forms)
 
 ### Phase 3: SEO Optimization
-- [ ] Install and configure Rank Math/Yoast SEO
-- [ ] Set up meta title and description templates
-- [ ] Implement schema markup (Product, Organization, BreadcrumbList)
-- [ ] Create and submit XML sitemap
+- [ ] Update page titles and meta descriptions for all HTML files
+- [ ] Implement schema markup (Product, Organization, Event)
+- [ ] Create and add XML sitemap
 - [ ] Configure robots.txt file
-- [ ] Set up 301 redirects (if migrating)
-- [ ] Optimize images (compression, WebP, lazy loading)
+- [ ] Add Open Graph and Twitter Card meta tags
+- [ ] Optimize all images (compression, WebP format, lazy loading)
 - [ ] Implement Core Web Vitals optimizations
+- [ ] Add structured data for products and events
 
 ### Phase 4: iframe E-Commerce Integration
-- [ ] Set up external e-commerce platform (Shopify/custom/etc.)
-- [ ] Create shop page template with iframe container
-- [ ] Implement PostMessage API communication
+- [ ] Set up external e-commerce platform (specify: Shopify, WooCommerce, Custom, etc.)
+- [ ] Create shop.html with responsive iframe container
+- [ ] Implement iframe-handler.js with PostMessage API
 - [ ] Add dynamic iframe resizing functionality
-- [ ] Style iframe container to match WordPress theme
-- [ ] Set up security headers (CSP, X-Frame-Options)
-- [ ] Implement cart count sync between iframe and WordPress header
+- [ ] Style iframe container to match Encounter Coffee theme
+- [ ] Set up Content Security Policy headers
+- [ ] Implement cart count sync (optional)
 - [ ] Test payment gateway within iframe
-- [ ] Configure iframe sandbox attributes
-- [ ] Add loading states and error handling
+- [ ] Add loading spinner and error handling
 
-### Phase 5: Heatmap & Analytics
-- [ ] Create Microsoft Clarity account
-- [ ] Install Clarity tracking code
-- [ ] Create custom admin analytics dashboard page
-- [ ] Set up custom event tracking (form submissions, clicks, navigation)
-- [ ] Implement cookie consent banner
-- [ ] Configure Google Analytics 4
-- [ ] Set up iframe-to-WordPress analytics bridge
+### Phase 5: Analytics & Tracking
+- [ ] Create Microsoft Clarity account and install tracking code
+- [ ] Set up Google Analytics 4
+- [ ] Implement custom event tracking (button clicks, form submissions)
+- [ ] Add cookie consent banner (if required by GDPR/CCPA)
 - [ ] Track iframe interaction events
-- [ ] Create conversion goals
+- [ ] Create conversion goals for Shop page
 
-### Phase 6: Performance & Security
-- [ ] Install and configure WP Rocket/W3 Total Cache
-- [ ] Enable object caching (Redis/Memcached)
-- [ ] Set up CDN (Cloudflare)
-- [ ] Minify CSS/JavaScript
-- [ ] Enable GZIP compression
-- [ ] Install security plugin (Wordfence)
-- [ ] Implement file permission hardening
-- [ ] Set up automatic backups
+### Phase 6: Form & Contact Setup
+- [ ] Set up Formspree or Netlify Forms account
+- [ ] Implement contact form in contact.html
+- [ ] Add form validation with form-validation.js
+- [ ] Create email notification templates
+- [ ] Test form submission flow
+- [ ] Add honeypot field for spam protection
+- [ ] Set up form confirmation page or message
 
-### Phase 7: Testing & Launch
-- [ ] Test all forms (contact, checkout, registration)
-- [ ] Verify mobile responsiveness across devices
-- [ ] Check cross-browser compatibility
-- [ ] Run accessibility audit (WCAG 2.1 AA)
-- [ ] Test payment processing
-- [ ] Verify email notifications
-- [ ] Run performance tests (PageSpeed, GTmetrix)
-- [ ] Test heatmap and analytics tracking
-- [ ] Final SEO audit
-- [ ] Launch and monitor
+### Phase 7: Performance & Security
+- [ ] Minify CSS and JavaScript files
+- [ ] Enable GZIP compression on server
+- [ ] Set up CDN for static assets (optional)
+- [ ] Implement browser caching headers
+- [ ] Add Content Security Policy headers
+- [ ] Set up SSL certificate and force HTTPS
+- [ ] Test site speed with PageSpeed Insights and GTmetrix
+- [ ] Optimize image loading with srcset and responsive images
+
+### Phase 8: Testing & Launch
+- [ ] Test all internal links and navigation
+- [ ] Verify mobile responsiveness on iOS and Android devices
+- [ ] Check cross-browser compatibility (Chrome, Firefox, Safari, Edge)
+- [ ] Run accessibility audit with WAVE or Lighthouse (WCAG 2.1 AA)
+- [ ] Test iframe e-commerce integration thoroughly
+- [ ] Verify all forms work correctly
+- [ ] Run performance tests and optimize as needed
+- [ ] Test analytics and event tracking
+- [ ] Final SEO audit with Screaming Frog or similar tool
+- [ ] Deploy to production hosting (Netlify, Vercel, GitHub Pages, or traditional hosting)
+
+### Phase 9: Post-Launch
+- [ ] Submit sitemap to Google Search Console
+- [ ] Monitor Core Web Vitals in Search Console
+- [ ] Set up website monitoring (UptimeRobot, Pingdom)
+- [ ] Create social media profiles and link to website
+- [ ] Monitor Microsoft Clarity heatmaps for UX improvements
+- [ ] Collect customer feedback and iterate
 
 ---
 

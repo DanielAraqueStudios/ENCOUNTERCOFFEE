@@ -1,7 +1,9 @@
 # Encounter Coffee - E-Commerce Platform Documentation
 ## GitHub Copilot Optimization Guide
 
-> **Purpose**: This README provides comprehensive context for GitHub Copilot to generate precise, production-ready code for the Encounter Coffee WordPress/WooCommerce e-commerce platform with SEO optimization, UI/UX best practices, and integrated heatmap analytics.
+> **Purpose**: This README provides comprehensive context for GitHub Copilot to generate precise, production-ready code for the Encounter Coffee e-commerce platform with SEO optimization, UI/UX best practices, and integrated heatmap analytics.
+
+> **⚠️ ARCHITECTURE NOTE**: The website is fully developed in **WordPress** (pure code), but the e-commerce functionality (product catalog, cart, checkout) is integrated as an **iframe** embedded within WordPress HTML pages. This is a hybrid architecture where WordPress manages content, SEO, and storytelling, while the external e-commerce platform (embedded via iframe) handles transactions.
 
 ---
 
@@ -262,12 +264,42 @@ Our added value is transforming a traditionally anonymous chain into a human and
 
 ### Core Platform
 ```yaml
-CMS: WordPress 6.4+
-E-Commerce: WooCommerce 8.5+
+CMS: WordPress 6.4+ (Content Management)
+E-Commerce: External Platform (Embedded via iframe in WordPress pages)
+Architecture: Hybrid - WordPress frontend + iframe e-commerce integration
 PHP Version: 8.1+
-MySQL: 8.0+
+MySQL: 8.0+ (WordPress database)
 Web Server: Apache 2.4+ or Nginx 1.20+
 ```
+
+### Architecture Overview
+**Important**: The website is fully developed in WordPress (pure code), but the e-commerce functionality is integrated as an **iframe** embedded within WordPress HTML pages. This hybrid approach allows:
+- **WordPress handles**: Content pages, blog, storytelling, grower profiles, SEO, navigation
+- **iframe e-commerce handles**: Product catalog, cart, checkout, payment processing, order management
+- **Seamless visual integration** while maintaining separation of concerns
+
+### iframe E-Commerce Integration
+```yaml
+Integration Method: HTML iframe element embedded in WordPress pages
+Communication: PostMessage API for cross-origin messaging
+Responsive Handling: JavaScript-based dynamic iframe resizing
+Styling: CSS to match WordPress theme aesthetics
+Security: CSP headers, iframe sandboxing, HTTPS enforcement
+E-Commerce Platform: [Specify: Shopify, WooCommerce standalone, Custom, etc.]
+```
+
+### Benefits of iframe Architecture
+- ✅ **Separation of Concerns**: WordPress focuses on content, external platform handles transactions
+- ✅ **Security**: PCI compliance managed by e-commerce platform
+- ✅ **Flexibility**: Can swap e-commerce platforms without WordPress rebuild
+- ✅ **Performance**: E-commerce platform optimized independently
+- ✅ **Maintenance**: Updates to shop don't affect WordPress core
+
+### Considerations
+- ⚠️ **Cross-Origin Communication**: Requires PostMessage API implementation
+- ⚠️ **SEO**: Product pages may need API integration for server-side rendering
+- ⚠️ **Analytics**: Event tracking requires iframe-to-parent messaging
+- ⚠️ **Styling Consistency**: iframe content must match WordPress theme
 
 ### Theme Framework
 ```yaml
@@ -286,9 +318,10 @@ Forms: WPForms or Gravity Forms
 Analytics: Site Kit by Google
 Heatmap: Microsoft Clarity (free) or Hotjar
 Page Builder: Elementor Pro (optional)
-Subscriptions: WooCommerce Subscriptions
-Email: Mailchimp for WooCommerce
+iframe Integration: Advanced iFrames or Custom iframe handler
+Email: Mailchimp for WordPress
 Performance: Smush Pro, Autoptimize
+Custom Code: Code Snippets (for iframe communication scripts)
 ```
 
 ### Hosting Environment
@@ -305,7 +338,17 @@ Version Control: Git
 Task Runner: Gulp/npm scripts
 Package Manager: npm or Yarn
 Local Development: Local by Flywheel or XAMPP
-Code Editor: VS Code with WordPress/WooCommerce extensions
+Code Editor: VS Code with WordPress extensions
+```
+
+### iframe E-Commerce Integration
+```yaml
+Integration Method: HTML iframe element embedded in WordPress pages
+Communication: PostMessage API for cross-origin messaging
+Responsive Handling: JavaScript-based dynamic iframe resizing
+Styling: CSS to match WordPress theme aesthetics
+Security: CSP headers, iframe sandboxing, HTTPS enforcement
+E-Commerce Platform: [External platform - Shopify, custom, etc.]
 ```
 
 ---
@@ -321,15 +364,17 @@ wp-content/
 │       ├── functions.php
 │       ├── header.php
 │       ├── footer.php
-│       ├── woocommerce/           # WooCommerce template overrides
+│       ├── page-shop.php         # Shop page with iframe integration
 │       ├── template-parts/
 │       ├── inc/
 │       │   ├── customizer.php
 │       │   ├── template-functions.php
-│       │   └── woocommerce-functions.php
+│       │   └── iframe-integration.php  # iframe communication handlers
 │       ├── assets/
 │       │   ├── css/
+│       │   │   └── iframe-styles.css   # Styling for iframe container
 │       │   ├── js/
+│       │   │   └── iframe-handler.js   # PostMessage API, resizing
 │       │   ├── images/
 │       │   └── fonts/
 │       └── languages/
@@ -1240,7 +1285,7 @@ if (jQuery('body').hasClass('single-product')) {
 
 ---
 
-## 🔧 WordPress/WooCommerce Specifications
+## 🔧 WordPress & iframe E-Commerce Integration Specifications
 
 ### Child Theme Structure
 ```php
@@ -1312,9 +1357,380 @@ function ec_register_events_cpt() {
 add_action( 'init', 'ec_register_events_cpt' );
 ```
 
-### WooCommerce Customizations
+### iframe E-Commerce Integration
 
-#### Custom Product Fields
+#### Responsive iframe Container
+```php
+/**
+ * Create shop page template with embedded iframe
+ * Template Name: Shop (iframe E-Commerce)
+ */
+<?php get_header(); ?>
+
+<div class="shop-page-wrapper">
+    <div class="shop-header">
+        <h1><?php the_title(); ?></h1>
+        <p class="shop-subtitle">Authentic Colombian Coffee - Direct from Growers to Your Cup</p>
+    </div>
+    
+    <div id="ecommerce-iframe-container" class="iframe-container">
+        <div class="iframe-loader">
+            <div class="loading-spinner"></div>
+            <p>Loading our coffee collection...</p>
+        </div>
+        
+        <iframe 
+            id="ecommerce-iframe"
+            src="<?php echo esc_url( get_option( 'ec_ecommerce_url', 'https://shop.encountercoffee.com' ) ); ?>"
+            frameborder="0"
+            scrolling="no"
+            title="Encounter Coffee Shop"
+            allow="payment; geolocation"
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-top-navigation"
+            loading="lazy">
+        </iframe>
+    </div>
+</div>
+
+<?php get_footer(); ?>
+```
+
+#### iframe Communication Handler (JavaScript)
+```javascript
+/**
+ * PostMessage API for iframe communication
+ * File: assets/js/iframe-handler.js
+ */
+(function($) {
+    'use strict';
+    
+    const EC_IframeHandler = {
+        iframe: null,
+        iframeOrigin: null,
+        
+        init: function() {
+            this.iframe = document.getElementById('ecommerce-iframe');
+            this.iframeOrigin = new URL(this.iframe.src).origin;
+            
+            // Listen for messages from iframe
+            window.addEventListener('message', this.handleMessage.bind(this), false);
+            
+            // Send WordPress user data to iframe (if logged in)
+            this.iframe.onload = () => {
+                this.sendUserData();
+                this.hideLoader();
+            };
+            
+            // Handle iframe load errors
+            this.iframe.onerror = () => {
+                this.showError();
+            };
+        },
+        
+        handleMessage: function(event) {
+            // Security: Verify origin
+            if (event.origin !== this.iframeOrigin) {
+                return;
+            }
+            
+            const data = event.data;
+            
+            switch(data.action) {
+                case 'resize':
+                    this.resizeIframe(data.height);
+                    break;
+                case 'cartUpdate':
+                    this.updateCartCount(data.count, data.total);
+                    break;
+                case 'navigate':
+                    this.handleNavigation(data.url);
+                    break;
+                case 'trackEvent':
+                    this.trackAnalytics(data.eventName, data.eventData);
+                    break;
+                default:
+                    console.log('Unknown iframe message:', data);
+            }
+        },
+        
+        resizeIframe: function(height) {
+            if (height && height > 0) {
+                this.iframe.style.height = height + 'px';
+            }
+        },
+        
+        updateCartCount: function(count, total) {
+            // Update WordPress header cart indicator
+            const cartBadge = document.querySelector('.cart-count');
+            if (cartBadge) {
+                cartBadge.textContent = count;
+                cartBadge.style.display = count > 0 ? 'inline-block' : 'none';
+            }
+            
+            // Update cart total
+            const cartTotal = document.querySelector('.cart-total');
+            if (cartTotal) {
+                cartTotal.textContent = '$' + total.toFixed(2);
+            }
+            
+            // Trigger custom event for other scripts
+            document.dispatchEvent(new CustomEvent('ecCartUpdated', {
+                detail: { count, total }
+            }));
+        },
+        
+        handleNavigation: function(url) {
+            // Handle internal navigation or scroll to section
+            if (url.startsWith('#')) {
+                const element = document.querySelector(url);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        },
+        
+        trackAnalytics: function(eventName, eventData) {
+            // Send to Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+            
+            // Send to Microsoft Clarity
+            if (typeof clarity !== 'undefined') {
+                clarity('event', eventName);
+            }
+        },
+        
+        sendUserData: function() {
+            // Send WordPress user data to iframe for personalization
+            const userData = {
+                action: 'userData',
+                isLoggedIn: EC_Data.isLoggedIn || false,
+                userName: EC_Data.userName || '',
+                userEmail: EC_Data.userEmail || '',
+                preferredLanguage: EC_Data.language || 'en'
+            };
+            
+            this.iframe.contentWindow.postMessage(userData, this.iframeOrigin);
+        },
+        
+        hideLoader: function() {
+            const loader = document.querySelector('.iframe-loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 300);
+            }
+        },
+        
+        showError: function() {
+            const container = document.getElementById('ecommerce-iframe-container');
+            container.innerHTML = `
+                <div class="iframe-error">
+                    <h2>Unable to Load Shop</h2>
+                    <p>We're having trouble loading our coffee collection. Please try refreshing the page.</p>
+                    <button onclick="location.reload()">Refresh Page</button>
+                </div>
+            `;
+        }
+    };
+    
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        if (document.getElementById('ecommerce-iframe')) {
+            EC_IframeHandler.init();
+        }
+    });
+    
+})(jQuery);
+```
+
+#### iframe Styling (CSS)
+```scss
+/**
+ * iframe Container Styles
+ * File: assets/css/iframe-styles.css
+ */
+.shop-page-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: $spacing-xl 0;
+}
+
+.shop-header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+    padding: 0 $spacing-lg;
+    
+    h1 {
+        font-family: $font-heading;
+        font-size: $font-size-h1;
+        color: $color-secondary-navy;
+        margin-bottom: $spacing-md;
+    }
+    
+    .shop-subtitle {
+        font-size: $font-size-body;
+        color: $color-text-secondary;
+    }
+}
+
+.iframe-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 800px;
+    background: $color-background;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    
+    @media (max-width: 768px) {
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+#ecommerce-iframe {
+    width: 100%;
+    min-height: 800px;
+    border: none;
+    display: block;
+    transition: height 0.3s ease;
+}
+
+.iframe-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: $color-background-alt;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    
+    .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid $color-border-light;
+        border-top-color: $color-accent-orange;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-bottom: $spacing-lg;
+    }
+    
+    p {
+        color: $color-text-secondary;
+        font-size: 1rem;
+    }
+}
+
+.iframe-error {
+    text-align: center;
+    padding: $spacing-4xl $spacing-lg;
+    
+    h2 {
+        font-family: $font-heading;
+        font-size: $font-size-h2;
+        color: $color-secondary-navy;
+        margin-bottom: $spacing-md;
+    }
+    
+    p {
+        color: $color-text-secondary;
+        margin-bottom: $spacing-xl;
+    }
+    
+    button {
+        @extend .btn;
+        @extend .btn--primary;
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+// Mobile optimizations
+@media (max-width: 768px) {
+    .shop-page-wrapper {
+        padding: $spacing-lg 0;
+    }
+    
+    .shop-header {
+        margin-bottom: $spacing-xl;
+    }
+    
+    #ecommerce-iframe {
+        min-height: 600px;
+    }
+}
+```
+
+#### Enqueue iframe Scripts and Styles
+```php
+/**
+ * Enqueue iframe integration assets
+ */
+function ec_enqueue_iframe_assets() {
+    // Only load on shop page
+    if ( is_page_template( 'page-shop.php' ) ) {
+        // iframe handler script
+        wp_enqueue_script(
+            'ec-iframe-handler',
+            get_stylesheet_directory_uri() . '/assets/js/iframe-handler.js',
+            array( 'jquery' ),
+            '1.0.0',
+            true
+        );
+        
+        // Pass data to JavaScript
+        wp_localize_script( 'ec-iframe-handler', 'EC_Data', array(
+            'isLoggedIn' => is_user_logged_in(),
+            'userName'   => is_user_logged_in() ? wp_get_current_user()->display_name : '',
+            'userEmail'  => is_user_logged_in() ? wp_get_current_user()->user_email : '',
+            'language'   => get_locale(),
+            'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
+            'nonce'      => wp_create_nonce( 'ec_iframe_nonce' )
+        ));
+        
+        // iframe styles
+        wp_enqueue_style(
+            'ec-iframe-styles',
+            get_stylesheet_directory_uri() . '/assets/css/iframe-styles.css',
+            array(),
+            '1.0.0'
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'ec_enqueue_iframe_assets' );
+```
+
+#### Security Headers for iframe
+```php
+/**
+ * Add security headers for iframe integration
+ */
+function ec_iframe_security_headers() {
+    // Content Security Policy
+    header("Content-Security-Policy: frame-src 'self' https://shop.encountercoffee.com https://*.stripe.com;");
+    
+    // X-Frame-Options (allow same origin)
+    header("X-Frame-Options: SAMEORIGIN");
+    
+    // Feature Policy
+    header("Feature-Policy: payment 'self' https://shop.encountercoffee.com;");
+}
+add_action( 'send_headers', 'ec_iframe_security_headers' );
+```
+
+### Custom Product Fields (for WordPress Content)
 ```php
 /**
  * Add custom fields to product (Roast Level, Region, Grower Info, Tasting Notes)
@@ -1516,18 +1932,20 @@ add_action( 'wp_login', 'ec_reset_failed_logins' );
 // Support grid layouts of 2/3/4 columns with appropriate breakpoints.
 ```
 
-### WordPress Hook Implementation
+### iframe Integration Implementation
 ```
-// Implement woocommerce_after_shop_loop_item_title hook to display custom roast level
-// badge with color coding (light=yellow, medium=orange, dark=brown). Include icon.
-// Ensure mobile responsive and accessible with ARIA labels.
+// Create WordPress page template with responsive iframe container for e-commerce.
+// Implement PostMessage API for height adjustment and cart count updates.
+// Add loading spinner during iframe load. Style container to match site theme.
+// Ensure HTTPS, proper CSP headers, and mobile-responsive iframe sizing.
 ```
 
 ### Schema Markup Generation
 ```
-// Generate Product schema for WooCommerce coffee product with properties: name, image,
+// Generate Product schema for coffee products with properties: name, image,
 // description, SKU, brand (Encounter Coffee), price, currency, availability, aggregate rating.
-// Include custom fields: roast level, origin, tasting notes. Output as JSON-LD format.
+// Data source: External e-commerce platform API or manual entry in WordPress.
+// Include custom fields: roast level, region, grower name, tasting notes. Output as JSON-LD format.
 ```
 
 ### Heatmap Integration
@@ -1539,16 +1957,18 @@ add_action( 'wp_login', 'ec_reset_failed_logins' );
 
 ### Form Validation
 ```
-// Implement client-side validation for WooCommerce checkout form with real-time feedback.
+// Implement client-side validation for WordPress contact/inquiry forms with real-time feedback.
 // Validate email format, phone number pattern, required fields. Show inline error messages
 // with smooth animations. Prevent form submission until all validations pass.
+// Note: E-commerce checkout validation handled within iframe by external platform.
 ```
 
-### AJAX Product Filter
+### iframe Communication Handler
 ```
-// Create AJAX-powered product filter system for WooCommerce with checkboxes for roast level,
-// origin, and price range slider. Update product grid without page reload. Include loading
-// spinner and result count. Maintain filter state in URL parameters for shareable links.
+// Create PostMessage API communication system between WordPress and iframe e-commerce.
+// Listen for events: cart updates, height changes, page navigation. Send user data for
+// personalization. Implement dynamic iframe resizing based on content. Add fallback for
+// PostMessage not supported. Log communication for debugging.
 ```
 
 ### Custom Gutenberg Block
@@ -1565,11 +1985,12 @@ add_action( 'wp_login', 'ec_reset_failed_logins' );
 // srcset. Ensure cumulative layout shift (CLS) score < 0.1.
 ```
 
-### Email Template Customization
+### WordPress Email Template Customization
 ```
-// Customize WooCommerce order confirmation email template with brand colors, logo header,
-// product images, roast level badges, brewing recommendations section, and social media links.
-// Ensure mobile responsive and email client compatibility (Gmail, Outlook, Apple Mail).
+// Customize WordPress transactional email templates (contact form, inquiry, newsletter) with
+// brand colors, logo header, and social media links. Ensure mobile responsive and email client
+// compatibility (Gmail, Outlook, Apple Mail). Note: Order confirmation emails handled by
+// external e-commerce platform within iframe.
 ```
 
 ---
@@ -1757,7 +2178,7 @@ wp-content/themes/encountercoffee-child/
 - [ ] Build responsive navigation menu
 - [ ] Design and implement homepage layout
 - [ ] Create product page templates
-- [ ] Implement shopping cart and checkout design
+- [ ] Implement iframe e-commerce integration design
 
 ### Phase 3: SEO Optimization
 - [ ] Install and configure Rank Math/Yoast SEO
@@ -1769,24 +2190,27 @@ wp-content/themes/encountercoffee-child/
 - [ ] Optimize images (compression, WebP, lazy loading)
 - [ ] Implement Core Web Vitals optimizations
 
-### Phase 4: WooCommerce Configuration
-- [ ] Configure general store settings (currency, location)
-- [ ] Set up payment gateways
-- [ ] Configure shipping methods and zones
-- [ ] Create product categories and tags
-- [ ] Add custom product fields (roast level, origin, tasting notes)
-- [ ] Set up email templates
-- [ ] Configure tax settings
-- [ ] Enable customer reviews
+### Phase 4: iframe E-Commerce Integration
+- [ ] Set up external e-commerce platform (Shopify/custom/etc.)
+- [ ] Create shop page template with iframe container
+- [ ] Implement PostMessage API communication
+- [ ] Add dynamic iframe resizing functionality
+- [ ] Style iframe container to match WordPress theme
+- [ ] Set up security headers (CSP, X-Frame-Options)
+- [ ] Implement cart count sync between iframe and WordPress header
+- [ ] Test payment gateway within iframe
+- [ ] Configure iframe sandbox attributes
+- [ ] Add loading states and error handling
 
 ### Phase 5: Heatmap & Analytics
 - [ ] Create Microsoft Clarity account
 - [ ] Install Clarity tracking code
 - [ ] Create custom admin analytics dashboard page
-- [ ] Set up custom event tracking (add to cart, checkout, purchase)
+- [ ] Set up custom event tracking (form submissions, clicks, navigation)
 - [ ] Implement cookie consent banner
 - [ ] Configure Google Analytics 4
-- [ ] Set up e-commerce tracking
+- [ ] Set up iframe-to-WordPress analytics bridge
+- [ ] Track iframe interaction events
 - [ ] Create conversion goals
 
 ### Phase 6: Performance & Security

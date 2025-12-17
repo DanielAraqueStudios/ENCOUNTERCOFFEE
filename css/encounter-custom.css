@@ -1,0 +1,472 @@
+/*
+
+Encounter Colombian Coffee - Custom Styles
+Brand Identity Colors Implementation
+
+*/
+
+/*---------------------------------------
+  ENCOUNTER COFFEE BRAND COLORS             
+-----------------------------------------*/
+:root {
+  /* Primary Brand Colors */
+  --encounter-cream:              #FBF6E0;  /* Warm Cream - Background */
+  --encounter-navy:               #2F4466;  /* Deep Navy - Text & Headers */
+  --encounter-golden:             #DDC165;  /* Golden - Accents */
+  --encounter-orange:             #E69E2C;  /* Vibrant Orange - CTAs */
+  --encounter-red:                #892A25;  /* Coffee Berry Red - Primary Actions */
+  
+  /* Supporting Colors */
+  --encounter-coffee-dark:        #3D2817;  /* Dark Coffee Brown */
+  --encounter-coffee-light:       #8B7355;  /* Light Coffee Brown */
+  --encounter-cream-dark:         #F5ECCD;  /* Darker Cream for contrast */
+  
+  /* Functional Colors */
+  --encounter-success:            #4A7C59;  /* Coffee plant green */
+  --encounter-text-primary:       var(--encounter-navy);
+  --encounter-text-secondary:     #5a5a5a;
+  --encounter-border-light:       rgba(47, 68, 102, 0.1);
+}
+
+/*---------------------------------------
+  BRAND TYPOGRAPHY ENHANCEMENTS             
+-----------------------------------------*/
+.navbar-brand-text {
+  color: var(--encounter-navy) !important;
+}
+
+.navbar-brand-text small {
+  color: var(--encounter-red);
+  font-weight: 500;
+}
+
+/*---------------------------------------
+  HERO SECTION CUSTOMIZATION             
+-----------------------------------------*/
+.hero-section {
+  background: var(--encounter-navy);
+}
+
+.hero-section .section-overlay {
+  background: rgba(47, 68, 102, 0.6);
+}
+
+.cd-words-wrapper b {
+  color: var(--encounter-orange) !important;
+}
+
+/*---------------------------------------
+  NAVIGATION ENHANCEMENTS             
+-----------------------------------------*/
+.navbar {
+  background-color: var(--encounter-cream);
+  box-shadow: 0 2px 10px rgba(47, 68, 102, 0.1);
+}
+
+.navbar .nav-link {
+  color: var(--encounter-navy);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: var(--encounter-orange);
+}
+
+.navbar .nav-link.active {
+  color: var(--encounter-red);
+}
+
+/*---------------------------------------
+  BUTTON STYLES             
+-----------------------------------------*/
+.custom-btn {
+  background-color: var(--encounter-golden);
+  border: 2px solid var(--encounter-golden);
+  color: var(--encounter-navy);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.custom-btn:hover {
+  background-color: var(--encounter-orange);
+  border-color: var(--encounter-orange);
+  color: var(--white-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 158, 44, 0.3);
+}
+
+.custom-btn-primary {
+  background-color: var(--encounter-red);
+  border-color: var(--encounter-red);
+  color: var(--white-color);
+}
+
+.custom-btn-primary:hover {
+  background-color: #6d2220;
+  border-color: #6d2220;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(137, 42, 37, 0.3);
+}
+
+.custom-border-btn {
+  background-color: transparent;
+  border: 2px solid var(--encounter-navy);
+  color: var(--encounter-navy);
+}
+
+.custom-border-btn:hover {
+  background-color: var(--encounter-navy);
+  color: var(--white-color);
+}
+
+/*---------------------------------------
+  SECTION BACKGROUNDS             
+-----------------------------------------*/
+.about-section {
+  background-color: var(--white-color);
+}
+
+.section-bg-image {
+  background: var(--encounter-navy);
+  padding: 80px 0;
+}
+
+.section-bg {
+  background-color: var(--encounter-cream);
+}
+
+/*---------------------------------------
+  MEMBER/GROWER CARDS             
+-----------------------------------------*/
+.member-block {
+  background-color: var(--white-color);
+  border: 1px solid var(--encounter-border-light);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.member-block:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(47, 68, 102, 0.15);
+}
+
+.member-block-info {
+  background-color: var(--encounter-cream);
+  color: var(--encounter-navy);
+}
+
+.member-block-info h4 {
+  color: var(--encounter-red);
+}
+
+.member-block-info p {
+  color: var(--encounter-navy);
+  font-weight: 600;
+}
+
+/*---------------------------------------
+  PRODUCT/EVENT CARDS             
+-----------------------------------------*/
+.custom-block {
+  background-color: var(--white-color);
+  border: 1px solid var(--encounter-border-light);
+  border-radius: 20px;
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.custom-block:hover {
+  box-shadow: 0 8px 25px rgba(47, 68, 102, 0.12);
+  transform: translateY(-5px);
+}
+
+.custom-block-bg {
+  background: var(--encounter-cream);
+}
+
+.custom-block-date-wrap {
+  background-color: var(--encounter-red);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+.custom-block-date {
+  color: var(--white-color);
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.custom-block-date-wrap strong {
+  color: var(--encounter-cream);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.events-title {
+  color: var(--encounter-navy);
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.events-title:hover {
+  color: var(--encounter-orange);
+}
+
+.custom-block-span {
+  color: var(--encounter-red);
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/*---------------------------------------
+  FORM STYLES             
+-----------------------------------------*/
+.membership-form,
+.contact-form {
+  background: var(--encounter-navy);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.membership-form h4,
+.contact-form h2 {
+  color: var(--white-color);
+}
+
+.form-control {
+  border: 2px solid var(--encounter-border-light);
+  border-radius: 10px;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--encounter-orange);
+  box-shadow: 0 0 0 0.2rem rgba(230, 158, 44, 0.25);
+}
+
+.form-floating label {
+  color: var(--encounter-text-secondary);
+}
+
+button[type="submit"].form-control {
+  background-color: var(--encounter-golden);
+  color: var(--encounter-navy);
+  font-weight: 600;
+  border: none;
+  margin-top: 20px;
+}
+
+button[type="submit"].form-control:hover {
+  background-color: var(--encounter-orange);
+  color: var(--white-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 158, 44, 0.4);
+}
+
+/*---------------------------------------
+  FOOTER STYLES             
+-----------------------------------------*/
+.site-footer {
+  background-color: var(--encounter-navy);
+  color: var(--encounter-cream);
+}
+
+.site-footer .navbar-brand-text {
+  color: var(--encounter-cream) !important;
+}
+
+.site-footer .navbar-brand-text small {
+  color: var(--encounter-orange);
+}
+
+.site-footer-title {
+  color: var(--encounter-golden);
+  font-weight: 700;
+}
+
+.site-footer a {
+  color: var(--encounter-cream);
+}
+
+.site-footer a:hover {
+  color: var(--encounter-orange);
+}
+
+.copyright-text {
+  color: var(--encounter-cream-dark);
+  font-size: 14px;
+}
+
+/*---------------------------------------
+  SOCIAL ICONS             
+-----------------------------------------*/
+.social-icon-link {
+  background-color: var(--encounter-cream);
+  color: var(--encounter-navy);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icon-link:hover {
+  background-color: var(--encounter-orange);
+  color: var(--white-color);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(230, 158, 44, 0.3);
+}
+
+/*---------------------------------------
+  CONTACT INFO             
+-----------------------------------------*/
+.contact-info-item {
+  background-color: var(--encounter-cream);
+  border-radius: 15px;
+  padding: 30px;
+  border: 2px solid var(--encounter-border-light);
+}
+
+.contact-info-body strong {
+  color: var(--encounter-red);
+  font-size: 20px;
+}
+
+.contact-link {
+  color: var(--encounter-navy);
+  font-weight: 500;
+}
+
+.contact-link:hover {
+  color: var(--encounter-orange);
+}
+
+/*---------------------------------------
+  NEWSLETTER SECTION             
+-----------------------------------------*/
+.section-bg-image-block {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.section-bg-image-block h2 {
+  color: var(--white-color);
+}
+
+.section-bg-image-block p {
+  color: var(--encounter-cream);
+}
+
+/*---------------------------------------
+  OFFCANVAS SIDEBAR             
+-----------------------------------------*/
+.offcanvas {
+  background: var(--encounter-navy);
+}
+
+.offcanvas-title {
+  color: var(--white-color);
+  font-weight: 700;
+}
+
+.offcanvas p {
+  color: var(--encounter-cream);
+}
+
+.offcanvas .btn-close {
+  filter: brightness(0) invert(1);
+}
+
+/*---------------------------------------
+  ACCENT ELEMENTS             
+-----------------------------------------*/
+.bi-check-circle-fill {
+  color: var(--encounter-success);
+}
+
+.bi-geo-alt-fill {
+  color: var(--encounter-red);
+}
+
+/* SVG Wave Colors */
+svg path[fill="#81B29A"] {
+  fill: var(--encounter-red) !important;
+}
+
+svg path[fill="#3D405B"] {
+  fill: var(--encounter-navy) !important;
+}
+
+/*---------------------------------------
+  RESPONSIVE ADJUSTMENTS             
+-----------------------------------------*/
+@media screen and (max-width: 991px) {
+  .member-block {
+    margin-bottom: 30px;
+  }
+  
+  .custom-block {
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 32px;
+  }
+  
+  .hero-section h2 {
+    font-size: 24px;
+  }
+}
+
+/*---------------------------------------
+  ACCESSIBILITY             
+-----------------------------------------*/
+.skip-to-content {
+  background-color: var(--encounter-orange);
+  color: var(--white-color);
+  padding: 10px 20px;
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: top 0.3s ease;
+  z-index: 9999;
+  border-radius: 5px;
+}
+
+.skip-to-content:focus {
+  top: 10px;
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .custom-btn {
+    border-width: 3px;
+  }
+  
+  .form-control {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

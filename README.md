@@ -1,11 +1,5 @@
 # Encounter Coffee - E-Commerce Platform Documentation
-## GitHub Copilot Optimization Guide
 
-> **Purpose**: This README provides comprehensive context for GitHub Copilot to generate precise, production-ready code for the Encounter Coffee e-commerce platform with SEO optimization, UI/UX best practices, and integrated heatmap analytics.
-
-> **⚠️ ARCHITECTURE NOTE**: The website is built using a **static HTML template** (TemplateMo 587 - Tiya Golf Club adapted for Encounter Coffee), with the e-commerce functionality (product catalog, cart, checkout) integrated as an **iframe** embedded within HTML pages. This is a hybrid architecture where the static HTML site manages content, SEO, and storytelling, while the external e-commerce platform (embedded via iframe) handles transactions.
-
----
 
 ## 📋 Project Context
 
@@ -13,8 +7,7 @@
 **Company Name**: Encounter.  
 **Industry**: Premium Specialty Coffee  
 **Location**: Bogotá, Colombia (CL 36 SUR 51 D 92)  
-**Established**: Less than 6 months (as of Dec 2025)  
-**Team Size**: 8 employees  
+**Established**: Less than 9 months (as of Dec 2025)   
 **Contact**: encountercamilacamargo@gmail.com | +1 226-998-2774
 
 **Slogan**: *"The soul of Colombia served in your cup."*

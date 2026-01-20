@@ -21,6 +21,11 @@ Brand Identity Colors Implementation
   --encounter-coffee-light:       #8B7355;  /* Light Coffee Brown */
   --encounter-cream-dark:         #F5ECCD;  /* Darker Cream for contrast */
   
+  /* Brand Statement Section Colors */
+  --terracotta-red:               #B85450;  /* Muted brick/terracotta background */
+  --warm-orange-brown:            #C87F4A;  /* Semicircle color */
+  --accent-blue:                  #5B8FA3;  /* Cool accent for bullets */
+  
   /* Functional Colors */
   --encounter-success:            #4A7C59;  /* Coffee plant green */
   --encounter-text-primary:       var(--encounter-navy);
@@ -56,11 +61,264 @@ Brand Identity Colors Implementation
 }
 
 /*---------------------------------------
+  NEW HERO SECTION WITH CAROUSEL             
+-----------------------------------------*/
+.hero-section-new {
+  min-height: 100vh;
+  position: relative;
+  background-image: url('../images/coffee-beans-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(137, 42, 37, 0.85) 0%, 
+    rgba(137, 42, 37, 0.75) 50%, 
+    rgba(61, 40, 23, 0.7) 100%);
+  z-index: 1;
+}
+
+.hero-section-new .container-fluid {
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Content Area */
+.hero-left-content {
+  padding: 4rem 3rem;
+  z-index: 2;
+}
+
+.hero-accent-bar {
+  width: 60px;
+  height: 4px;
+  background-color: var(--encounter-golden);
+  margin-bottom: 2rem;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--encounter-cream);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero-supporting-text {
+  font-size: 1.1rem;
+  color: var(--encounter-cream);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.hero-cta-btn {
+  background-color: var(--encounter-red);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  box-shadow: 0 4px 15px rgba(137, 42, 37, 0.4);
+  transition: all 0.3s ease;
+  animation: fadeInUp 1s ease-out 0.6s both;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hero-cta-btn:hover {
+  background-color: #6d1f1b;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(137, 42, 37, 0.6);
+  color: white;
+}
+
+/* Right Content - Carousel Area */
+.hero-right-content {
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-wrapper {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 2rem;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+}
+
+.carousel-card {
+  min-width: 280px;
+  max-width: 320px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+  transform: scale(0.85);
+  filter: brightness(0.8);
+}
+
+.carousel-card.active {
+  opacity: 1;
+  transform: scale(1);
+  filter: brightness(1);
+  z-index: 10;
+}
+
+.card-frame {
+  background-color: var(--encounter-cream);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 8px solid rgba(251, 246, 224, 0.95);
+}
+
+.card-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.card-caption {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--encounter-red);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.carousel-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(251, 246, 224, 0.6);
+  background: transparent;
+  color: var(--encounter-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(251, 246, 224, 0.2);
+  border-color: var(--encounter-golden);
+  color: var(--encounter-golden);
+  transform: scale(1.1);
+}
+
+.carousel-progress {
+  width: 120px;
+  height: 4px;
+  background-color: rgba(251, 246, 224, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 1rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--encounter-golden);
+  width: 25%;
+  transition: width 0.3s ease;
+}
+
+/*---------------------------------------
   NAVIGATION ENHANCEMENTS             
 -----------------------------------------*/
 .navbar {
   background-color: var(--encounter-cream);
   box-shadow: 0 2px 10px rgba(47, 68, 102, 0.1);
+}
+
+/* Burgundy Navigation Theme */
+.navbar-burgundy {
+  background-color: var(--encounter-red) !important;
+  box-shadow: 0 2px 10px rgba(137, 42, 37, 0.3);
+}
+
+.navbar-burgundy .navbar-brand-text {
+  color: white !important;
+}
+
+.navbar-burgundy .navbar-brand-text small {
+  color: var(--encounter-golden);
+}
+
+.navbar-burgundy .nav-link {
+  color: white !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.8rem 1rem !important;
+  text-transform: capitalize;
+}
+
+.navbar-burgundy .nav-link:hover,
+.navbar-burgundy .nav-link:focus {
+  color: var(--encounter-golden) !important;
+}
+
+.navbar-burgundy .nav-link.active {
+  color: var(--encounter-golden) !important;
+  border-bottom: 2px solid var(--encounter-golden);
+}
+
+/* Gold Separators */
+.nav-separated .nav-item:not(:last-child) {
+  position: relative;
+}
+
+.nav-separated .nav-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: 1px;
+  background-color: var(--encounter-golden);
+  opacity: 0.5;
 }
 
 .navbar .nav-link {
@@ -216,6 +474,141 @@ Brand Identity Colors Implementation
 
 .events-title:hover {
   color: var(--encounter-orange);
+}
+
+/*---------------------------------------
+  ANIMATIONS FOR HERO SECTION             
+-----------------------------------------*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*---------------------------------------
+  RESPONSIVE DESIGN FOR NEW HERO             
+-----------------------------------------*/
+@media screen and (max-width: 991px) {
+  .hero-headline {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+  }
+
+  .hero-left-content {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .hero-accent-bar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-supporting-text {
+    max-width: 100%;
+  }
+
+  .carousel-container {
+    justify-content: center;
+  }
+
+  .carousel-card {
+    min-width: 250px;
+    max-width: 280px;
+  }
+
+  .card-image {
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hero-section-new {
+    min-height: auto;
+    padding: 6rem 0;
+  }
+
+  .hero-headline {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-supporting-text {
+    font-size: 1rem;
+  }
+
+  .hero-cta-btn {
+    padding: 0.9rem 2rem;
+    font-size: 0.85rem;
+  }
+
+  .carousel-card {
+    min-width: 220px;
+    max-width: 250px;
+  }
+
+  .card-image {
+    height: 200px;
+  }
+
+  .card-caption {
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .carousel-progress {
+    width: 80px;
+  }
+
+  /* Navigation adjustments */
+  .nav-separated .nav-item:not(:last-child)::after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .hero-headline {
+    font-size: 1.75rem;
+  }
+
+  .hero-left-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .carousel-card {
+    min-width: 200px;
+    max-width: 220px;
+  }
+
+  .card-frame {
+    padding: 1rem;
+  }
+
+  .card-image {
+    height: 180px;
+  }
 }
 
 .custom-block-span {
@@ -466,6 +859,356 @@ svg path[fill="#3D405B"] {
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .semicircle-container,
+  .value-list {
+    transform: none !important;
+  }
+}
+
+/*---------------------------------------
+  BRAND STATEMENT SECTION             
+-----------------------------------------*/
+.brand-statement-section {
+  background-color: var(--terracotta-red);
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left Panel */
+.brand-left-panel {
+  position: relative;
+  padding: 4rem 3rem;
+  z-index: 2;
+}
+
+.brand-content-wrapper {
+  position: relative;
+  max-width: 600px;
+}
+
+/* Brand Micro Header */
+.brand-micro-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+}
+
+.brand-icon {
+  color: var(--encounter-cream);
+}
+
+.brand-wordmark {
+  color: var(--encounter-cream);
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+/* Decorative Circle */
+.decorative-circle {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background-color: var(--encounter-cream);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0.95;
+}
+
+/* Decorative Lines */
+.decorative-line {
+  position: absolute;
+  height: 2px;
+  background-color: var(--encounter-red);
+  width: 200px;
+  z-index: 0;
+}
+
+.decorative-line.top {
+  top: 20%;
+  left: -10%;
+}
+
+.decorative-line.bottom {
+  bottom: 20%;
+  left: -10%;
+}
+
+.line-dot {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--encounter-red);
+}
+
+/* Brand Headline */
+.brand-headline {
+  position: relative;
+  z-index: 2;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--encounter-red);
+  letter-spacing: 2px;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/* Brand Manifesto */
+.brand-manifesto {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 3rem;
+}
+
+.brand-manifesto p {
+  color: var(--encounter-cream);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+
+.brand-manifesto .emphasized {
+  font-weight: 700;
+  color: var(--encounter-cream);
+}
+
+/* Brand CTA Button */
+.brand-cta-btn {
+  position: relative;
+  z-index: 2;
+  background-color: var(--encounter-red);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  box-shadow: 0 4px 15px rgba(137, 42, 37, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.brand-cta-btn:hover {
+  background-color: #6d1f1b;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(137, 42, 37, 0.6);
+  color: white;
+}
+
+/* Right Panel - Interactive Visual */
+.brand-right-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.interactive-visual-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+}
+
+/* Semicircle Container */
+.semicircle-container {
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px;
+  height: 400px;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.semicircle-graphic {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
+}
+
+/* Value List */
+.value-list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.value-item .bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.value-item .value-text {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  transition: all 0.3s ease;
+}
+
+/* Bullet States */
+.bullet.muted {
+  background-color: rgba(251, 246, 224, 0.4);
+}
+
+.bullet.accent-blue {
+  background-color: var(--accent-blue);
+  box-shadow: 0 0 8px rgba(91, 143, 163, 0.5);
+}
+
+.bullet.burgundy {
+  background-color: var(--encounter-red);
+  box-shadow: 0 0 8px rgba(137, 42, 37, 0.5);
+}
+
+/* Value Item States */
+.value-item.inactive .value-text {
+  color: rgba(251, 246, 224, 0.5);
+  font-weight: 400;
+}
+
+.value-item.highlighted .value-text {
+  color: var(--encounter-cream);
+  font-weight: 600;
+}
+
+.value-item.active .value-text {
+  color: var(--encounter-cream);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.value-item.partial .value-text {
+  opacity: 0.6;
+}
+
+/* Hover Effects */
+.value-item:hover .value-text {
+  color: var(--encounter-cream);
+  transform: translateX(5px);
+}
+
+.value-item:hover .bullet {
+  transform: scale(1.2);
+}
+
+/*---------------------------------------
+  BRAND STATEMENT RESPONSIVE             
+-----------------------------------------*/
+@media screen and (max-width: 991px) {
+  .brand-statement-section {
+    padding: 5rem 0;
+  }
+
+  .brand-headline {
+    font-size: 3.5rem;
+  }
+
+  .semicircle-container {
+    right: -50px;
+    width: 350px;
+    height: 350px;
+  }
+
+  .value-list {
+    max-width: 300px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .brand-statement-section {
+    padding: 4rem 0;
+  }
+
+  .brand-left-panel,
+  .brand-right-panel {
+    padding: 2rem 1.5rem;
+  }
+
+  .brand-headline {
+    font-size: 2.5rem;
+  }
+
+  .decorative-circle {
+    width: 250px;
+    height: 250px;
+  }
+
+  .brand-manifesto p {
+    font-size: 1rem;
+  }
+
+  .interactive-visual-wrapper {
+    height: 400px;
+  }
+
+  .semicircle-container {
+    right: -80px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .value-list {
+    max-width: 250px;
+    gap: 1rem;
+  }
+
+  .value-item .value-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .brand-headline {
+    font-size: 2rem;
+  }
+
+  .decorative-circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .semicircle-container {
+    width: 250px;
+    height: 250px;
+  }
+}
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }

@@ -272,43 +272,52 @@
                             </div>
                         </div>
 
-                        <!-- Right Panel: Interactive Semicircle + Value List -->
+                        <!-- Right Panel: Interactive Clock Circle + Value List -->
                         <div class="col-lg-6 col-12 brand-right-panel">
                             <div class="interactive-visual-wrapper" id="interactiveVisual">
                                 
-                                <!-- Animated Semicircle -->
-                                <div class="semicircle-container" id="semicircleArc">
-                                    <svg class="semicircle-graphic" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="200" cy="200" r="150" stroke="#C87F4A" stroke-width="60" fill="none" opacity="0.6"/>
-                                    </svg>
-                                </div>
+                                <!-- Clock Container -->
+                                <div class="clock-container" id="clockContainer">
+                                    
+                                    <!-- Animated Circle Track -->
+                                    <div class="circle-track">
+                                        <svg class="circle-graphic" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="200" cy="200" r="150" stroke="#C87F4A" stroke-width="60" fill="none" opacity="0.6"/>
+                                        </svg>
+                                    </div>
 
-                                <!-- Value List -->
-                                <div class="value-list" id="valueList">
-                                    <div class="value-item inactive">
-                                        <span class="bullet muted"></span>
+                                    <!-- Clock Hand (follows mouse) -->
+                                    <div class="clock-hand" id="clockHand">
+                                        <div class="hand-line"></div>
+                                        <div class="hand-center"></div>
+                                    </div>
+
+                                    <!-- Value Items positioned around circle like clock hours -->
+                                    <div class="value-item clock-position" data-angle="30" data-index="0">
+                                        <span class="bullet"></span>
                                         <span class="value-text">Specialty coffee</span>
                                     </div>
-                                    <div class="value-item inactive">
-                                        <span class="bullet muted"></span>
-                                        <span class="value-text">Highest quality selection</span>
+                                    <div class="value-item clock-position" data-angle="90" data-index="1">
+                                        <span class="bullet"></span>
+                                        <span class="value-text">Highest quality</span>
                                     </div>
-                                    <div class="value-item highlighted">
-                                        <span class="bullet accent-blue"></span>
+                                    <div class="value-item clock-position" data-angle="150" data-index="2">
+                                        <span class="bullet"></span>
                                         <span class="value-text">Ethical sourcing</span>
                                     </div>
-                                    <div class="value-item active">
-                                        <span class="bullet burgundy"></span>
-                                        <span class="value-text">Crafted through the finest processes</span>
+                                    <div class="value-item clock-position" data-angle="210" data-index="3">
+                                        <span class="bullet"></span>
+                                        <span class="value-text">Finest processes</span>
                                     </div>
-                                    <div class="value-item highlighted">
-                                        <span class="bullet accent-blue"></span>
-                                        <span class="value-text">Direct impact on growers</span>
+                                    <div class="value-item clock-position" data-angle="270" data-index="4">
+                                        <span class="bullet"></span>
+                                        <span class="value-text">Direct impact</span>
                                     </div>
-                                    <div class="value-item inactive partial">
-                                        <span class="bullet muted"></span>
-                                        <span class="value-text">Unique flavor p…</span>
+                                    <div class="value-item clock-position" data-angle="330" data-index="5">
+                                        <span class="bullet"></span>
+                                        <span class="value-text">Unique flavor</span>
                                     </div>
+
                                 </div>
 
                             </div>

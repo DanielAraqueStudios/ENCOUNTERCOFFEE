@@ -1013,7 +1013,7 @@ svg path[fill="#3D405B"] {
   color: white;
 }
 
-/* Right Panel - Interactive Visual */
+/* Right Panel - Interactive Clock Visual */
 .brand-right-panel {
   position: relative;
   display: flex;
@@ -1029,44 +1029,107 @@ svg path[fill="#3D405B"] {
   height: 500px;
 }
 
-/* Semicircle Container */
-.semicircle-container {
+/* Clock Container */
+.clock-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Circle Track */
+.circle-track {
   position: absolute;
-  right: -100px;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 400px;
   height: 400px;
   transition: transform 0.3s ease-out;
-  will-change: transform;
 }
 
-.semicircle-graphic {
+.circle-graphic {
   width: 100%;
   height: 100%;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
 }
 
-/* Value List */
-.value-list {
+/* Clock Hand (follows mouse) */
+.clock-hand {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  transition: transform 0.3s ease-out;
-  will-change: transform;
+  width: 180px;
+  height: 2px;
+  transform-origin: 0% 50%;
+  transform: translate(0, -50%) rotate(0deg);
+  pointer-events: none;
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.value-item {
+.hand-line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--encounter-red) 0%, transparent 100%);
+  border-radius: 2px;
+}
+
+.hand-center {
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--encounter-red);
+  box-shadow: 0 0 20px rgba(137, 42, 37, 0.6);
+}
+
+/* Value Items positioned like clock hours */
+.value-item.clock-position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  transition: all 0.3s ease;
+  gap: 0.8rem;
+  padding: 0.8rem 1.2rem;
+  background: rgba(251, 246, 224, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 30px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Position each item around the circle */
+.value-item.clock-position[data-angle="30"] {
+  transform: translate(-50%, -50%) rotate(30deg) translateX(180px) rotate(-30deg);
+}
+
+.value-item.clock-position[data-angle="90"] {
+  transform: translate(-50%, -50%) rotate(90deg) translateX(180px) rotate(-90deg);
+}
+
+.value-item.clock-position[data-angle="150"] {
+  transform: translate(-50%, -50%) rotate(150deg) translateX(180px) rotate(-150deg);
+}
+
+.value-item.clock-position[data-angle="210"] {
+  transform: translate(-50%, -50%) rotate(210deg) translateX(180px) rotate(-210deg);
+}
+
+.value-item.clock-position[data-angle="270"] {
+  transform: translate(-50%, -50%) rotate(270deg) translateX(180px) rotate(-270deg);
+}
+
+.value-item.clock-position[data-angle="330"] {
+  transform: translate(-50%, -50%) rotate(330deg) translateX(180px) rotate(-330deg);
 }
 
 .value-item .bullet {
@@ -1074,58 +1137,66 @@ svg path[fill="#3D405B"] {
   height: 12px;
   border-radius: 50%;
   flex-shrink: 0;
-}
-
-.value-item .value-text {
-  font-size: 1.05rem;
-  line-height: 1.4;
+  background-color: rgba(251, 246, 224, 0.4);
   transition: all 0.3s ease;
 }
 
-/* Bullet States */
-.bullet.muted {
-  background-color: rgba(251, 246, 224, 0.4);
+.value-item .value-text {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: rgba(251, 246, 224, 0.6);
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.bullet.accent-blue {
+/* Highlighted state (when clock hand passes over) */
+.value-item.highlighted {
+  background: rgba(251, 246, 224, 0.25);
+  transform-origin: center center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.value-item.highlighted .bullet {
   background-color: var(--accent-blue);
-  box-shadow: 0 0 8px rgba(91, 143, 163, 0.5);
-}
-
-.bullet.burgundy {
-  background-color: var(--encounter-red);
-  box-shadow: 0 0 8px rgba(137, 42, 37, 0.5);
-}
-
-/* Value Item States */
-.value-item.inactive .value-text {
-  color: rgba(251, 246, 224, 0.5);
-  font-weight: 400;
+  box-shadow: 0 0 15px rgba(91, 143, 163, 0.8);
+  transform: scale(1.3);
 }
 
 .value-item.highlighted .value-text {
   color: var(--encounter-cream);
-  font-weight: 600;
+  font-weight: 700;
+  transform: translateX(5px);
+}
+
+/* Active state (currently under clock hand) */
+.value-item.active {
+  background: rgba(137, 42, 37, 0.3);
+  transform-origin: center center;
+  box-shadow: 0 8px 30px rgba(137, 42, 37, 0.5);
+  z-index: 5;
+}
+
+.value-item.active .bullet {
+  background-color: var(--encounter-red);
+  box-shadow: 0 0 20px rgba(137, 42, 37, 1);
+  transform: scale(1.5);
 }
 
 .value-item.active .value-text {
   color: var(--encounter-cream);
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  transform: translateX(8px);
 }
 
-.value-item.partial .value-text {
-  opacity: 0.6;
+/* Hover effect */
+.value-item.clock-position:hover {
+  background: rgba(251, 246, 224, 0.3);
+  transform-origin: center center;
 }
 
-/* Hover Effects */
-.value-item:hover .value-text {
+.value-item.clock-position:hover .value-text {
   color: var(--encounter-cream);
-  transform: translateX(5px);
-}
-
-.value-item:hover .bullet {
-  transform: scale(1.2);
 }
 
 /*---------------------------------------
@@ -1140,14 +1211,37 @@ svg path[fill="#3D405B"] {
     font-size: 3.5rem;
   }
 
-  .semicircle-container {
-    right: -50px;
+  .circle-track {
     width: 350px;
     height: 350px;
   }
 
-  .value-list {
-    max-width: 300px;
+  .clock-hand {
+    width: 150px;
+  }
+
+  .value-item.clock-position[data-angle="30"] {
+    transform: translate(-50%, -50%) rotate(30deg) translateX(150px) rotate(-30deg);
+  }
+
+  .value-item.clock-position[data-angle="90"] {
+    transform: translate(-50%, -50%) rotate(90deg) translateX(150px) rotate(-90deg);
+  }
+
+  .value-item.clock-position[data-angle="150"] {
+    transform: translate(-50%, -50%) rotate(150deg) translateX(150px) rotate(-150deg);
+  }
+
+  .value-item.clock-position[data-angle="210"] {
+    transform: translate(-50%, -50%) rotate(210deg) translateX(150px) rotate(-210deg);
+  }
+
+  .value-item.clock-position[data-angle="270"] {
+    transform: translate(-50%, -50%) rotate(270deg) translateX(150px) rotate(-270deg);
+  }
+
+  .value-item.clock-position[data-angle="330"] {
+    transform: translate(-50%, -50%) rotate(330deg) translateX(150px) rotate(-330deg);
   }
 }
 
@@ -1178,19 +1272,46 @@ svg path[fill="#3D405B"] {
     height: 400px;
   }
 
-  .semicircle-container {
-    right: -80px;
+  .circle-track {
     width: 300px;
     height: 300px;
   }
 
-  .value-list {
-    max-width: 250px;
-    gap: 1rem;
+  .clock-hand {
+    width: 120px;
+  }
+
+  .value-item.clock-position {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .value-item.clock-position[data-angle="30"] {
+    transform: translate(-50%, -50%) rotate(30deg) translateX(120px) rotate(-30deg);
+  }
+
+  .value-item.clock-position[data-angle="90"] {
+    transform: translate(-50%, -50%) rotate(90deg) translateX(120px) rotate(-90deg);
+  }
+
+  .value-item.clock-position[data-angle="150"] {
+    transform: translate(-50%, -50%) rotate(150deg) translateX(120px) rotate(-150deg);
+  }
+
+  .value-item.clock-position[data-angle="210"] {
+    transform: translate(-50%, -50%) rotate(210deg) translateX(120px) rotate(-210deg);
+  }
+
+  .value-item.clock-position[data-angle="270"] {
+    transform: translate(-50%, -50%) rotate(270deg) translateX(120px) rotate(-270deg);
+  }
+
+  .value-item.clock-position[data-angle="330"] {
+    transform: translate(-50%, -50%) rotate(330deg) translateX(120px) rotate(-330deg);
   }
 
   .value-item .value-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -1204,9 +1325,42 @@ svg path[fill="#3D405B"] {
     height: 200px;
   }
 
-  .semicircle-container {
+  .circle-track {
     width: 250px;
     height: 250px;
+  }
+
+  .clock-hand {
+    width: 100px;
+  }
+
+  .value-item.clock-position {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .value-item.clock-position[data-angle="30"] {
+    transform: translate(-50%, -50%) rotate(30deg) translateX(100px) rotate(-30deg);
+  }
+
+  .value-item.clock-position[data-angle="90"] {
+    transform: translate(-50%, -50%) rotate(90deg) translateX(100px) rotate(-90deg);
+  }
+
+  .value-item.clock-position[data-angle="150"] {
+    transform: translate(-50%, -50%) rotate(150deg) translateX(100px) rotate(-150deg);
+  }
+
+  .value-item.clock-position[data-angle="210"] {
+    transform: translate(-50%, -50%) rotate(210deg) translateX(100px) rotate(-210deg);
+  }
+
+  .value-item.clock-position[data-angle="270"] {
+    transform: translate(-50%, -50%) rotate(270deg) translateX(100px) rotate(-270deg);
+  }
+
+  .value-item.clock-position[data-angle="330"] {
+    transform: translate(-50%, -50%) rotate(330deg) translateX(100px) rotate(-330deg);
   }
 }
     animation-iteration-count: 1 !important;

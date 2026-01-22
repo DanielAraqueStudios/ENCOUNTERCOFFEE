@@ -100,55 +100,109 @@
       updateCarousel();
     }
 
-    // BRAND STATEMENT PARALLAX EFFECT
-    const interactiveVisual = document.getElementById('interactiveVisual');
-    const semicircleArc = document.getElementById('semicircleArc');
-    const valueList = document.getElementById('valueList');
+    // CLOCK-STYLE BRAND STATEMENT ANIMATION
+    const clockContainer = document.getElementById('clockContainer');
+    const clockHand = document.getElementById('clockHand');
+    const valueItems = document.querySelectorAll('.value-item.clock-position');
 
-    if (interactiveVisual && semicircleArc && valueList) {
-      let mouseX = 0;
-      let mouseY = 0;
-      let targetX = 0;
-      let targetY = 0;
+    if (clockContainer && clockHand && valueItems.length > 0) {
+      let currentAngle = 0;
+      let targetAngle = 0;
 
       // Check if user prefers reduced motion
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (!prefersReducedMotion) {
-        interactiveVisual.addEventListener('mousemove', (e) => {
-          const rect = interactiveVisual.getBoundingClientRect();
+        
+        // Mouse move event - calculate angle based on mouse position
+        clockContainer.addEventListener('mousemove', (e) => {
+          const rect = clockContainer.getBoundingClientRect();
           const centerX = rect.left + rect.width / 2;
           const centerY = rect.top + rect.height / 2;
           
-          // Calculate mouse position relative to center
-          mouseX = (e.clientX - centerX) / rect.width;
-          mouseY = (e.clientY - centerY) / rect.height;
+          // Calculate angle from center to mouse
+          const deltaX = e.clientX - centerX;
+          const deltaY = e.clientY - centerY;
+          
+          // Convert to degrees (0° = right, 90° = bottom, 180° = left, 270° = top)
+          let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+          
+          // Normalize angle to 0-360 range
+          if (angle < 0) angle += 360;
+          
+          targetAngle = angle;
         });
 
-        interactiveVisual.addEventListener('mouseleave', () => {
-          mouseX = 0;
-          mouseY = 0;
+        // Reset to default position when mouse leaves
+        clockContainer.addEventListener('mouseleave', () => {
+          targetAngle = 0;
         });
 
-        // Smooth animation loop
-        function animateParallax() {
-          // Smooth easing
-          targetX += (mouseX - targetX) * 0.1;
-          targetY += (mouseY - targetY) * 0.1;
-
-          // Apply transforms with different intensities for depth
-          const semicircleX = targetX * 30;
-          const semicircleY = targetY * 30;
-          const listX = targetX * 20;
-          const listY = targetY * 20;
-
-          semicircleArc.style.transform = `translateY(-50%) translate(${semicircleX}px, ${semicircleY}px)`;
-          valueList.style.transform = `translate(-50%, -50%) translate(${listX}px, ${listY}px)`;
-
-          requestAnimationFrame(animateParallax);
+        // Function to check if an item is near the clock hand
+        function isItemNearHand(itemAngle, handAngle) {
+          // Normalize angles
+          const normalizedItemAngle = itemAngle % 360;
+          const normalizedHandAngle = handAngle % 360;
+          
+          // Calculate angular distance
+          let distance = Math.abs(normalizedItemAngle - normalizedHandAngle);
+          if (distance > 180) distance = 360 - distance;
+          
+          // Item is "near" if within 30 degrees
+          return distance < 30;
         }
 
-        animateParallax();
+        // Function to check if item is directly under hand (active)
+        function isItemActive(itemAngle, handAngle) {
+          const normalizedItemAngle = itemAngle % 360;
+          const normalizedHandAngle = handAngle % 360;
+          
+          let distance = Math.abs(normalizedItemAngle - normalizedHandAngle);
+          if (distance > 180) distance = 360 - distance;
+          
+          // Item is "active" if within 15 degrees
+          return distance < 15;
+        }
+
+        // Animation loop with smooth easing
+        function animateClock() {
+          // Smooth easing towards target angle
+          const diff = targetAngle - currentAngle;
+          currentAngle += diff * 0.1;
+
+          // Rotate clock hand
+          clockHand.style.transform = `translate(0, -50%) rotate(${currentAngle}deg)`;
+
+          // Update value items based on clock hand position
+          valueItems.forEach(item => {
+            const itemAngle = parseFloat(item.getAttribute('data-angle'));
+            
+            // Remove all states first
+            item.classList.remove('active', 'highlighted');
+            
+            // Check if item is active (directly under hand)
+            if (isItemActive(itemAngle, currentAngle)) {
+              item.classList.add('active');
+            }
+            // Check if item is near the hand (highlighted)
+            else if (isItemNearHand(itemAngle, currentAngle)) {
+              item.classList.add('highlighted');
+            }
+          });
+
+          requestAnimationFrame(animateClock);
+        }
+
+        // Start animation
+        animateClock();
+
+        // Optional: Click on items to rotate hand to that position
+        valueItems.forEach(item => {
+          item.addEventListener('click', () => {
+            const angle = parseFloat(item.getAttribute('data-angle'));
+            targetAngle = angle;
+          });
+        });
       }
     }
   

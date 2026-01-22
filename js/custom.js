@@ -100,111 +100,169 @@
       updateCarousel();
     }
 
-    // CLOCK-STYLE BRAND STATEMENT ANIMATION
-    const clockContainer = document.getElementById('clockContainer');
-    const clockHand = document.getElementById('clockHand');
+    // MAGNETIC HOVER ANIMATION - Modern & Unique
+    const interactiveContainer = document.getElementById('clockContainer');
     const valueItems = document.querySelectorAll('.value-item.clock-position');
+    const cursorGlow = document.getElementById('clockHand');
 
-    if (clockContainer && clockHand && valueItems.length > 0) {
-      let currentAngle = 0;
-      let targetAngle = 0;
+    console.log('🎨 Animation Init:', {
+      container: !!interactiveContainer,
+      items: valueItems.length,
+      glow: !!cursorGlow
+    });
 
-      // Check if user prefers reduced motion
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (!prefersReducedMotion) {
+    if (interactiveContainer && valueItems.length > 0) {
+      
+      console.log('✨ Setting up magnetic animation!');
+      
+      // Store original positions and set initial transforms
+      const itemPositions = [];
+      valueItems.forEach((item, index) => {
+        const angle = parseFloat(item.getAttribute('data-angle'));
         
-        // Mouse move event - calculate angle based on mouse position
-        clockContainer.addEventListener('mousemove', (e) => {
-          const rect = clockContainer.getBoundingClientRect();
-          const centerX = rect.left + rect.width / 2;
-          const centerY = rect.top + rect.height / 2;
-          
-          // Calculate angle from center to mouse
-          const deltaX = e.clientX - centerX;
-          const deltaY = e.clientY - centerY;
-          
-          // Convert to degrees (0° = right, 90° = bottom, 180° = left, 270° = top)
-          let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-          
-          // Normalize angle to 0-360 range
-          if (angle < 0) angle += 360;
-          
-          targetAngle = angle;
+        // Set initial position immediately
+        const baseTransform = `translate(-50%, -50%) rotate(${angle}deg) translateX(180px) rotate(-${angle}deg)`;
+        item.style.transform = baseTransform;
+        
+        console.log(`📍 Item ${index} at ${angle}°`);
+        
+        itemPositions.push({
+          element: item,
+          angle: angle,
+          baseTransform: baseTransform,
+          currentX: 0,
+          currentY: 0,
+          targetX: 0,
+          targetY: 0,
+          scale: 1,
+          targetScale: 1
         });
+      });
 
-        // Reset to default position when mouse leaves
-        clockContainer.addEventListener('mouseleave', () => {
-          targetAngle = 0;
+      let mouseX = 0;
+      let mouseY = 0;
+      let isHovering = false;
+
+      // Mouse move - magnetic attraction
+      let moveCount = 0;
+      interactiveContainer.addEventListener('mousemove', (e) => {
+        const rect = interactiveContainer.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        mouseX = e.clientX - centerX;
+        mouseY = e.clientY - centerY;
+        isHovering = true;
+        
+        if (moveCount === 0) {
+          console.log('🖱️ Mouse tracking active!');
+        }
+        moveCount++;
+
+        // Update cursor glow position
+        if (cursorGlow) {
+          const glowX = ((e.clientX - rect.left) / rect.width) * 100;
+          const glowY = ((e.clientY - rect.top) / rect.height) * 100;
+          cursorGlow.style.left = glowX + '%';
+          cursorGlow.style.top = glowY + '%';
+          cursorGlow.style.opacity = '1';
+        }
+      });
+
+      // Mouse leave - reset
+      interactiveContainer.addEventListener('mouseleave', () => {
+        isHovering = false;
+        itemPositions.forEach(item => {
+          item.targetX = 0;
+          item.targetY = 0;
+          item.targetScale = 1;
         });
-
-        // Function to check if an item is near the clock hand
-        function isItemNearHand(itemAngle, handAngle) {
-          // Normalize angles
-          const normalizedItemAngle = itemAngle % 360;
-          const normalizedHandAngle = handAngle % 360;
-          
-          // Calculate angular distance
-          let distance = Math.abs(normalizedItemAngle - normalizedHandAngle);
-          if (distance > 180) distance = 360 - distance;
-          
-          // Item is "near" if within 30 degrees
-          return distance < 30;
+        
+        if (cursorGlow) {
+          cursorGlow.style.opacity = '0';
         }
+      });
 
-        // Function to check if item is directly under hand (active)
-        function isItemActive(itemAngle, handAngle) {
-          const normalizedItemAngle = itemAngle % 360;
-          const normalizedHandAngle = handAngle % 360;
-          
-          let distance = Math.abs(normalizedItemAngle - normalizedHandAngle);
-          if (distance > 180) distance = 360 - distance;
-          
-          // Item is "active" if within 15 degrees
-          return distance < 15;
-        }
+      // Animation loop
+      function animateMagnetic() {
+        itemPositions.forEach((item, index) => {
+          // Calculate item's actual position in the container
+          const rect = item.element.getBoundingClientRect();
+          const containerRect = interactiveContainer.getBoundingClientRect();
+          const itemCenterX = (rect.left + rect.width / 2) - (containerRect.left + containerRect.width / 2);
+          const itemCenterY = (rect.top + rect.height / 2) - (containerRect.top + containerRect.height / 2);
 
-        // Animation loop with smooth easing
-        function animateClock() {
-          // Smooth easing towards target angle
-          const diff = targetAngle - currentAngle;
-          currentAngle += diff * 0.1;
-
-          // Rotate clock hand
-          clockHand.style.transform = `translate(0, -50%) rotate(${currentAngle}deg)`;
-
-          // Update value items based on clock hand position
-          valueItems.forEach(item => {
-            const itemAngle = parseFloat(item.getAttribute('data-angle'));
+          if (isHovering) {
+            // Calculate distance from mouse to item
+            const deltaX = mouseX - itemCenterX;
+            const deltaY = mouseY - itemCenterY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
             
-            // Remove all states first
-            item.classList.remove('active', 'highlighted');
+            // Magnetic pull strength (stronger when closer)
+            const maxDistance = 300;
+            const pullStrength = Math.max(0, 1 - (distance / maxDistance));
             
-            // Check if item is active (directly under hand)
-            if (isItemActive(itemAngle, currentAngle)) {
-              item.classList.add('active');
+            // Calculate magnetic offset
+            item.targetX = deltaX * pullStrength * 0.3;
+            item.targetY = deltaY * pullStrength * 0.3;
+            
+            // Scale based on proximity
+            if (distance < 120) {
+              item.targetScale = 1 + (pullStrength * 0.3);
+              item.element.classList.add('active');
+              item.element.classList.remove('highlighted');
+            } else if (distance < 200) {
+              item.targetScale = 1 + (pullStrength * 0.15);
+              item.element.classList.remove('active');
+              item.element.classList.add('highlighted');
+            } else {
+              item.targetScale = 1;
+              item.element.classList.remove('active', 'highlighted');
             }
-            // Check if item is near the hand (highlighted)
-            else if (isItemNearHand(itemAngle, currentAngle)) {
-              item.classList.add('highlighted');
-            }
-          });
+          } else {
+            item.element.classList.remove('active', 'highlighted');
+          }
 
-          requestAnimationFrame(animateClock);
-        }
+          // Smooth easing with elastic feel
+          const ease = 0.12;
+          item.currentX += (item.targetX - item.currentX) * ease;
+          item.currentY += (item.targetY - item.currentY) * ease;
+          item.scale += (item.targetScale - item.scale) * ease;
 
-        // Start animation
-        animateClock();
-
-        // Optional: Click on items to rotate hand to that position
-        valueItems.forEach(item => {
-          item.addEventListener('click', () => {
-            const angle = parseFloat(item.getAttribute('data-angle'));
-            targetAngle = angle;
-          });
+          // Apply transform with magnetic offset
+          item.element.style.transform = `
+            translate(-50%, -50%) 
+            rotate(${item.angle}deg) 
+            translateX(180px) 
+            rotate(-${item.angle}deg)
+            translate(${item.currentX}px, ${item.currentY}px)
+            scale(${item.scale})
+          `;
         });
+
+        requestAnimationFrame(animateMagnetic);
       }
+
+      // Start animation
+      console.log('🚀 Animation loop started!');
+      animateMagnetic();
+
+      // Click to pulse effect
+      valueItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          item.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          itemPositions[index].targetScale = 1.4;
+          
+          setTimeout(() => {
+            itemPositions[index].targetScale = 1;
+            setTimeout(() => {
+              item.style.transition = '';
+            }, 300);
+          }, 150);
+        });
+      });
     }
+  
   
   })(window.jQuery);
 

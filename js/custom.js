@@ -50,7 +50,7 @@
         progressBar.style.width = progress + '%';
       }
 
-      // Scroll to active card (disabled to prevent auto-scroll interference)
+      // Scroll to active card - DISABLED to prevent page jump
       // const activeCard = cards[currentSlide];
       // if (activeCard) {
       //   activeCard.scrollIntoView({

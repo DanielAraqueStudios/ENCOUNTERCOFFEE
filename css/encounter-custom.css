@@ -1389,3 +1389,142 @@ svg path[fill="#3D405B"] {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==============================================
+   BE PART OF THE CHANGE Section Styles
+============================================== */
+.change-hero-section {
+    background: linear-gradient(135deg, #892A25 0%, #2F4466 100%);
+    color: #FBF6E0;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.change-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(251,246,224,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.change-hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #DDC165;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.change-manifesto {
+    position: relative;
+    z-index: 1;
+}
+
+.change-manifesto .lead {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 400;
+    color: #FBF6E0;
+}
+
+.change-manifesto .h5 {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: rgba(251, 246, 224, 0.9);
+    line-height: 1.6;
+}
+
+.team-names {
+    position: relative;
+    z-index: 1;
+    margin-top: 3rem;
+}
+
+.team-names .text-muted {
+    color: rgba(251, 246, 224, 0.6) !important;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+/* ==============================================
+   Invisible Effort Section Styles
+============================================== */
+.invisible-effort-section {
+    background-color: #FBF6E0;
+    padding: 100px 0;
+    position: relative;
+}
+
+.effort-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #892A25;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+
+.effort-content .lead {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    color: #2F4466;
+    line-height: 1.7;
+}
+
+.effort-content .h5 {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: #892A25;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.stat-box {
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(137, 42, 37, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(137, 42, 37, 0.15);
+}
+
+.stat-number {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #892A25;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #2F4466;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0;
+}
+
+.cta-wrapper {
+    margin-top: 3rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .change-hero-section {
+        padding: 80px 0;
+    }
+    
+    .invisible-effort-section {
+        padding: 60px 0;
+    }
+    
+    .effort-stats {
+        margin-top: 2rem !important;
+    }
+}

@@ -50,15 +50,15 @@
         progressBar.style.width = progress + '%';
       }
 
-      // Scroll to active card
-      const activeCard = cards[currentSlide];
-      if (activeCard) {
-        activeCard.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'center'
-        });
-      }
+      // Scroll to active card (disabled to prevent auto-scroll interference)
+      // const activeCard = cards[currentSlide];
+      // if (activeCard) {
+      //   activeCard.scrollIntoView({
+      //     behavior: 'smooth',
+      //     block: 'nearest',
+      //     inline: 'center'
+      //   });
+      // }
     }
 
     function nextSlide() {

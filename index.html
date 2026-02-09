@@ -31,48 +31,36 @@
 
             <nav class="navbar navbar-expand-lg navbar-burgundy">                
                 <div class="container">
-                    <a class="navbar-brand d-flex align-items-center" href="index.html">
-                        <img src="images/logo.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
-                        <span class="navbar-brand-text">
-                            Encounter
-                            <small>Colombian Coffee</small>
-                        </span>
-                    </a>
+                    <div class="row w-100 align-items-center">
+                        <!-- Logo Images - col-4 -->
+                        <div class="col-4">
+                            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                                <img src="images/Home/Logos/Pictograma.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
+                                <img src="images/Home/Logos/Pictogramanombre.png" class="navbar-brand-wordmark img-fluid" alt="Encounter Colombian Coffee">
+                            </a>
+                        </div>
 
-                    <div class="d-lg-none ms-auto me-3">
-                        <a class="btn custom-btn custom-border-btn" href="shop.html">Store</a>
-                    </div>
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-auto nav-separated">
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_1">HOME</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#brand_statement">WHAT WE DO</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="encounter-points.html">ENCOUNTER POINTS</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="encounter-gifts.html">ENCOUNTER GIFTS</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="profile.html">PROFILE</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="shop.html">STORE</a>
-                            </li>
-                        </ul>
+                        <!-- Navigation Links - col-4 -->
+                        <div class="col-4">
+                            <ul class="navbar-nav d-flex flex-row justify-content-center nav-separated mb-0">
+                                <li class="nav-item d-flex align-items-center">
+                                    <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Home" style="width: 34px; height: 34px; margin-right: 8px;">
+                                    <a class="nav-link active" href="#encounter_hero">Home</a>
+                                </li>
+        
+                                <li class="nav-item d-flex align-items-center">
+                                    <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="What we do" style="width: 34px; height: 34px; margin-right: 8px;">
+                                    <a class="nav-link" href="#featured_items">What we do?</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Profile Button - col-4 (right aligned) -->
+                        <div class="col-4 text-end">
+                            <a href="profile.html" class="nav-profile-icon">
+                                <img src="images/Home/Pictogramas home/Pictogramausuario.png" alt="Profile" style="width: 40px; height: 40px;">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -322,10 +310,11 @@
 
             <!-- New Hero Section: AN ENCOUNTER -->
             <section class="encounter-hero-section" id="encounter_hero">
+                <img src="images/Home/Fotos_a_usar/Frase2.jpg" alt="Coffee background" class="hero-bg-image">
                 <div class="encounter-hero-overlay"></div>
                 
                 <div class="container-fluid h-100">
-                    <div class="row h-100 align-items-center">
+                    <div class="row h-100 align-items-center position-relative">
                         
                         <!-- Decorative Left Panel -->
                         <div class="encounter-left-panel"></div>
@@ -336,47 +325,48 @@
                                 
                                 <!-- Decorative Flourish -->
                                 <div class="encounter-flourish">
-                                    <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M2 20C10 10, 30 15, 50 20C70 25, 90 30, 118 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                        <circle cx="10" cy="15" r="2" fill="currentColor"/>
-                                        <circle cx="110" cy="25" r="2" fill="currentColor"/>
+                                    <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 25C20 15, 45 20, 70 25C95 30, 120 35, 175 25" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                                        <circle cx="8" cy="18" r="3" fill="currentColor"/>
+                                        <circle cx="172" cy="32" r="3" fill="currentColor"/>
+                                        <path d="M15 15C18 18 20 22 15 25" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                                        <path d="M165 30C162 27 160 23 165 20" stroke="currentColor" stroke-width="0.8" fill="none"/>
                                     </svg>
                                 </div>
                                 
-                                <h1 class="encounter-hero-title">
-                                    AN<br>
-                                    ENCOUNTER.<br>
-                                    BETWEEN<br>
-                                    YOU AND<br>
-                                    THE BEST,
-                                </h1>
+                                <img src="images/Home/Logos/Frase%20home.png" alt="AN ENCOUNTER. BETWEEN YOU AND THE BEST," class="encounter-hero-title-img">
                                 
                                 <p class="encounter-hero-subtitle">and the encounter between you and those who make it possible.</p>
                                 
-                                <a href="#featured_items" class="btn encounter-cta-btn">BE PART OF THE CHANGE</a>
+                                <a href="#featured_items" class="btn encounter-cta-btn">
+                                    BE PART OF THE CHANGE
+                                </a>
                                 
                                 <!-- Barista Icon -->
                                 <div class="encounter-barista-icon">
-                                    <svg width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="30" cy="20" r="12" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M18 32C18 32 20 30 30 30C40 30 42 32 42 32" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M30 32V50" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M30 50L20 70" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M30 50L40 70" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M20 45L15 55" stroke="currentColor" stroke-width="1.5"/>
-                                        <path d="M40 45L45 55" stroke="currentColor" stroke-width="1.5"/>
-                                        <rect x="25" y="38" width="10" height="8" stroke="currentColor" stroke-width="1.5"/>
+                                    <svg width="80" height="100" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="40" cy="22" r="15" stroke="currentColor" stroke-width="1.5"/>
+                                        <line x1="30" y1="22" x2="50" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                                        <line x1="40" y1="15" x2="40" y2="29" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M25 37C25 37 28 35 40 35C52 35 55 37 55 37" stroke="currentColor" stroke-width="1.5"/>
+                                        <line x1="40" y1="37" x2="40" y2="58" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M40 58L28 85" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M40 58L52 85" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M28 50L20 65" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M52 50L60 65" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <rect x="33" y="44" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M35 47C35 47 38 45 40 45C42 45 45 47 45 47" stroke="currentColor" stroke-width="1" fill="none"/>
                                     </svg>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Hero Image Side -->
-                        <div class="col-lg-6 col-12 d-none d-lg-block">
-                            <div class="encounter-hero-image">
+                        <div class="col-lg-6 col-12">
+                            <div class="encounter-hero-image-container">
                                 <!-- Floating action button -->
                                 <a href="shop.html" class="encounter-floating-btn">
-                                    <i class="bi bi-cart3"></i>
+                                    <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Shop" style="width: 60px; height: 40px;">
                                 </a>
                             </div>
                         </div>
@@ -751,7 +741,7 @@
                                     <a href="shop.html">
                                         <img src="images/professional-golf-player.jpg" class="custom-block-image img-fluid" alt="Drip Bags Café Colombiano">
 
-                                        <i class="custom-block-icon bi-cart"></i>
+                                        <img src="images/Home/Pictogramas home/Pictograma de carrito.png" alt="Shop" class="custom-block-icon" style="width: 34px; height: 34px;">
                                     </a>
                                 </div>
                             </div>
@@ -800,7 +790,7 @@
                                     <a href="shop.html">
                                         <img src="images/girl-taking-selfie-with-friends-golf-field.jpg" class="custom-block-image img-fluid" alt="Bolsas 340g Café Colombiano">
 
-                                        <i class="custom-block-icon bi-cart"></i>
+                                        <img src="images/Home/Pictogramas home/Pictograma de carrito.png" alt="Shop" class="custom-block-icon" style="width: 34px; height: 34px;">
                                     </a>
                                 </div>
                             </div>
@@ -922,7 +912,7 @@
 
                     <div class="col-lg-6 col-12 me-auto mb-5 mb-lg-0">
                         <a class="navbar-brand d-flex align-items-center" href="index.html">
-                            <img src="images/logo.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
+                            <img src="images/Home/Logos/Pictograma.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
                             <span class="navbar-brand-text">
                                 Encounter
                                 <small>Colombian Coffee</small>

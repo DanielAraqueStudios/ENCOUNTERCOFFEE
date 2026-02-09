@@ -38,11 +38,61 @@ Brand Identity Colors Implementation
 -----------------------------------------*/
 .navbar-brand-text {
   color: var(--encounter-navy) !important;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.navbar-brand-image {
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: contain;
+}
+
+.navbar-brand-wordmark {
+  height: 54px !important;
+  width: auto !important;
+  max-width: none !important;
+  margin-left: 12px;
+  object-fit: contain;
 }
 
 .navbar-brand-text small {
   color: var(--encounter-red);
   font-weight: 500;
+}
+
+/* Navbar Icon Navigation */
+.navbar-nav .nav-item {
+  padding: 0 1.5rem;
+}
+
+.navbar-nav .nav-item i {
+  color: var(--encounter-golden);
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.navbar-nav .nav-link {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  padding: 0.25rem 0;
+}
+
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+}
+
+.nav-profile-icon {
+  color: var(--encounter-cream);
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-profile-icon:hover {
+  color: var(--encounter-golden);
+  transform: scale(1.1);
 }
 
 /*---------------------------------------
@@ -1396,125 +1446,175 @@ svg path[fill="#3D405B"] {
 .encounter-hero-section {
     min-height: 100vh;
     position: relative;
-    background-image: url('../images/coffee-beans-background.jpg');
-    background-size: cover;
-    background-position: center;
+    background-color: #8B7355;
     display: flex;
     align-items: center;
     overflow: hidden;
 }
 
-.encounter-hero-overlay {
+.encounter-hero-section .hero-bg-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(137, 42, 37, 0.75) 0%, rgba(139, 115, 85, 0.7) 100%);
-    z-index: 1;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+.encounter-hero-overlay {
+    display: none;
 }
 
 .encounter-left-panel {
     position: absolute;
     left: 0;
-    top: 10%;
-    bottom: 10%;
-    width: 60px;
-    background: rgba(137, 42, 37, 0.9);
-    border-radius: 0 30px 30px 0;
+    top: 8%;
+    bottom: 8%;
+    width: 40px;
+    background: #892A25;
+    border-radius: 0 20px 20px 0;
     z-index: 2;
 }
 
 .encounter-hero-content {
     position: relative;
     z-index: 2;
-    padding: 3rem 2rem;
+    padding: 3rem 2rem 3rem 4rem;
 }
 
 .encounter-flourish {
     color: #DDC165;
-    margin-bottom: 2rem;
-    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .encounter-hero-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(3rem, 7vw, 5.5rem);
     font-weight: 700;
     color: #FBF6E0;
-    line-height: 1.1;
+    line-height: 1;
     letter-spacing: 0.02em;
     text-transform: uppercase;
     margin-bottom: 2rem;
+    position: relative;
+}
+
+.encounter-hero-title-img {
+    max-width: 100%;
+    width: clamp(360px, 55vw, 900px);
+    height: auto;
+    margin: 3rem auto 2rem;
+    display: block;
+}
+
+.encounter-emphasized {
+    position: relative;
+    display: inline-block;
 }
 
 .encounter-hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(251, 246, 224, 0.9);
-    margin-bottom: 3rem;
-    max-width: 500px;
-    line-height: 1.6;
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    color: rgba(251, 246, 224, 0.85);
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.encounter-lightbulb-icon {
+    position: absolute;
+    left: -20px;
+    top: 15%;
+    color: #DDC165;
+    font-size: 2rem;
+    opacity: 0.4;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
 }
 
 .encounter-cta-btn {
     background: #892A25;
     color: #FBF6E0;
     padding: 1rem 2.5rem;
-    border-radius: 50px;
+    border-radius: 8px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     border: none;
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.encounter-cta-btn i {
+    font-size: 1.2rem;
 }
 
 .encounter-cta-btn:hover {
     background: #6B1F1A;
     color: #FBF6E0;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(137, 42, 37, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(137, 42, 37, 0.5);
 }
 
 .encounter-barista-icon {
     position: absolute;
-    top: 20%;
-    right: -50px;
+    bottom: 10%;
+    right: 5%;
     color: #DDC165;
-    opacity: 0.3;
+    opacity: 0.25;
+    z-index: 1;
 }
 
-.encounter-hero-image {
+.encounter-hero-image-container {
     position: relative;
     height: 100%;
-    min-height: 500px;
+    min-height: 600px;
     background-image: url('../images/hero-card-1.jpg');
     background-size: cover;
     background-position: center;
     z-index: 2;
+    border-radius: 20px 0 0 20px;
+    margin-left: 2rem;
 }
 
 .encounter-floating-btn {
     position: absolute;
-    right: 50px;
+    right: 40px;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background: #892A25;
     color: #FBF6E0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 15px rgba(137, 42, 37, 0.5);
+    font-size: 1.8rem;
+    box-shadow: 0 6px 20px rgba(137, 42, 37, 0.6);
     transition: all 0.3s ease;
+    z-index: 10;
 }
 
 .encounter-floating-btn:hover {
     background: #FBF6E0;
     color: #892A25;
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 8px 30px rgba(137, 42, 37, 0.8);
 }
 
 .encounter-section-divider {
@@ -1522,7 +1622,7 @@ svg path[fill="#3D405B"] {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40px;
+    height: 50px;
     background: #892A25;
     z-index: 2;
 }
@@ -1755,11 +1855,29 @@ svg path[fill="#3D405B"] {
 /* Responsive adjustments */
 @media (max-width: 991px) {
     .encounter-left-panel {
-        display: none;
+        width: 25px;
+    }
+    
+    .encounter-hero-content {
+        padding: 2rem 1.5rem 2rem 3rem;
     }
     
     .encounter-barista-icon {
         display: none;
+    }
+    
+    .encounter-hero-image-container {
+        min-height: 400px;
+        margin-left: 0;
+        border-radius: 15px;
+        margin-top: 2rem;
+    }
+    
+    .encounter-floating-btn {
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
     }
     
     .media-vertical-pill {
@@ -1778,7 +1896,24 @@ svg path[fill="#3D405B"] {
 
 @media (max-width: 768px) {
     .encounter-hero-section {
-        min-height: 80vh;
+        min-height: 90vh;
+    }
+    
+    .encounter-left-panel {
+        display: none;
+    }
+    
+    .encounter-hero-content {
+        padding: 2rem 1rem;
+    }
+    
+    .encounter-lightbulb-icon {
+        font-size: 1.5rem;
+        left: -10px;
+    }
+    
+    .encounter-hero-image-container {
+        min-height: 300px;
     }
     
     .featured-items-section,

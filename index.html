@@ -31,17 +31,22 @@
 
             <nav class="navbar navbar-expand-lg navbar-burgundy">                
                 <div class="container">
-                    <div class="row w-100 align-items-center">
-                        <!-- Logo Images - col-4 -->
-                        <div class="col-4">
+                    <div class="navbar-fixed-row">
+                        <!-- Logo Images - always visible -->
+                        <div class="navbar-fixed-col navbar-logo-section">
                             <a class="navbar-brand d-flex align-items-center" href="index.html">
                                 <img src="images/Home/Logos/Pictograma.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
                                 <img src="images/Home/Logos/Pictogramanombre.png" class="navbar-brand-wordmark img-fluid" alt="Encounter Colombian Coffee">
                             </a>
                         </div>
 
-                        <!-- Navigation Links - col-4 -->
-                        <div class="col-4">
+                        <!-- Mobile Menu Toggle Button -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavContent" aria-controls="navbarNavContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <!-- Navigation Links - collapsible on mobile -->
+                        <div class="collapse navbar-collapse navbar-fixed-col navbar-nav-section" id="navbarNavContent">
                             <ul class="navbar-nav d-flex flex-row justify-content-center nav-separated mb-0">
                                 <li class="nav-item d-flex align-items-center">
                                     <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Home" style="width: 34px; height: 34px; margin-right: 8px;">
@@ -55,8 +60,8 @@
                             </ul>
                         </div>
                         
-                        <!-- Profile Button - col-4 (right aligned) -->
-                        <div class="col-4 text-end">
+                        <!-- Profile Button - always visible -->
+                        <div class="navbar-fixed-col navbar-profile-section">
                             <a href="profile.html" class="nav-profile-icon">
                                 <img src="images/Home/Pictogramas home/Pictogramausuario.png" alt="Profile" style="width: 40px; height: 40px;">
                             </a>

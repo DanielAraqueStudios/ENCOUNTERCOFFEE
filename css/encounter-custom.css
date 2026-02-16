@@ -14,7 +14,7 @@ Brand Identity Colors Implementation
   --encounter-navy:               #2F4466;  /* Deep Navy - Text & Headers */
   --encounter-golden:             #DDC165;  /* Golden - Accents */
   --encounter-orange:             #E69E2C;  /* Vibrant Orange - CTAs */
-  --encounter-red:                #892A25;  /* Coffee Berry Red - Primary Actions */
+  --encounter-red:                #7C090F;  /* Coffee Berry Red - Primary Actions */
   
   /* Supporting Colors */
   --encounter-coffee-dark:        #3D2817;  /* Dark Coffee Brown */
@@ -1729,29 +1729,28 @@ svg path[fill="#3D405B"] {
 }
 
 .encounter-floating-btn {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 70px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 120px;
     height: 70px;
-    border-radius: 50%;
-    background: #892A25;
+    border-radius: 35px;
+    background: #7C090F;
     color: #FBF6E0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    box-shadow: 0 6px 20px rgba(137, 42, 37, 0.6);
+    font-size: 2.2rem;
+    box-shadow: 0 6px 20px rgba(124, 9, 15, 0.6);
     transition: all 0.3s ease;
-    z-index: 10;
+    z-index: 9999;
 }
 
 .encounter-floating-btn:hover {
     background: #FBF6E0;
-    color: #892A25;
-    transform: translateY(-50%) scale(1.15);
-    box-shadow: 0 8px 30px rgba(137, 42, 37, 0.8);
+    color: #7C090F;
+    transform: scale(1.15);
+    box-shadow: 0 8px 30px rgba(124, 9, 15, 0.8);
 }
 
 .encounter-section-divider {
@@ -1761,7 +1760,7 @@ svg path[fill="#3D405B"] {
     right: 0;
     height: 50px;
     background: #892A25;
-    z-index: 2;
+    z-index: 1;
 }
 
 /* ==============================================
@@ -2012,9 +2011,11 @@ svg path[fill="#3D405B"] {
     
     .encounter-floating-btn {
         right: 20px;
-        width: 60px;
+        bottom: 20px;
+        width: 100px;
         height: 60px;
-        font-size: 1.5rem;
+        border-radius: 30px;
+        font-size: 1.8rem;
     }
     
     .media-vertical-pill {

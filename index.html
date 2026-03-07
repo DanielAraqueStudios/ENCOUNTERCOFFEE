@@ -315,14 +315,25 @@
 
             <!-- New Hero Section: AN ENCOUNTER -->
             <section class="encounter-hero-section" id="encounter_hero">
-                <img src="images/Home/Fotos_a_usar/Frase2.jpg" alt="Coffee background" class="hero-bg-image">
+                <!-- Scene 1: Original slideshow with colored panel -->
+                <div class="hero-scene active" data-scene="1">
+                    <div class="hero-bg-slideshow">
+                        <img src="images/Home/Fotos_a_usar/Frase2.jpg" alt="Coffee background" class="hero-bg-image active">
+                        <img src="images/Home/Fotos_a_usar/Frase1.JPG" alt="Coffee background" class="hero-bg-image">
+                    </div>
+                    <div class="encounter-left-panel"></div>
+                </div>
+                
+                <!-- Scene 2: Frase 3 background with Frase 2 image panel -->
+                <div class="hero-scene" data-scene="2">
+                    <img src="images/Home/Fotos_a_usar/Frase 3.jpg" alt="Coffee background" class="hero-bg-image-static">
+                    <img src="images/Home/Logos/Frase 2 - pagina web.png" alt="Decorative Panel" class="encounter-left-panel-image">
+                </div>
+                
                 <div class="encounter-hero-overlay"></div>
                 
                 <div class="container-fluid h-100">
                     <div class="row h-100 align-items-center position-relative">
-                        
-                        <!-- Decorative Left Panel -->
-                        <div class="encounter-left-panel"></div>
                         
                         <!-- Hero Content -->
                         <div class="col-lg-6 col-12">

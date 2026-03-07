@@ -262,6 +262,61 @@
         });
       });
     }
+
+    // HERO SCENES SLIDESHOW - 10 second transitions between complete scenes
+    let currentScene = 0;
+    const heroScenes = document.querySelectorAll('.hero-scene');
+    const totalScenes = heroScenes.length;
+    
+    // Internal slideshow for Scene 1 (background images)
+    let scene1BgSlide = 0;
+    const scene1BgImages = document.querySelectorAll('[data-scene="1"] .hero-bg-image');
+    
+    function nextScene1Background() {
+      if (scene1BgImages.length === 0) return;
+      
+      scene1BgImages[scene1BgSlide].classList.remove('active');
+      scene1BgSlide = (scene1BgSlide + 1) % scene1BgImages.length;
+      scene1BgImages[scene1BgSlide].classList.add('active');
+    }
+    
+    // Scene 1 internal slideshow every 5 seconds (when scene 1 is active)
+    let scene1Interval = null;
+    
+    function nextScene() {
+      if (heroScenes.length === 0) return;
+      
+      // Stop Scene 1 internal slideshow
+      if (scene1Interval) {
+        clearInterval(scene1Interval);
+        scene1Interval = null;
+      }
+      
+      // Remove active from current scene
+      heroScenes[currentScene].classList.remove('active');
+      
+      // Move to next scene
+      currentScene = (currentScene + 1) % totalScenes;
+      
+      // Add active to new scene
+      heroScenes[currentScene].classList.add('active');
+      
+      // If we're on Scene 1, start internal slideshow
+      if (currentScene === 0 && scene1BgImages.length > 1) {
+        scene1Interval = setInterval(nextScene1Background, 5000);
+      }
+    }
+    
+    // Initialize scene slideshow
+    if (heroScenes.length > 0) {
+      // Start Scene 1 internal slideshow
+      if (scene1BgImages.length > 1) {
+        scene1Interval = setInterval(nextScene1Background, 5000);
+      }
+      
+      // Switch between scenes every 10 seconds
+      setInterval(nextScene, 10000);
+    }
   
   
   })(window.jQuery);

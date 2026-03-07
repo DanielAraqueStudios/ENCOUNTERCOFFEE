@@ -854,7 +854,7 @@ button[type="submit"].form-control:hover {
   FOOTER STYLES             
 -----------------------------------------*/
 .site-footer {
-  background-color: var(--encounter-navy);
+  background-color: var(--encounter-coffee-light);
   color: var(--encounter-cream);
 }
 
@@ -882,6 +882,12 @@ button[type="submit"].form-control:hover {
 .copyright-text {
   color: var(--encounter-cream-dark);
   font-size: 14px;
+}
+
+.site-footer p em {
+  color: #FFFFFF;
+  font-style: italic;
+  font-size: 1.1rem;
 }
 
 /*---------------------------------------
@@ -1589,7 +1595,52 @@ svg path[fill="#3D405B"] {
     overflow: hidden;
 }
 
+.hero-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-scene.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.hero-bg-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
 .encounter-hero-section .hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    z-index: 0;
+}
+
+.encounter-hero-section .hero-bg-image.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.hero-bg-image-static {
     position: absolute;
     top: 0;
     left: 0;
@@ -1615,10 +1666,34 @@ svg path[fill="#3D405B"] {
     z-index: 2;
 }
 
+.encounter-left-panel-image {
+    position: absolute;
+    left: 0;
+    top: 8%;
+    bottom: 8%;
+    width: auto;
+    height: 84%;
+    object-fit: contain;
+    z-index: 2;
+}
+
 .encounter-hero-content {
     position: relative;
     z-index: 2;
     padding: 3rem 2rem 3rem 4rem;
+    transition: opacity 2s ease-in-out;
+}
+
+/* Hide hero content when Scene 2 is active */
+.hero-scene[data-scene="2"].active ~ .container-fluid .encounter-hero-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Show hero content when Scene 1 is active */
+.hero-scene[data-scene="1"].active ~ .container-fluid .encounter-hero-content {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .encounter-flourish {
@@ -1779,16 +1854,16 @@ svg path[fill="#3D405B"] {
 }
 
 .featured-card {
-    background: rgba(251, 246, 224, 0.05);
-    padding: 2rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    backdrop-filter: none;
     transition: all 0.3s ease;
 }
 
 .featured-card:hover {
     transform: translateY(-10px);
-    background: rgba(251, 246, 224, 0.1);
+    background: transparent;
 }
 
 .featured-card-frame-wrapper {

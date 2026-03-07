@@ -367,38 +367,95 @@ E-Commerce Platform: [External platform - Shopify, custom, etc.]
 
 ### File Structure
 ```
-encountercoffee/
-├── index.html                    # Homepage
-├── about.html                    # About / Our Story page
-├── shop.html                     # Shop page with iframe integration
-├── growers.html                  # Coffee growers spotlight
-├── events.html                   # Events listing (adapted from event-listing.html)
+ENCOUNTERCOFFEE/
+├── .git/                         # Git version control
+├── .gitattributes                # Git attributes configuration
+├── index.html                    # Main homepage (custom Encounter Coffee design)
+├── index-original.html           # Original template backup
+├── shop.html                     # Shop page with product catalog
+├── profile.html                  # User profile page
+├── encounter-gifts.html          # Gift collections page
+├── encounter-points.html         # Points/rewards program page
+├── event-listing.html            # Events listing page
 ├── event-detail.html             # Individual event details
-├── contact.html                  # Contact page
+├── README.md                     # Project documentation (this file)
 ├── css/
-│   ├── bootstrap.min.css         # Bootstrap 5.3.x
-│   ├── bootstrap-icons.css       # Icon library
+│   ├── bootstrap.min.css         # Bootstrap 5.3.x framework
+│   ├── bootstrap-icons.css       # Bootstrap icon library
 │   ├── templatemo-tiya-golf-club.css  # Original template CSS
-│   ├── encounter-custom.css      # Encounter Coffee brand overrides
-│   └── iframe-styles.css         # iframe container styling
+│   └── encounter-custom.css      # Encounter Coffee brand styles & overrides
 ├── js/
-│   ├── jquery.min.js             # jQuery 3.x
-│   ├── bootstrap.bundle.min.js   # Bootstrap JS
-│   ├── animated-headline.js      # Text animation
-│   ├── click-scroll.js           # Smooth scrolling
-│   ├── jquery.sticky.js          # Sticky navigation
-│   ├── modernizr.js              # Feature detection
-│   ├── custom.js                 # Template custom JS
-│   └── iframe-handler.js         # iframe communication (NEW)
+│   ├── jquery.min.js             # jQuery 3.x library
+│   ├── bootstrap.bundle.min.js   # Bootstrap 5.3.x JavaScript
+│   ├── animated-headline.js      # Text animation effects
+│   ├── click-scroll.js           # Smooth scrolling navigation
+│   ├── jquery.sticky.js          # Sticky navigation functionality
+│   ├── modernizr.js              # Feature detection library
+│   └── custom.js                 # Custom template JavaScript
+├── fonts/
+│   ├── bootstrap-icons.woff      # Bootstrap icons font (WOFF)
+│   └── bootstrap-icons.woff2     # Bootstrap icons font (WOFF2)
 ├── images/
-│   ├── logo.png                  # Encounter Coffee logo
-│   ├── hero/                     # Hero section images
-│   ├── growers/                  # Coffee grower photos
-│   ├── products/                 # Product photography
-│   └── events/                   # Event images
-├── fonts/                        # Web fonts (if self-hosted)
-├── .htaccess                     # Apache configuration (optional)
-└── README.md                     # This file
+│   ├── logo.png                  # Legacy logo file
+│   ├── hero-bg.jpg               # Hero background image
+│   ├── WorldMap.svg              # World map graphic
+│   ├── anna-rosar-ew-olGvgCCs-unsplash.jpg
+│   ├── anna-rosar-ZxFyVBHMK-c-unsplash.jpg
+│   ├── frederik-rosar-NDSZCfnsbY-unsplash.jpg
+│   ├── girl-taking-selfie-with-friends-golf-field.jpg
+│   ├── professional-golf-player.jpg
+│   ├── Home.-20260207T184107Z-1-001.zip  # Archived assets
+│   ├── Home/                     # Main brand assets folder
+│   │   ├── Formas/               # Decorative frames and shapes
+│   │   │   └── Marcos para productos.png  # Product frame overlay
+│   │   ├── Fotos_a_usar/         # Primary images to use
+│   │   │   ├── Frase1.JPG        # Hero image option 1
+│   │   │   ├── Frase2.jpg        # Hero image option 2 (currently active)
+│   │   │   ├── Frase 3.jpg       # Hero image option 3
+│   │   │   ├── video1.mp4        # Testimonials video 1
+│   │   │   └── video2.mp4        # Testimonials video 2
+│   │   ├── Logos/                # Brand logo assets
+│   │   │   ├── Pictograma.png    # Brand pictogram (54x54px navbar)
+│   │   │   ├── Pictogramanombre.png  # Brand wordmark (54px navbar)
+│   │   │   ├── Frase home.png    # Hero section tagline image
+│   │   │   └── Frase 2 - pagina web.png
+│   │   └── Pictogramas home/     # Navigation pictograms/icons
+│   │       ├── Pictogramasintento.png     # Home icon (34px)
+│   │       ├── Pictogramas home-03.png    # Shop/What we do icon (34px, 90x70 cart)
+│   │       ├── Pictogramas home-04.png
+│   │       ├── Pictogramas home-12.png
+│   │       ├── Pictogramas06.png
+│   │       ├── Pictogramashome02.png
+│   │       └── Pictogramausuario.png      # User profile icon (40px)
+│   ├── members/                  # Team member photos
+│   │   ├── portrait-young-handsome-businessman-wearing-suit-standing-with-crossed-arms-with-isolated-studio-white-background.jpg
+│   │   └── successful-asian-lady-boss-red-blazer-holding-clipboard-with-documens-pen-working-looking-happy-white-background.jpg
+│   └── New folder/               # Additional assets folder
+├── encounter-coffee-next/        # Next.js version (separate project)
+│   ├── .gitignore                # Next.js gitignore
+│   ├── .next/                    # Next.js build output (ignored)
+│   ├── node_modules/             # npm dependencies (ignored)
+│   ├── package.json              # npm package configuration
+│   ├── package-lock.json         # Locked dependency versions
+│   ├── next.config.ts            # Next.js configuration
+│   ├── tsconfig.json             # TypeScript configuration
+│   ├── next-env.d.ts             # Next.js TypeScript declarations
+│   ├── eslint.config.mjs         # ESLint configuration
+│   ├── postcss.config.mjs        # PostCSS configuration
+│   ├── README.md                 # Next.js project README
+│   ├── README-SETUP.md           # Setup instructions
+│   ├── public/                   # Public static assets
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   └── src/                      # Source code
+│       └── app/                  # Next.js App Router
+│           ├── favicon.ico       # Site favicon
+│           ├── globals.css       # Global styles
+│           ├── layout.tsx        # Root layout component
+│           └── page.tsx          # Homepage component
 ```
 
 ### HTML Naming Conventions

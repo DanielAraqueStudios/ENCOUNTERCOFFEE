@@ -18,7 +18,7 @@ Brand Identity Colors Implementation
   
   /* Supporting Colors */
   --encounter-coffee-dark:        #3D2817;  /* Dark Coffee Brown */
-  --encounter-coffee-light:       #8B7355;  /* Light Coffee Brown */
+  --encounter-coffee-light:       #8D3F3B;  /* Light Coffee Brown */
   --encounter-cream-dark:         #F5ECCD;  /* Darker Cream for contrast */
   
   /* Brand Statement Section Colors */
@@ -1583,7 +1583,7 @@ svg path[fill="#3D405B"] {
 .encounter-hero-section {
     min-height: 100vh;
     position: relative;
-    background-color: #8B7355;
+    background-color: #8D3F3B;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -1767,7 +1767,7 @@ svg path[fill="#3D405B"] {
    FEATURED ITEMS SECTION
 ============================================== */
 .featured-items-section {
-    background: linear-gradient(180deg, #8B7355 0%, #A0826B 100%);
+    background: #8D3F3B;
     padding: 100px 0;
     position: relative;
 }
@@ -1791,48 +1791,28 @@ svg path[fill="#3D405B"] {
     background: rgba(251, 246, 224, 0.1);
 }
 
-.featured-card-frame {
-    border: 2px solid #DDC165;
-    border-radius: 10px;
-    padding: 1rem;
-    margin-bottom: 2rem;
+.featured-card-frame-wrapper {
     position: relative;
+    margin-bottom: 2rem;
+    aspect-ratio: 1/1;
 }
 
-.featured-card-frame::before,
-.featured-card-frame::after {
-    content: '';
+.featured-card-frame-wrapper .decorative-frame {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #DDC165;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
 }
 
-.featured-card-frame::before {
-    top: -5px;
-    left: -5px;
-    border-right: none;
-    border-bottom: none;
-}
-
-.featured-card-frame::after {
-    bottom: -5px;
-    right: -5px;
-    border-left: none;
-    border-top: none;
-}
-
-.featured-image-placeholder {
-    aspect-ratio: 4/3;
-    background: rgba(137, 42, 37, 0.2);
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.featured-image-placeholder img {
+.featured-card-frame-wrapper .featured-card-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 5px;
+    padding: 12%;
 }
 
 .featured-card-text {
@@ -1863,7 +1843,7 @@ svg path[fill="#3D405B"] {
    TESTIMONIALS AND MEDIA SECTION
 ============================================== */
 .testimonials-media-section {
-    background: linear-gradient(180deg, #A0826B 0%, #8B7355 100%);
+    background: #8D3F3B;
     padding: 100px 0;
 }
 
@@ -1952,9 +1932,13 @@ svg path[fill="#3D405B"] {
     position: relative;
 }
 
-.media-image-block img {
+.media-image-block img,
+.media-image-block video {
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .media-caption-card {

@@ -7,7 +7,7 @@
         <meta name="description" content="Encounter Colombian Coffee - El alma de Colombia servida en tu taza. Café colombiano de origen único, conectando caficultores con el mundo.">
         <meta name="author" content="Encounter Coffee">
 
-        <title>Encounter Colombian Coffee - Café Colombiano Premium</title>
+        <title>What we do? - Encounter Colombian Coffee</title>
 
         <!-- CSS FILES -->                
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,12 +50,12 @@
                             <ul class="navbar-nav d-flex flex-row justify-content-center nav-separated mb-0">
                                 <li class="nav-item d-flex align-items-center">
                                     <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Home" style="width: 50px; height: 50px; margin-right: 8px;">
-                                    <a class="nav-link active" href="index.html">Home</a>
+                                    <a class="nav-link" href="index.html">Home</a>
                                 </li>
         
                                 <li class="nav-item d-flex align-items-center">
                                     <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="What we do" style="width: 60px; height: 60px; margin-right: 8px;">
-                                    <a class="nav-link" href="what-we-do.html">What we do?</a>
+                                    <a class="nav-link active" href="what-we-do.html">What we do?</a>
                                 </li>
                             </ul>
                         </div>
@@ -126,100 +126,87 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3D405B" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
             </div>
             
-<!--
-            <section class="hero-section-new" id="section_1">
-                <div class="hero-overlay"></div>
+
+            <!-- New Hero Section: AN ENCOUNTER -->
+            <section class="encounter-hero-section" id="encounter_hero">
+                <!-- Scene 1: Original slideshow with colored panel -->
+                <div class="hero-scene active" data-scene="1">
+                    <div class="hero-bg-slideshow">
+                        <img src="images/Home/Fotos_a_usar/Frase2.jpg" alt="Coffee background" class="hero-bg-image active">
+                        <img src="images/Home/Fotos_a_usar/Frase1.JPG" alt="Coffee background" class="hero-bg-image">
+                    </div>
+                    <div class="encounter-left-panel"></div>
+                </div>
+                
+                <!-- Scene 2: Frase 3 background with Frase 2 image panel -->
+                <div class="hero-scene" data-scene="2">
+                    <img src="images/Home/Fotos_a_usar/Frase 3.jpg" alt="Coffee background" class="hero-bg-image-static">
+                    <img src="images/Home/Logos/Frase 2 - pagina web.png" alt="Decorative Panel" class="encounter-left-panel-image">
+                </div>
+                
+                <div class="encounter-hero-overlay"></div>
                 
                 <div class="container-fluid h-100">
-                    <div class="row h-100 align-items-center">
+                    <div class="row h-100 align-items-center position-relative">
                         
-                        <div class="col-lg-5 col-12 hero-left-content">
-                            <div class="hero-accent-bar"></div>
-                            
-                            <h1 class="hero-headline">
-                                THE INVISIBLE<br>
-                                EFFORT BEHIND<br>
-                                EVERY CUP
-                            </h1>
-                            
-                            <p class="hero-supporting-text">
-                                Behind every cup of coffee, there are<br>
-                                years of knowledge, early mornings,<br>
-                                hard work, and deep love for the land.<br>
-                                Yet, coffee growers are often the ones<br>
-                                who receive the least.
-                            </p>
-                            
-                            <a href="#section_2" class="btn hero-cta-btn">BE PART OF THE CHANGE</a>
-                        </div>
-                        
-                        <div class="col-lg-7 col-12 hero-right-content">
-                            <div class="carousel-wrapper">
-                                <div class="carousel-container" id="heroCarousel">
-                                    
-                                    <div class="carousel-card active">
-                                        <div class="card-frame">
-                                            <img src="images/hero-card-1.jpg" alt="Hands holding coffee beans" class="card-image">
-                                            <div class="card-caption">
-                                                THE INVISIBLE<br>
-                                                EFFORT BEHIND<br>
-                                                EVERY CUP
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="carousel-card">
-                                        <div class="card-frame">
-                                            <img src="images/hero-card-2.jpg" alt="Coffee grounds and preparation" class="card-image">
-                                            <div class="card-caption">
-                                                BUILDING A FAIR<br>
-                                                VALUE CHAIN
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="carousel-card">
-                                        <div class="card-frame">
-                                            <img src="images/hero-card-3.jpg" alt="Coffee plant with red cherries" class="card-image">
-                                            <div class="card-caption">
-                                                A BRIDGE<br>
-                                                BETWEEN PEOPLE<br>
-                                                AND PURPOSE
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="carousel-card">
-                                        <div class="card-frame">
-                                            <img src="images/hero-card-4.jpg" alt="Fair trade coffee process" class="card-image">
-                                            <div class="card-caption">
-                                                BUILDING A FAIR<br>
-                                                VALUE CHAIN
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
+                        <!-- Hero Content -->
+                        <div class="col-lg-6 col-12">
+                            <div class="encounter-hero-content">
+                                
+                                <!-- Decorative Flourish -->
+                                <div class="encounter-flourish">
+                                    <svg width="180" height="50" viewBox="0 0 180 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 25C20 15, 45 20, 70 25C95 30, 120 35, 175 25" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                                        <circle cx="8" cy="18" r="3" fill="currentColor"/>
+                                        <circle cx="172" cy="32" r="3" fill="currentColor"/>
+                                        <path d="M15 15C18 18 20 22 15 25" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                                        <path d="M165 30C162 27 160 23 165 20" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                                    </svg>
                                 </div>
                                 
-                                <div class="carousel-controls">
-                                    <button class="carousel-btn prev" id="prevBtn" aria-label="Previous slide">
-                                        <i class="bi bi-chevron-left"></i>
-                                    </button>
-                                    <button class="carousel-btn next" id="nextBtn" aria-label="Next slide">
-                                        <i class="bi bi-chevron-right"></i>
-                                    </button>
-                                    <div class="carousel-progress">
-                                        <div class="progress-bar" id="progressBar"></div>
-                                    </div>
+                                <img src="images/Home/Logos/Frase%20home.png" alt="AN ENCOUNTER. BETWEEN YOU AND THE BEST," class="encounter-hero-title-img">
+                                
+                                <p class="encounter-hero-subtitle">and the encounter between you and those who make it possible.</p>
+                                
+                                <a href="#featured_items" class="btn encounter-cta-btn">
+                                    BE PART OF THE CHANGE
+                                </a>
+                                
+                                <!-- Barista Icon -->
+                                <div class="encounter-barista-icon">
+                                    <svg width="80" height="100" viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="40" cy="22" r="15" stroke="currentColor" stroke-width="1.5"/>
+                                        <line x1="30" y1="22" x2="50" y2="22" stroke="currentColor" stroke-width="1.5"/>
+                                        <line x1="40" y1="15" x2="40" y2="29" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M25 37C25 37 28 35 40 35C52 35 55 37 55 37" stroke="currentColor" stroke-width="1.5"/>
+                                        <line x1="40" y1="37" x2="40" y2="58" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M40 58L28 85" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M40 58L52 85" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M28 50L20 65" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M52 50L60 65" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        <rect x="33" y="44" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                        <path d="M35 47C35 47 38 45 40 45C42 45 45 47 45 47" stroke="currentColor" stroke-width="1" fill="none"/>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
                         
+                        <!-- Hero Image Side -->
+                        <div class="col-lg-6 col-12">
+                            <div class="encounter-hero-image-container">
+                                <!-- Floating action button -->
+                                <a href="shop.html" class="encounter-floating-btn">
+                                    <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Shop" style="width: 90px; height: 70px;">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Section Divider -->
+                <div class="encounter-section-divider"></div>
             </section>
-        -->
-            
+
 <!--
             <section class="brand-statement-section" id="brand_statement">
                 <div class="container-fluid">
@@ -316,6 +303,10 @@
                 </div>
             </section>
         -->
+
+            
+            
+        
 
             <!-- Featured Items Section -->
             <section class="featured-items-section" id="featured_items">

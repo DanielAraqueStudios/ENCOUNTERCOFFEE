@@ -80,8 +80,15 @@
       prevBtn.addEventListener('click', prevSlide);
     }
 
-    // Auto-advance carousel every 5 seconds
-    let autoAdvance = setInterval(nextSlide, 5000);
+    let autoAdvance;
+    
+    if (totalSlides > 0) {
+      // Auto-advance carousel every 5 seconds
+      autoAdvance = setInterval(nextSlide, 5000);
+      
+      // Initialize carousel
+      updateCarousel();
+    }
 
     // Pause auto-advance on hover
     const carouselContainer = document.getElementById('heroCarousel');
@@ -94,10 +101,6 @@
         autoAdvance = setInterval(nextSlide, 5000);
       });
     }
-
-    // Initialize carousel
-    if (cards.length > 0) {
-      updateCarousel();
     }
 
     // MAGNETIC HOVER ANIMATION - Modern & Unique

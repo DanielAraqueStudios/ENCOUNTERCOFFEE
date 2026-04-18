@@ -27,6 +27,37 @@
     
     <body>
 
+        <!-- COUNTRY SELECTOR MODAL -->
+        <div class="modal fade" id="countrySelectorModal" tabindex="-1" aria-labelledby="countrySelectorLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center border-0 pb-1">
+                        <h4 class="modal-title mb-2 mt-3" id="countrySelectorLabel">Choose your preferred store</h4>
+                    </div>
+                    <div class="modal-body p-4 p-md-5">
+                        <p class="text-center text-muted mb-4 pb-2">Are you buying from Colombia or Canada / USA?</p>
+                        
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <button type="button" class="country-btn w-100" id="select-colombia">
+                                    <span class="flag-emoji">🇨🇴</span>
+                                    <span class="country-name d-block">Colombia</span>
+                                    <span class="language-text d-block">Español</span>
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="country-btn w-100" id="select-canada">
+                                    <span class="flag-emoji">🇨🇦</span>
+                                    <span class="country-name d-block">Canada (Global)</span>
+                                    <span class="language-text d-block">English</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <main>
 
 
@@ -143,6 +174,12 @@
                         
                         <!-- Profile and Cart Buttons - always visible -->
                         <div class="navbar-fixed-col navbar-profile-section d-flex align-items-center" style="gap: 15px;">
+                            
+                            <!-- Store Switcher Flag -->
+                            <button type="button" class="nav-flag-btn" data-bs-toggle="modal" data-bs-target="#countrySelectorModal" title="Change Region">
+                                <span class="flag-emoji" style="margin-bottom: 0; font-size: 1.5rem;">🇨🇦</span>
+                            </button>
+
                             <a href="shop.html" class="nav-cart-icon">
                                 <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Cart" style="width: 80px; height: 80px; object-fit: contain;">
                             </a>

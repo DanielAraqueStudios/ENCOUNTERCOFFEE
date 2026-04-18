@@ -4,144 +4,172 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta name="description" content="Encounter Colombian Coffee - Tienda Online. Café colombiano premium de origen único.">
+        <meta name="description" content="Encounter Colombian Coffee - El alma de Colombia servida en tu taza. Café colombiano de origen único, conectando caficultores con el mundo.">
         <meta name="author" content="Encounter Coffee">
 
-        <title>Store - Encounter Colombian Coffee</title>
+        <title>Encounter Colombian Coffee - Café Colombiano Premium</title>
 
         <!-- CSS FILES -->                
         <link rel="preconnect" href="https://fonts.googleapis.com">
+
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
+
         <link href="css/bootstrap-icons.css" rel="stylesheet">
+
         <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet">
+        
         <link href="css/encounter-custom.css" rel="stylesheet">
+
+        <style>
+            /* Reset the global body so normal scrolling works */
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .iframe-container {
+                width: 100%;
+                /* Default fallback height if javascript cannot read cross-origin height */
+                min-height: 2500px; 
+            }
+
+            .iframe-container iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                margin: 0;
+                padding: 0;
+                display: block;
+            }
+        </style>
+        
+        <script>
+            // Attempt to dynamically adjust iframe height based on its content.
+            // Note: This only succeeds if both domains are the exact same origin.
+            function autoResizeIframe(iframe) {
+                try {
+                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                    // We successfully set it, so we can override the parent min-height
+                    iframe.parentElement.style.minHeight = 'auto';
+                } catch(e) {
+                    console.warn('Cross-origin security prevents auto-resizing the iframe. Using fallback tall height.');
+                }
+            }
+        </script>
     </head>
     
     <body>
         <main>
-            <nav class="navbar navbar-expand-lg navbar-burgundy">                
+<nav class="navbar navbar-expand-lg navbar-burgundy">                
                 <div class="container">
-                    <a class="navbar-brand d-flex align-items-center" href="index.html">
-                        <img src="images/logo.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
-                        <span class="navbar-brand-text">
-                            Encounter
-                            <small>Colombian Coffee</small>
-                        </span>
-                    </a>
+                    <div class="navbar-fixed-row">
+                        <!-- Logo Images - always visible -->
+                        <div class="navbar-fixed-col navbar-logo-section">
+                            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                                <img src="images/Home/Logos/Pictograma.png"  class="navbar-brand-image" alt="Encounter Colombian Coffee" style="width: 140px; height: 140px;">
+                                <img src="images/Home/Logos/Pictogramanombre.png" class="navbar-brand-wordmark" alt="Encounter Colombian Coffee" style="width: 150px; height: 100px;">
+                            </a>
+                        </div>
 
-                    <div class="d-lg-none ms-auto me-3">
-                        <a class="btn custom-btn custom-border-btn" href="shop.html">Store</a>
-                    </div>
-    
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-lg-auto nav-separated">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html#section_1">HOME</a>
-                            </li>
-    
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.html#brand_statement">WHAT WE DO</a>
-                            </li>
+                        <!-- Mobile Menu Toggle Button -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavContent" aria-controls="navbarNavContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="encounter-points.html">ENCOUNTER POINTS</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="encounter-gifts.html">ENCOUNTER GIFTS</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="profile.html">PROFILE</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active" href="shop.html">STORE</a>
-                            </li>
-                        </ul>
+                        <!-- Navigation Links - collapsible on mobile -->
+                        <div class="collapse navbar-collapse navbar-fixed-col navbar-nav-section" id="navbarNavContent">
+                            <ul class="navbar-nav d-flex flex-row justify-content-center nav-separated mb-0">
+                                <li class="nav-item d-flex align-items-center">
+                                    <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Home" style="width: 80px; height: 80px; margin-right: 8px;">
+                                    <a class="nav-link active" href="index.html">Home</a>
+                                </li>
+        
+                                <li class="nav-item d-flex align-items-center">
+                                    <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="What we do" style="width: 80px; height: 80px; margin-right: 8px;">
+                                    <a class="nav-link" href="what-we-do.html">What we do?</a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Profile and Cart Buttons - always visible -->
+                        <div class="navbar-fixed-col navbar-profile-section d-flex align-items-center" style="gap: 15px;">
+                            <a href="shop.html" class="nav-cart-icon">
+                                <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Cart" style="width: 80px; height: 80px; object-fit: contain;">
+                            </a>
+                            
+                        </div>
                     </div>
                 </div>
             </nav>
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">                
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Suscríbete a Nuestro Newsletter</h5>
+                    
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+                </div>
+                
+                <div class="offcanvas-body d-flex flex-column">
+                    <p class="mb-4">Recibe noticias sobre nuevos cafés, historias de caficultores y ofertas exclusivas.</p>
+                    
+                    <form class="custom-form member-login-form" action="#" method="post" role="form">
 
-            <section class="hero-section d-flex justify-content-center align-items-center" style="min-height: 400px; background: linear-gradient(135deg, #892A25 0%, #2F4466 100%);">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-12 mx-auto text-center">
-                            <h1 class="text-white mb-4">Encounter Coffee Store</h1>
-                            <p class="text-white lead">Discover our premium Colombian coffee selection</p>
+                        <div class="member-login-form-body">
+                            <div class="mb-4">
+                                <label class="form-label mb-2" for="newsletter-name">Nombre</label>
+
+                                <input type="text" name="newsletter-name" id="newsletter-name" class="form-control" placeholder="Tu nombre" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label mb-2" for="newsletter-email">Correo Electrónico</label>
+
+                                <input type="email" name="newsletter-email" id="newsletter-email" class="form-control" placeholder="tu@email.com" required="">
+                            </div>
+
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                              
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Acepto recibir comunicaciones de Encounter Coffee
+                                </label>
+                            </div>
+
+                            <div class="col-lg-8 col-md-9 col-10 mx-auto">
+                                <button type="submit" class="form-control">Suscribirse</button>
+                            </div>
                         </div>
+                    </form>
+
+                    <div class="mt-auto mb-5">
+                        <p>
+                            <strong class="text-white me-3">¿Preguntas?</strong>
+
+                            <a href="mailto:info@encountercolombiancoffee.ca" class="contact-link">
+                            	info@encountercolombiancoffee.ca
+                            </a>
+                        </p>
                     </div>
                 </div>
-            </section>
 
-            <section class="section-padding">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-12 text-center mb-5">
-                            <h2>Our Products</h2>
-                            <p class="lead">Premium Colombian coffee from origin to your cup</p>
-                        </div>
-                    </div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3D405B" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://www.encountercolombiancoffee.ca/store/" scrolling="no" onload="autoResizeIframe(this)"></iframe>
+            </div>
 
-                    <div class="row g-4">
-                        <!-- Product 1 -->
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="card h-100">
-                                <img src="images/professional-golf-player.jpg" class="card-img-top" alt="Drip Bags">
-                                <div class="card-body">
-                                    <h5 class="card-title">Premium Drip Bags</h5>
-                                    <p class="card-text">Single-origin coffee ready to brew anywhere. Perfect for office, travel, or home.</p>
-                                    <p class="text-muted"><strong>Origin:</strong> Huila, Colombia</p>
-                                    <p class="h4 text-danger">$15.99 CAD</p>
-                                    <a href="#" class="btn custom-btn w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 2 -->
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="card h-100">
-                                <img src="images/girl-taking-selfie-with-friends-golf-field.jpg" class="card-img-top" alt="340g Bags">
-                                <div class="card-body">
-                                    <h5 class="card-title">340g Whole Bean</h5>
-                                    <p class="card-text">Freshly roasted, vacuum-sealed to preserve freshness and aroma. Ideal for manual brewing.</p>
-                                    <p class="text-muted"><strong>Origin:</strong> Multiple Regions</p>
-                                    <p class="h4 text-danger">$22.99 CAD</p>
-                                    <a href="#" class="btn custom-btn w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product 3 -->
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="card h-100">
-                                <img src="images/professional-golf-player.jpg" class="card-img-top" alt="Specialty Reserve">
-                                <div class="card-body">
-                                    <h5 class="card-title">Specialty Reserve</h5>
-                                    <p class="card-text">Limited edition micro-lot. Exceptional quality and unique flavor profile.</p>
-                                    <p class="text-muted"><strong>Origin:</strong> Nariño, Colombia</p>
-                                    <p class="h4 text-danger">$34.99 CAD</p>
-                                    <a href="#" class="btn custom-btn w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
 
-        <footer class="site-footer">
+<footer class="site-footer">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-12 me-auto mb-5 mb-lg-0">
+                <div class="row justify-content-between gy-5">
+
+                    <div class="col-lg-5 col-12 footer-brand-block">
                         <a class="navbar-brand d-flex align-items-center" href="index.html">
-                            <img src="images/logo.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
+                            <img src="images/Home/Logos/Pictograma.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
                             <span class="navbar-brand-text">
                                 Encounter
                                 <small>Colombian Coffee</small>
@@ -150,40 +178,54 @@
                         <p class="mt-4"><em>El alma de Colombia servida en tu taza</em></p>
                     </div>
 
-                    <div class="col-lg-3 col-12">
-                        <h5 class="site-footer-title mb-4">Contact Us</h5>
+                    <div class="col-lg-3 col-12 footer-contact-block">
+                        <h5 class="site-footer-title mb-4">Contáctanos</h5>
+
                         <p class="mb-2">
                             <strong>Email:</strong><br>
-                            <a href="mailto:info@encountercolombiancoffee.ca" class="text-white">info@encountercolombiancoffee.ca</a>
+                            <a href="mailto:info@encountercolombiancoffee.ca" class="footer-contact-link">info@encountercolombiancoffee.ca</a>
                         </p>
+
                         <p class="mb-2">
                             <strong>Web:</strong><br>
-                            <a href="https://encountercolombiancoffee.ca" class="text-white">encountercolombiancoffee.ca</a>
+                            <a href="https://encountercolombiancoffee.ca" class="footer-contact-link">encountercolombiancoffee.ca</a>
                         </p>
-                        <p class="copyright-text">Copyright © 2025 Encounter Coffee</p>
+                        <p class="copyright-text mt-4">Copyright © 2025 Encounter Coffee</p>
                     </div>
 
-                    <div class="col-lg-2 col-12 ms-auto">
-                        <ul class="social-icon mt-lg-5 mt-3 mb-4">
+                    <div class="col-lg-3 col-12 footer-social-block d-flex flex-column align-items-lg-end">
+                        <h5 class="site-footer-title mb-4 d-none d-lg-block">&nbsp;</h5> <!-- Spacer for vertical alignment on desktop -->
+                        <ul class="social-icon mb-4">
                             <li class="social-icon-item">
                                 <a href="#" class="social-icon-link bi-instagram"></a>
                             </li>
+
                             <li class="social-icon-item">
                                 <a href="#" class="social-icon-link bi-facebook"></a>
                             </li>
+
                             <li class="social-icon-item">
                                 <a href="#" class="social-icon-link bi-whatsapp"></a>
                             </li>
                         </ul>
+                        
                     </div>
+
                 </div>
             </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#81B29A" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
         </footer>
+
 
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/animated-headline.js"></script>
+        <script src="js/modernizr.js"></script>
         <script src="js/custom.js"></script>
+
     </body>
 </html>

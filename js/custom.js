@@ -3,6 +3,61 @@
   
   "use strict";
 
+    /* ==============================================
+       COUNTRY SELECTOR SYSTEM
+       ============================================== */
+    $(document).ready(function() {
+        // FOR TESTING ONLY
+        localStorage.removeItem('encounter_country'); 
+        var userCountry = null;
+        
+        // If not selected, show the modal on page load
+        if (!userCountry) {
+            setTimeout(function() {
+                var modal = document.getElementById('countrySelectorModal');
+                if (modal) {
+                    // Force display manually to bypass any Bootstrap errors
+                    modal.style.display = 'block';
+                    modal.style.backgroundColor = 'rgba(30, 45, 68, 0.9)';
+                    
+                    // Small delay to allow transition
+                    setTimeout(function() {
+                        modal.classList.add('show');
+                    }, 50);
+                    
+                    document.body.style.overflow = 'hidden'; // Stop background scrolling
+                }
+            }, 500);
+        } 
+
+        // Handle Colombia Selection
+        $('#select-colombia').on('click', function(e) {
+            e.preventDefault();
+            localStorage.setItem('encounter_country', 'CO');
+            window.location.href = "https://www.encountercolombiancoffee.com/";
+        });
+
+        // Handle Canada Selection
+        $('#select-canada').on('click', function(e) {
+            e.preventDefault();
+            localStorage.setItem('encounter_country', 'CA');
+            
+            // Force hide manually
+            var modal = document.getElementById('countrySelectorModal');
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 200);
+            }
+        });
+    });
+
+    /* ==============================================
+       MENU & SCROLLING
+       ============================================== */
+
     // MENU
     $('.navbar-collapse a').on('click',function(){
       $(".navbar-collapse").collapse('hide');

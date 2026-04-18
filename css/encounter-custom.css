@@ -34,6 +34,97 @@ Brand Identity Colors Implementation
 }
 
 /*---------------------------------------
+  COUNTRY SELECTOR MODAL & FLAG SWITCHER
+-----------------------------------------*/
+#countrySelectorModal {
+    z-index: 105050 !important; /* Ensure it is above everything else */
+    background-color: rgba(30, 45, 68, 0.95); /* manual backdrop just in case */
+}
+
+#countrySelectorModal .modal-content {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+#countrySelectorModal .modal-header {
+    background-color: var(--encounter-red);
+    color: white;
+    border-bottom: none;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+}
+
+#countrySelectorModal .modal-title {
+    width: 100%;
+    font-weight: 700;
+}
+
+.country-btn {
+    border: 3px solid rgba(47, 68, 102, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--encounter-navy);
+}
+
+.country-btn:hover, .country-btn:focus {
+    background-color: var(--encounter-cream);
+    border-color: var(--encounter-red);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(124, 9, 15, 0.15);
+}
+
+.country-btn .flag-emoji {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.country-btn .country-name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+}
+
+.country-btn .language-text {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.nav-flag-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    font-size: 1.2rem;
+}
+
+.nav-flag-btn:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.theme-blue .nav-flag-btn {
+    color: var(--encounter-navy);
+}
+
+.theme-blue .nav-flag-btn:hover {
+    background-color: rgba(47, 68, 102, 0.1);
+}
+
+/*---------------------------------------
   FIXED NAVBAR LAYOUT (NON-COLLAPSING)
 -----------------------------------------*/
 .navbar {
@@ -2293,7 +2384,7 @@ body.theme-blue .site-footer {
 }
 
 body.theme-blue .site-footer svg path {
-    fill: #1E2D44; /* A darker navy for the wavy bottom, if desired, or match background */
+    fill: var(--encounter-navy) !important; /* Made this match the background color strictly to remove the red entirely */
 }
 
 /* Ensure hero text stays visible on Scene 2 in theme-blue */

@@ -34,8 +34,20 @@ Brand Identity Colors Implementation
 }
 
 /*---------------------------------------
-  FIXED NAVBAR LAYOUT (NON-COLLAPSING)          
+  FIXED NAVBAR LAYOUT (NON-COLLAPSING)
 -----------------------------------------*/
+.navbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.navbar-brand {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .navbar-fixed-row {
   display: flex;
   width: 100%;
@@ -57,7 +69,8 @@ Brand Identity Colors Implementation
 
 .navbar-nav-section {
   flex: 1 1 auto;
-  justify-content: center;
+  margin-left: auto;
+  justify-content: flex-end;
 }
 
 .navbar-profile-section {
@@ -123,13 +136,12 @@ Brand Identity Colors Implementation
   }
   
   .navbar-brand-image {
-    width: 36px !important;
-    height: 36px !important;
+    width: 80px !important;
+    height: 80px !important;
   }
-  
+
   .navbar-brand-wordmark {
-    height: 36px !important;
-    margin-left: 6px;
+    height: 50px !important;
   }
   
   .navbar-nav .nav-item img {
@@ -150,15 +162,15 @@ Brand Identity Colors Implementation
 
 @media (max-width: 576px) {
   .navbar-brand-image {
-    width: 28px !important;
-    height: 28px !important;
+    width: 60px !important;
+    height: 60px !important;
   }
-  
+
   .navbar-brand-wordmark {
-    height: 28px !important;
+    height: 40px !important;
     margin-left: 4px;
   }
-  
+
   .navbar-toggler-icon {
     width: 24px;
     height: 24px;
@@ -171,7 +183,7 @@ Brand Identity Colors Implementation
 }
 
 /*---------------------------------------
-  BRAND TYPOGRAPHY ENHANCEMENTS             
+  BRAND TYPOGRAPHY ENHANCEMENTS
 -----------------------------------------*/
 .navbar-brand-text {
   color: var(--encounter-navy) !important;
@@ -181,8 +193,9 @@ Brand Identity Colors Implementation
 }
 
 .navbar-brand-image {
-  width: 60px !important;
-  height: 60px !important;
+  width: 140px !important;
+  height: 140px !important;
+  max-width: none !important; /* overrides .img-fluid constraint */
   object-fit: contain;
 }
 
@@ -856,23 +869,40 @@ button[type="submit"].form-control:hover {
 .site-footer {
   background-color: var(--encounter-coffee-light);
   color: var(--encounter-cream);
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .site-footer .navbar-brand-text {
   color: var(--encounter-cream) !important;
+  font-size: 2rem;
 }
 
 .site-footer .navbar-brand-text small {
   color: var(--encounter-orange);
+  font-size: 1.2rem;
+  display: block;
+  margin-top: 5px;
 }
 
 .site-footer-title {
   color: var(--encounter-golden);
   font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem !important;
+}
+
+.site-footer p, 
+.site-footer strong {
+  font-size: 1.15rem;
+  line-height: 1.8;
 }
 
 .site-footer a {
   color: var(--encounter-cream);
+  font-size: 1.15rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .site-footer a:hover {
@@ -881,35 +911,43 @@ button[type="submit"].form-control:hover {
 
 .copyright-text {
   color: var(--encounter-cream-dark);
-  font-size: 14px;
+  font-size: 1.1rem !important;
+  margin-top: 20px;
 }
 
 .site-footer p em {
   color: #FFFFFF;
   font-style: italic;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 /*---------------------------------------
   SOCIAL ICONS             
 -----------------------------------------*/
-.social-icon-link {
-  background-color: var(--encounter-cream);
-  color: var(--encounter-navy);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+.site-footer .social-icon {
   display: flex;
+  gap: 15px;
+}
+
+.social-icon-link {
+  background-color: var(--encounter-orange); /* High contrast pop */
+  color: var(--white-color) !important;      /* White icon */
+  border-radius: 50%;
+  width: 55px; /* Larger hit target */
+  height: 55px;
+  font-size: 24px; /* Larger icon size */
+  display: flex !important; /* Force flex to perfectly center */
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .social-icon-link:hover {
-  background-color: var(--encounter-orange);
-  color: var(--white-color);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(230, 158, 44, 0.3);
+  background-color: var(--encounter-red);
+  color: var(--white-color) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(230, 158, 44, 0.4);
 }
 
 /*---------------------------------------
@@ -1741,6 +1779,31 @@ svg path[fill="#3D405B"] {
     font-style: italic;
 }
 
+/* Light Theme Overrides (For white/light backgrounds) */
+.hero-light-theme .encounter-hero-subtitle {
+    color: #3D405B;
+    font-weight: 500;
+}
+
+.hero-light-theme .encounter-flourish {
+    color: #892A25;
+    opacity: 0.9;
+}
+
+.hero-light-theme .encounter-barista-icon {
+    color: #892A25;
+    opacity: 0.6;
+}
+
+.hero-light-theme .encounter-hero-title {
+    color: #3D405B;
+}
+
+/* If the panel images are white text, make them dark on the light theme */
+.hero-light-theme .encounter-left-panel-image {
+    filter: brightness(20%) sepia(20%) hue-rotate(320deg) contrast(150%); 
+}
+
 .encounter-lightbulb-icon {
     position: absolute;
     left: -20px;
@@ -2117,4 +2180,124 @@ svg path[fill="#3D405B"] {
     .testimonials-media-section {
         padding: 60px 0;
     }
+}
+
+/* What we do page title */
+.encounter-hero-floating-title {
+    position: absolute;
+    top: 180px; /* Adjusted to be clearly below the navbar */
+    left: 0;
+    width: 100%;
+    text-align: left;
+    z-index: 999;
+    padding: 0 4rem;
+}
+
+.encounter-hero-floating-title h2 {
+    color: var(--encounter-cream, #FBF6E0);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-family: 'Playfair Display', serif; /* Correct brand serif font */
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ==============================================
+   BLUE THEME OVERRIDES (For 'What we do' Page)
+============================================== */
+body.theme-blue .navbar-burgundy {
+    background-color: var(--encounter-navy) !important;
+    box-shadow: 0 2px 10px rgba(47, 68, 102, 0.3);
+}
+
+body.theme-blue .encounter-hero-section {
+    background-color: #2F4466; /* Main Navy Background */
+}
+
+body.theme-blue .encounter-left-panel {
+    background: #1E2D44; /* Darker Navy for panel depth */
+}
+
+/* Light Theme Text & SVG Overrides */
+body.theme-blue .hero-light-theme .encounter-hero-subtitle {
+    color: var(--encounter-navy);
+    font-weight: 500;
+}
+
+body.theme-blue .hero-light-theme .encounter-hero-title-img,
+body.theme-blue .hero-light-theme .encounter-left-panel-image {
+    /* Keep original white color for the images */
+    filter: none;
+}
+
+body.theme-blue .hero-light-theme .encounter-flourish,
+body.theme-blue .hero-light-theme .encounter-barista-icon {
+    color: var(--encounter-navy);
+}
+
+body.theme-blue .encounter-cta-btn {
+    background: var(--encounter-navy);
+}
+
+body.theme-blue .encounter-cta-btn:hover {
+    background: #1E2D44;
+    box-shadow: 0 8px 30px rgba(47, 68, 102, 0.8);
+}
+
+body.theme-blue .encounter-floating-btn {
+    background: var(--encounter-navy);
+}
+
+body.theme-blue .encounter-floating-btn:hover {
+    color: var(--encounter-navy);
+    box-shadow: 0 8px 30px rgba(47, 68, 102, 0.8);
+}
+
+body.theme-blue .encounter-section-divider {
+    background: var(--encounter-navy);
+}
+
+body.theme-blue .featured-items-section,
+body.theme-blue .testimonials-media-section {
+    background: #2F4466;
+}
+
+body.theme-blue .featured-item-btn {
+    color: var(--encounter-navy);
+}
+
+body.theme-blue .featured-item-btn:hover {
+    color: var(--encounter-navy);
+    transform: translateY(-2px);
+}
+
+body.theme-blue .media-vertical-pill,
+body.theme-blue .ornate-border-top {
+    color: var(--encounter-navy);
+    background: var(--encounter-navy);
+}
+
+body.theme-blue .ornate-border-top {
+    background: transparent;
+}
+
+body.theme-blue .caption-name,
+body.theme-blue .testimonial-name {
+    color: var(--encounter-navy);
+}
+
+/* Footer overrides */
+body.theme-blue .site-footer {
+    background-color: var(--encounter-navy);
+}
+
+body.theme-blue .site-footer svg path {
+    fill: #1E2D44; /* A darker navy for the wavy bottom, if desired, or match background */
+}
+
+/* Ensure hero text stays visible on Scene 2 in theme-blue */
+body.theme-blue .hero-scene[data-scene="2"].active ~ .container-fluid .encounter-hero-content {
+    opacity: 1 !important;
+    pointer-events: auto !important;
 }

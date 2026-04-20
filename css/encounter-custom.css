@@ -2301,3 +2301,82 @@ body.theme-blue .hero-scene[data-scene="2"].active ~ .container-fluid .encounter
     opacity: 1 !important;
     pointer-events: auto !important;
 }
+
+/*---------------------------------------
+  COUNTRY SELECTOR MODAL STYLES
+-----------------------------------------*/
+#countrySelectorModal {
+    z-index: 105050 !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+#countrySelectorModal .modal-content {
+    border: none;
+    border-radius: 12px;
+    background: var(--encounter-cream);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+#countrySelectorModal .modal-header {
+    background: linear-gradient(135deg, var(--encounter-red) 0%, var(--encounter-coffee-light) 100%);
+    border-radius: 12px 12px 0 0;
+}
+
+#countrySelectorModal .modal-title {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+#countrySelectorModal .modal-body {
+    padding: 2rem 1.5rem;
+}
+
+#countrySelectorModal .modal-body p {
+    font-size: 16px;
+    color: var(--encounter-navy);
+    font-weight: 500;
+}
+
+.country-btn {
+    background: white;
+    border: 2px solid var(--encounter-red);
+    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--encounter-navy);
+}
+
+.country-btn:hover {
+    background: var(--encounter-red);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(124, 9, 15, 0.3);
+}
+
+.country-btn .flag-emoji {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.country-btn .country-name {
+    font-size: 16px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.country-btn .language-text {
+    font-size: 12px;
+    color: var(--encounter-text-secondary);
+    display: block;
+}
+
+.country-btn:hover .language-text {
+    color: rgba(255, 255, 255, 0.8);
+}

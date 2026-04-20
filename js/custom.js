@@ -3,8 +3,53 @@
   
   "use strict";
 
-    // MENU
-    $('.navbar-collapse a').on('click',function(){
+    // ========== COUNTRY SELECTOR MODAL LOGIC ==========
+    $(document).ready(function() {
+      var userCountry = localStorage.getItem('encounter_country');
+      
+      if (!userCountry) {
+        setTimeout(function() {
+          var modal = document.getElementById('countrySelectorModal');
+          if (modal) {
+            var bsModal = new bootstrap.Modal(modal, {
+              backdrop: 'static',
+              keyboard: false
+            });
+            bsModal.show();
+            document.body.style.overflow = 'hidden';
+          }
+        }, 500);
+      }
+      
+      $('#select-colombia').on('click', function(e) {
+        e.preventDefault();
+        localStorage.setItem('encounter_country', 'CO');
+        if (window.location.hostname.includes('encountercolombiancoffee')) {
+          window.location.href = '/index-es.html';
+        } else {
+          window.location.href = 'https://www.encountercolombiancoffee.com/';
+        }
+      });
+      
+      $('#select-canada').on('click', function(e) {
+        e.preventDefault();
+        localStorage.setItem('encounter_country', 'CA');
+        var modal = document.getElementById('countrySelectorModal');
+        if (modal) {
+          var bsModal = bootstrap.Modal.getInstance(modal);
+          if (bsModal) {
+            bsModal.hide();
+          } else {
+            modal.style.display = 'none';
+            modal.classList.remove('show');
+          }
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    // ===== END COUNTRY SELECTOR =====
+
+    /){
       $(".navbar-collapse").collapse('hide');
     });
     

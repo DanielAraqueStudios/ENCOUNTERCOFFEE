@@ -246,6 +246,30 @@ p {
 }
 
 /*---------------------------------------
+  DOMAIN SWITCHER BUTTON
+-----------------------------------------*/
+.domain-switcher-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  color: #FBF6E0;
+  border-radius: 20px;
+  padding: 0.25rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+}
+
+.domain-switcher-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: var(--encounter-golden);
+  color: var(--encounter-golden);
+}
+
+/*---------------------------------------
   BRAND TYPOGRAPHY ENHANCEMENTS
 -----------------------------------------*/
 .navbar-brand-text {
@@ -926,8 +950,22 @@ button[type="submit"].form-control:hover {
   box-shadow: 0 4px 12px rgba(230, 158, 44, 0.4);
 }
 
+@media (max-width: 768px) {
+  :root {
+    --footer-title-size: 1.6rem;
+    --footer-text-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --footer-title-size: 1.3rem;
+    --footer-text-size: 1rem;
+  }
+}
+
 /*---------------------------------------
-  FOOTER STYLES             
+  FOOTER STYLES
 -----------------------------------------*/
 .site-footer {
   background-color: var(--encounter-coffee-light);
@@ -949,23 +987,91 @@ button[type="submit"].form-control:hover {
 }
 
 .site-footer-title {
-  color: var(--encounter-golden);
+  color: #FFFFFF;
   font-weight: 700;
-  font-size: 1.6rem;
+  font-size: var(--footer-title-size);
   margin-bottom: 1.5rem !important;
 }
 
-.site-footer p, 
-.site-footer strong {
-  font-size: 1.15rem;
+.footer-body-text {
+  color: #FFFFFF;
+  font-size: var(--footer-text-size);
   line-height: 1.8;
+}
+
+.footer-body-text strong {
+  color: #FFFFFF;
+}
+
+.footer-social-links {
+  margin-top: 1.5rem;
+  line-height: 2;
+  font-size: var(--footer-text-size);
+}
+
+.footer-social-link {
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: var(--footer-text-size);
+  transition: color 0.3s ease;
+}
+
+.footer-social-link i {
+  margin-right: 0.5rem;
+  font-size: var(--footer-text-size);
+}
+
+.footer-social-link:hover {
+  color: var(--encounter-orange);
+}
+
+.footer-contact-link {
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: var(--footer-text-size);
+  word-break: break-all;
+  overflow-wrap: break-word;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.footer-contact-link:hover {
+  color: var(--encounter-orange);
+}
+
+.footer-bottom-row {
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-top: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+}
+
+.footer-logo {
+  max-height: 2000px;
+  margin-bottom: 1rem;
+  filter: brightness(0) invert(1);
+}
+
+.footer-tagline {
+  font-size: 2.4rem;
+  color: #FFFFFF;
+  font-style: italic;
+  margin-bottom: 1rem;
 }
 
 .site-footer a {
   color: var(--encounter-cream);
-  font-size: 1.15rem;
+  font-size: var(--footer-text-size);
   text-decoration: none;
   transition: color 0.3s ease;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .site-footer a:hover {
@@ -1677,10 +1783,6 @@ svg path[fill="#3D405B"] {
 
   .value-item.clock-position[data-angle="330"] {
     transform: translate(-50%, -50%) rotate(330deg) translateX(100px) rotate(-330deg);
-  }
-}
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
 

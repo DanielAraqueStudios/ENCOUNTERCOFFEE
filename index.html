@@ -166,8 +166,13 @@
                                     <a class="nav-link" href="what-we-do.html">What we do?</a>
                                 </li>
                                 <li class="nav-item d-flex align-items-center">
-                                    
-                                    <a class="nav-link" href="what-we-do.html">Store</a>
+                                    <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Store" style="width: 80px; height: 80px; margin-right: 8px;">
+                                    <a class="nav-link" href="shop.html">Store</a>
+                                </li>
+                                <li class="nav-item d-flex align-items-center ms-3">
+                                    <button class="domain-switcher-btn" id="domainSwitcher" title="Switch region">
+                                        <span id="domainFlag"></span> <span id="domainLabel"></span>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -560,9 +565,9 @@
                 </div>
             </section>
 
+        </main>
 
-
-            <!--
+        <!--
             <section class="about-section section-padding" id="section_2">
                 <div class="container">
                     <div class="row">
@@ -909,7 +914,6 @@
                     </div>
                 </div>
             </section>
-        </main>
 
         -->
 
@@ -926,44 +930,44 @@
 
                     <!-- Right Column: Social Media Text Links -->
                     <div class="col-lg-6 col-12 footer-social-block">
-                        <h5 class="site-footer-title mb-4" style="color: #FFFFFF; font-weight: 700; font-size: var(--footer-title-size) !important;">Connect With Us</h5>
-                        
-                        <p style="color: #FFFFFF; font-size: var(--footer-text-size) !important; line-height: 1.8;">
+                        <h5 class="site-footer-title mb-4">Connect With Us</h5>
+
+                        <p class="footer-body-text">
                             Do you want to contact us?<br>
-                            <strong style="color: #FFFFFF;">Follow us on:</strong>
+                            <strong>Follow us on:</strong>
                         </p>
 
-                        <p style="margin-top: 1.5rem; line-height: 2; font-size: var(--footer-text-size) !important;">
-                            <a href="https://instagram.com/encountercoffee" target="_blank" style="color: #FFD700; text-decoration: none; font-weight: 500; display: inline-block; margin-bottom: 0.5rem;">
-                                <i class="bi bi-instagram" style="margin-right: 0.5rem; font-size: var(--footer-text-size) !important;"></i>Instagram
+                        <p class="footer-social-links">
+                            <a href="https://instagram.com/encountercoffee" target="_blank" class="footer-social-link">
+                                <i class="bi bi-instagram"></i>Instagram
                             </a><br>
-                            <a href="https://facebook.com/encountercoffee" target="_blank" style="color: #FFD700; text-decoration: none; font-weight: 500; display: inline-block; margin-bottom: 0.5rem;">
-                                <i class="bi bi-facebook" style="margin-right: 0.5rem; font-size: var(--footer-text-size) !important;"></i>Facebook
+                            <a href="https://facebook.com/encountercoffee" target="_blank" class="footer-social-link">
+                                <i class="bi bi-facebook"></i>Facebook
                             </a>
                         </p>
                     </div>
 
                     <div class="col-lg-6 col-12 footer-contact-block">
-                        <h5 class="site-footer-title mb-4" style="color: #FFFFFF; font-weight: 700; font-size: var(--footer-title-size) !important;">Contact Information</h5>
+                        <h5 class="site-footer-title mb-4">Contact Information</h5>
 
                         <div class="mb-4">
-                            <p style="color: #FFFFFF; font-size: var(--footer-text-size) !important; margin-bottom: 0.5rem;"><strong>Email:</strong></p>
-                            <a href="mailto:info@encountercolombiancoffee.ca" class="footer-contact-link" style="color: #FFD700; text-decoration: none; font-weight: 500; font-size: var(--footer-text-size) !important;">info@encountercolombiancoffee.ca</a>
+                            <p class="footer-body-text mb-1"><strong>Email:</strong></p>
+                            <a href="mailto:info@encountercolombiancoffee.ca" class="footer-contact-link">info@encountercolombiancoffee.ca</a>
                         </div>
 
                         <div class="mb-4">
-                            <p style="color: #FFFFFF; font-size: var(--footer-text-size) !important; margin-bottom: 0.5rem;"><strong>Website:</strong></p>
-                            <a href="https://encountercolombiancoffee.ca" class="footer-contact-link" style="color: #FFD700; text-decoration: none; font-weight: 500; font-size: var(--footer-text-size) !important;">encountercolombiancoffee.ca</a>
+                            <p class="footer-body-text mb-1"><strong>Website:</strong></p>
+                            <a href="https://encountercolombiancoffee.ca" class="footer-contact-link">encountercolombiancoffee.ca</a>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="row mb-5 pb-4" style="border-top: 1px solid rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.3); padding-top: 3rem; margin-top: 3rem;">
+                <div class="footer-bottom-row">
                     <div class="col-12 text-center">
-                        <img src="images/Home/Logos/logo-footer.png" alt="Encounter Colombian Coffee" style="max-height: 2000px; margin-bottom: 1rem; filter: brightness(0) invert(1);">
-                        <p style="font-size: 2.4rem; color: #FFFFFF; font-style: italic; margin-bottom: 1rem;">El alma de Colombia servida en tu taza</p>
-                        <p class="copyright-text" style="font-size: 1.8rem; color: #FFFFFF;">Copyright © 2025 Encounter Coffee</p>
+                        <img src="images/Home/Logos/logo-footer.png" alt="Encounter Colombian Coffee" class="footer-logo">
+                        <p class="footer-tagline">El alma de Colombia servida en tu taza</p>
+                        <p class="copyright-text">Copyright © 2025 Encounter Coffee</p>
                     </div>
                 </div>
             </div>
@@ -986,6 +990,31 @@
         <script src="js/modernizr.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/reviews.js"></script>
+        <script>
+            (function () {
+                var LABELS = {
+                    CO: { flag: '🇨🇴', label: '.com', next: 'CA' },
+                    CA: { flag: '🇨🇦', label: '.ca',  next: 'CO' }
+                };
+                function applyRegion(region) {
+                    var info = LABELS[region] || LABELS.CA;
+                    var flag = document.getElementById('domainFlag');
+                    var lbl  = document.getElementById('domainLabel');
+                    if (flag) flag.textContent = info.flag;
+                    if (lbl)  lbl.textContent  = info.label;
+                }
+                var btn = document.getElementById('domainSwitcher');
+                if (btn) {
+                    btn.addEventListener('click', function () {
+                        var current = localStorage.getItem('encounter_country') || 'CA';
+                        var next = LABELS[current].next;
+                        localStorage.setItem('encounter_country', next);
+                        applyRegion(next);
+                    });
+                }
+                applyRegion(localStorage.getItem('encounter_country') || 'CA');
+            })();
+        </script>
 
     </body>
 </html>

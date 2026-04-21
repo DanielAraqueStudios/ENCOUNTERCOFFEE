@@ -31,6 +31,69 @@ Brand Identity Colors Implementation
   --encounter-text-primary:       var(--encounter-navy);
   --encounter-text-secondary:     #5a5a5a;
   --encounter-border-light:       rgba(47, 68, 102, 0.1);
+  
+  /* Footer Text Sizes - Easy Adjustment */
+  --footer-title-size:            2.7rem;
+  --footer-text-size:             3rem;
+  
+  /* Floating Button - Easy Adjustment */
+  --floating-btn-width:           120px;
+  --floating-btn-height:          70px;
+  --floating-btn-radius:          35px;
+  --floating-btn-bg:              #7C090F;  /* Red box background */
+  
+  --floating-btn-width-mobile:    90px;
+  --floating-btn-height-mobile:   60px;
+  --floating-btn-radius-mobile:   30px;
+}
+
+/*---------------------------------------
+  GLOBAL FONT SIZE INCREASES
+-----------------------------------------*/
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  font-size: 1.1rem !important;
+  line-height: 1.7 !important;
+  position: relative;
+}
+
+h1 {
+  font-size: 3.2rem !important;
+  line-height: 1.3 !important;
+}
+
+h2 {
+  font-size: 2.8rem !important;
+  line-height: 1.3 !important;
+}
+
+h3 {
+  font-size: 2.2rem !important;
+  line-height: 1.3 !important;
+}
+
+h4 {
+  font-size: 1.8rem !important;
+  line-height: 1.3 !important;
+}
+
+h5 {
+  font-size: 1.5rem !important;
+  line-height: 1.3 !important;
+}
+
+h6 {
+  font-size: 1.3rem !important;
+  line-height: 1.3 !important;
+}
+
+p {
+  font-size: 1.15rem !important;
+  line-height: 1.7 !important;
 }
 
 /*---------------------------------------
@@ -224,7 +287,7 @@ Brand Identity Colors Implementation
 }
 
 .navbar-nav .nav-link {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   text-transform: capitalize;
   padding: 0.25rem 0;
 }
@@ -868,7 +931,7 @@ button[type="submit"].form-control:hover {
 -----------------------------------------*/
 .site-footer {
   background-color: var(--encounter-coffee-light);
-  color: var(--encounter-cream);
+  color: #FFFFFF;
   padding-top: 80px;
   padding-bottom: 80px;
 }
@@ -1822,10 +1885,10 @@ svg path[fill="#3D405B"] {
 .encounter-cta-btn {
     background: #892A25;
     color: #FBF6E0;
-    padding: 1rem 2.5rem;
+    padding: 1.5rem 3.5rem;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1.25rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     border: none;
@@ -1868,12 +1931,12 @@ svg path[fill="#3D405B"] {
 
 .encounter-floating-btn {
     position: fixed;
-    right: 30px;
+    right: 25px;
     bottom: 30px;
-    width: 120px;
-    height: 70px;
-    border-radius: 35px;
-    background: #7C090F;
+    width: var(--floating-btn-width);
+    height: var(--floating-btn-height);
+    border-radius: var(--floating-btn-radius);
+    background: var(--floating-btn-bg);
     color: #FBF6E0;
     display: flex;
     align-items: center;
@@ -1881,13 +1944,14 @@ svg path[fill="#3D405B"] {
     font-size: 2.2rem;
     box-shadow: 0 6px 20px rgba(124, 9, 15, 0.6);
     transition: all 0.3s ease;
-    z-index: 9999;
+    z-index: 99999; /* Increased to ensure it's on top of everything */
+    /* Removed max-width that was causing resizing issues */
 }
 
 .encounter-floating-btn:hover {
     background: #FBF6E0;
     color: #7C090F;
-    transform: scale(1.15);
+    transform: scale(1.1);
     box-shadow: 0 8px 30px rgba(124, 9, 15, 0.8);
 }
 
@@ -1950,22 +2014,22 @@ svg path[fill="#3D405B"] {
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
-    padding: 12%;
 }
 
 .featured-card-text {
     color: #FBF6E0;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 1.15rem;
+    line-height: 1.7;
     margin-bottom: 1.5rem;
 }
 
 .featured-item-btn {
     background: #FBF6E0;
     color: #892A25;
-    padding: 0.75rem 2rem;
+    padding: 1.25rem 3rem;
     border-radius: 50px;
     font-weight: 600;
+    font-size: 1.1rem;
     border: none;
     transition: all 0.3s ease;
     width: 100%;
@@ -2047,6 +2111,7 @@ svg path[fill="#3D405B"] {
 
 .media-images-wrapper {
     position: relative;
+    overflow: hidden;
 }
 
 .media-vertical-pill {
@@ -2132,11 +2197,11 @@ svg path[fill="#3D405B"] {
     }
     
     .encounter-floating-btn {
-        right: 20px;
+        right: 15px;
         bottom: 20px;
-        width: 100px;
-        height: 60px;
-        border-radius: 30px;
+        width: var(--floating-btn-width-mobile);
+        height: var(--floating-btn-height-mobile);
+        border-radius: var(--floating-btn-radius-mobile);
         font-size: 1.8rem;
     }
     
@@ -2343,10 +2408,10 @@ body.theme-blue .hero-scene[data-scene="2"].active ~ .container-fluid .encounter
     background: white;
     border: 2px solid var(--encounter-red);
     border-radius: 10px;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
     transition: all 0.3s ease;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--encounter-navy);
 }
@@ -2359,20 +2424,20 @@ body.theme-blue .hero-scene[data-scene="2"].active ~ .container-fluid .encounter
 }
 
 .country-btn .flag-emoji {
-    font-size: 32px;
+    font-size: 48px;
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .country-btn .country-name {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     display: block;
     margin-bottom: 0.25rem;
 }
 
 .country-btn .language-text {
-    font-size: 12px;
+    font-size: 14px;
     color: var(--encounter-text-secondary);
     display: block;
 }

@@ -23,6 +23,8 @@
         <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet">
         
         <link href="css/encounter-custom.css" rel="stylesheet">
+        
+        <link href="css/reviews.css" rel="stylesheet">
     </head>
     
     <body>
@@ -98,7 +100,7 @@
                                 
                                 <img src="images/Home/Logos/Frase%20home.png" alt="AN ENCOUNTER. BETWEEN YOU AND THE BEST," class="encounter-hero-title-img">
                                 
-                                <p class="encounter-hero-subtitle">and the encounter between you and those who make it possible.</p>
+                                
                                 
                                 <a href="#featured_items" class="btn encounter-cta-btn">
                                     BE PART OF THE CHANGE
@@ -126,10 +128,6 @@
                         <!-- Hero Image Side -->
                         <div class="col-lg-6 col-12">
                             <div class="encounter-hero-image-container">
-                                <!-- Floating action button -->
-                                <a href="shop.html" class="encounter-floating-btn">
-                                    <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Shop" style="width: 90px; height: 70px;">
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -167,17 +165,15 @@
                                     <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="What we do" style="width: 80px; height: 80px; margin-right: 8px;">
                                     <a class="nav-link" href="what-we-do.html">What we do?</a>
                                 </li>
+                                <li class="nav-item d-flex align-items-center">
+                                    
+                                    <a class="nav-link" href="what-we-do.html">Store</a>
+                                </li>
                             </ul>
                         </div>
                         
                         <!-- Profile and Cart Buttons - always visible -->
-                        <div class="navbar-fixed-col navbar-profile-section d-flex align-items-center" style="gap: 15px;">
-                            <button type="button" class="btn btn-sm" id="openCountrySelectorBtn" style="background: var(--encounter-red); color: white; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 600; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#countrySelectorModal">🌍 Store</button>
-                            <a href="shop.html" class="nav-cart-icon">
-                                <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Cart" style="width: 80px; height: 80px; object-fit: contain;">
-                            </a>
-                            
-                        </div>
+                        
                     </div>
                 </div>
             </nav>
@@ -447,8 +443,7 @@
                                     
                                     <img src="images/products/10_pods.jpg" alt="Featured Item 1" class="featured-card-image">
                                 </div>
-                                <p class="featured-card-text">Experience café-quality Colombian coffee in seconds. Our premium, easy-to-use espresso pods deliver rich, perfectly extracted flavor at the push of a button.</p>
-                                <a href="shop.html" class="btn featured-item-btn">Pods</a>
+                                 <a href="shop.html" class="btn featured-item-btn">Pods</a>
                             </div>
                         </div>
                         
@@ -459,7 +454,7 @@
                                     
                                     <img src="images/products/drips.jpg" alt="Featured Item 2" class="featured-card-image">
                                 </div>
-                                <p class="featured-card-text">Handcrafted coffee, anywhere you go. These portable single-serve pour-over bags let you brew a fresh, aromatic cup of Colombian coffee using just hot water.</p>
+                                
                                 <a href="shop.html" class="btn featured-item-btn">Drips</a>
                             </div>
                         </div>
@@ -470,8 +465,8 @@
                                 <div class="featured-card-frame-wrapper">
                                                                         <img src="images/products/grano_entero.jpg" alt="Featured Item 3" class="featured-card-image">
                                 </div>
-                                <p class="featured-card-text">For the true coffee purist. Freshly roasted whole beans ready to be ground at home, unlocking the maximum flavor, freshness, and authentic aroma of Colombia.</p>
-                                <a href="shop.html" class="btn featured-item-btn">Grano Entero</a>
+                                
+                                <a href="shop.html" class="btn featured-item-btn">Coffee Bag</a>
                             </div>
                         </div>
                     </div>
@@ -485,68 +480,47 @@
                         
                         <!-- Left Column: Testimonials -->
                         <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                            <div class="testimonials-list">
+                            <!-- Review Submission Form -->
+                            <div class="review-form-container mb-5 p-4" style="background: rgba(124, 9, 15, 0.05); border-radius: 12px; border: 1px solid rgba(124, 9, 15, 0.2);">
+                                <h5 class="mb-4" style="color: var(--encounter-navy);">Share Your Experience</h5>
                                 
-                                <!-- Testimonial 1 -->
-                                <div class="testimonial-item">
-                                    <div class="testimonial-header">
-                                        <div class="testimonial-avatar">
-                                            <i class="bi bi-person-circle"></i>
-                                        </div>
-                                        <div class="testimonial-info">
-                                            <h5 class="testimonial-name">Pepito Perez</h5>
-                                            <div class="testimonial-rating">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
+                                <form id="reviewForm" class="custom-form">
+                                    <div class="mb-3">
+                                        <label for="reviewName" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="reviewName" name="name" placeholder="Enter your name" required>
                                     </div>
-                                    <p class="testimonial-text">Is more than a coffee brand. It is a bridge. We connect you with the best coffee — and with the people who grow it.</p>
-                                </div>
-                                
-                                <div class="testimonial-divider"></div>
-                                
-                                <!-- Testimonial 2 -->
-                                <div class="testimonial-item">
-                                    <div class="testimonial-header">
-                                        <div class="testimonial-avatar">
-                                            <i class="bi bi-person-circle"></i>
-                                        </div>
-                                        <div class="testimonial-info">
-                                            <h5 class="testimonial-name">Juanita Ospina</h5>
-                                            <div class="testimonial-rating">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
+                                    <div class="mb-3">
+                                        <label for="reviewText" class="form-label">Your Review</label>
+                                        <textarea class="form-control" id="reviewText" name="review" rows="4" placeholder="Share your thoughts about our coffee..." required></textarea>
                                     </div>
-                                    <p class="testimonial-text">Is more than a coffee brand. It is a bridge. We connect you with the best coffee — and with the people who grow it.</p>
-                                </div>
-                                
-                                <div class="testimonial-divider"></div>
-                                
-                                <!-- Testimonial 3 -->
-                                <div class="testimonial-item">
-                                    <div class="testimonial-header">
-                                        <div class="testimonial-avatar">
-                                            <i class="bi bi-person-circle"></i>
+                                    <div class="mb-3">
+                                        <label class="form-label">Rating</label>
+                                        <div class="star-rating" id="starRating">
+                                            <i class="bi bi-star" data-value="1" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="2" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="3" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="4" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="5" style="cursor: pointer; font-size: 1.8rem; color: #ddd; transition: all 0.2s;"></i>
                                         </div>
-                                        <div class="testimonial-info">
-                                            <h5 class="testimonial-name">Mariana Rivera</h5>
-                                            <div class="testimonial-rating">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                            </div>
-                                        </div>
+                                        <input type="hidden" id="ratingValue" name="rating" value="0">
                                     </div>
-                                    <p class="testimonial-text">Is more than a coffee brand. It is a bridge. We connect you with the best coffee — and with the people who grow it.</p>
+                                    <button type="submit" class="btn btn-primary w-100" style="background: var(--encounter-red); border: none; padding: 0.75rem; font-weight: 600;">Submit Review</button>
+                                </form>
+                            </div>
+
+                            <!-- Reviews List -->
+                            <div class="testimonials-list" id="reviewsList">
+                                <!-- Reviews will be loaded here dynamically -->
+                                <div style="text-align: center; padding: 2rem; color: #999;">
+                                    <p>Loading reviews...</p>
                                 </div>
+                            </div>
+
+                            <!-- Pagination Controls -->
+                            <div class="reviews-pagination mt-4 d-flex justify-content-center align-items-center" id="reviewsPagination" style="gap: 1rem; display: none;">
+                                <button class="btn btn-sm" id="prevPageBtn" style="background: var(--encounter-red); color: white; border: none; padding: 0.5rem 1rem;">← Previous</button>
+                                <span id="pageInfo" style="font-weight: 600; color: var(--encounter-navy);">Page 1</span>
+                                <button class="btn btn-sm" id="nextPageBtn" style="background: var(--encounter-red); color: white; border: none; padding: 0.5rem 1rem;">Next →</button>
                             </div>
                         </div>
                         
@@ -563,18 +537,7 @@
                                             <source src="images/Home/Fotos_a_usar/video1.mp4" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
-                                        <div class="media-caption-card">
-                                            <div class="d-flex align-items-center mb-2">
-                                                <span class="caption-name">Pepito Perez</span>
-                                                <div class="caption-rating ms-auto">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                            </div>
-                                            <p class="caption-text">Is more than a coffee brand. It is a bridge. We connect you with the best coffee —</p>
-                                        </div>
+                                        
                                     </div>
                                     
                                     <!-- Arrow -->
@@ -588,18 +551,7 @@
                                             <source src="images/Home/Fotos_a_usar/video2.mp4" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
-                                        <div class="media-caption-card">
-                                            <div class="d-flex align-items-center mb-2">
-                                                <span class="caption-name">Pepito Perez</span>
-                                                <div class="caption-rating ms-auto">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                            </div>
-                                            <p class="caption-text">Is more than a coffee brand. It is a bridge. We connect you with the best coffee —</p>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -963,52 +915,56 @@
 
         <footer class="site-footer">
             <div class="container">
-                <div class="row justify-content-between gy-5">
+                <!-- Top Section: Branding -->
+                
 
-                    <div class="col-lg-5 col-12 footer-brand-block">
-                        <a class="navbar-brand d-flex align-items-center" href="index.html">
-                            <img src="images/Home/Logos/Pictograma.png" class="navbar-brand-image img-fluid" alt="Encounter Colombian Coffee">
-                            <span class="navbar-brand-text">
-                                Encounter
-                                <small>Colombian Coffee</small>
-                            </span>
-                        </a>
-                        <p class="mt-4"><em>El alma de Colombia servida en tu taza</em></p>
-                    </div>
+                <!-- Bottom Section: Contact & Social -->
+                <div class="row gy-5 align-items-start">
 
-                    <div class="col-lg-3 col-12 footer-contact-block">
-                        <h5 class="site-footer-title mb-4">Contáctanos</h5>
+                    <!-- Left Column: Contact Information -->
+                    
 
-                        <p class="mb-2">
-                            <strong>Email:</strong><br>
-                            <a href="mailto:info@encountercolombiancoffee.ca" class="footer-contact-link">info@encountercolombiancoffee.ca</a>
-                        </p>
-
-                        <p class="mb-2">
-                            <strong>Web:</strong><br>
-                            <a href="https://encountercolombiancoffee.ca" class="footer-contact-link">encountercolombiancoffee.ca</a>
-                        </p>
-                        <p class="copyright-text mt-4">Copyright © 2025 Encounter Coffee</p>
-                    </div>
-
-                    <div class="col-lg-3 col-12 footer-social-block d-flex flex-column align-items-lg-end">
-                        <h5 class="site-footer-title mb-4 d-none d-lg-block">&nbsp;</h5> <!-- Spacer for vertical alignment on desktop -->
-                        <ul class="social-icon mb-4">
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-instagram"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-facebook"></a>
-                            </li>
-
-                            <li class="social-icon-item">
-                                <a href="#" class="social-icon-link bi-whatsapp"></a>
-                            </li>
-                        </ul>
+                    <!-- Right Column: Social Media Text Links -->
+                    <div class="col-lg-6 col-12 footer-social-block">
+                        <h5 class="site-footer-title mb-4" style="color: #FFFFFF; font-weight: 700; font-size: var(--footer-title-size) !important;">Connect With Us</h5>
                         
+                        <p style="color: #FFFFFF; font-size: var(--footer-text-size) !important; line-height: 1.8;">
+                            Do you want to contact us?<br>
+                            <strong style="color: #FFFFFF;">Follow us on:</strong>
+                        </p>
+
+                        <p style="margin-top: 1.5rem; line-height: 2; font-size: var(--footer-text-size) !important;">
+                            <a href="https://instagram.com/encountercoffee" target="_blank" style="color: #FFD700; text-decoration: none; font-weight: 500; display: inline-block; margin-bottom: 0.5rem;">
+                                <i class="bi bi-instagram" style="margin-right: 0.5rem; font-size: var(--footer-text-size) !important;"></i>Instagram
+                            </a><br>
+                            <a href="https://facebook.com/encountercoffee" target="_blank" style="color: #FFD700; text-decoration: none; font-weight: 500; display: inline-block; margin-bottom: 0.5rem;">
+                                <i class="bi bi-facebook" style="margin-right: 0.5rem; font-size: var(--footer-text-size) !important;"></i>Facebook
+                            </a>
+                        </p>
                     </div>
 
+                    <div class="col-lg-6 col-12 footer-contact-block">
+                        <h5 class="site-footer-title mb-4" style="color: #FFFFFF; font-weight: 700; font-size: var(--footer-title-size) !important;">Contact Information</h5>
+
+                        <div class="mb-4">
+                            <p style="color: #FFFFFF; font-size: var(--footer-text-size) !important; margin-bottom: 0.5rem;"><strong>Email:</strong></p>
+                            <a href="mailto:info@encountercolombiancoffee.ca" class="footer-contact-link" style="color: #FFD700; text-decoration: none; font-weight: 500; font-size: var(--footer-text-size) !important;">info@encountercolombiancoffee.ca</a>
+                        </div>
+
+                        <div class="mb-4">
+                            <p style="color: #FFFFFF; font-size: var(--footer-text-size) !important; margin-bottom: 0.5rem;"><strong>Website:</strong></p>
+                            <a href="https://encountercolombiancoffee.ca" class="footer-contact-link" style="color: #FFD700; text-decoration: none; font-weight: 500; font-size: var(--footer-text-size) !important;">encountercolombiancoffee.ca</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mb-5 pb-4" style="border-top: 1px solid rgba(255,255,255,0.3); border-bottom: 1px solid rgba(255,255,255,0.3); padding-top: 3rem; margin-top: 3rem;">
+                    <div class="col-12 text-center">
+                        <img src="images/Home/Logos/logo-footer.png" alt="Encounter Colombian Coffee" style="max-height: 2000px; margin-bottom: 1rem; filter: brightness(0) invert(1);">
+                        <p style="font-size: 2.4rem; color: #FFFFFF; font-style: italic; margin-bottom: 1rem;">El alma de Colombia servida en tu taza</p>
+                        <p class="copyright-text" style="font-size: 1.8rem; color: #FFFFFF;">Copyright © 2025 Encounter Coffee</p>
+                    </div>
                 </div>
             </div>
 
@@ -1016,7 +972,12 @@
         </footer>
 
 
-        <!-- JAVASCRIPT FILES -->
+        <!-- Floating action button (moved outside of containers to avoid overflow/transform bugs) -->
+    <a href="shop.html" class="encounter-floating-btn" style="z-index: 99999;">
+        <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Shop" style="width: 90px; height: 70px;">
+    </a>
+
+    <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
@@ -1024,6 +985,7 @@
         <script src="js/animated-headline.js"></script>
         <script src="js/modernizr.js"></script>
         <script src="js/custom.js"></script>
+        <script src="js/reviews.js"></script>
 
     </body>
 </html>

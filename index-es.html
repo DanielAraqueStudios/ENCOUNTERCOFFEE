@@ -23,6 +23,8 @@
         <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet">
         
         <link href="css/encounter-custom.css" rel="stylesheet">
+
+        <link href="css/reviews.css" rel="stylesheet">
     </head>
     
     <body>
@@ -72,7 +74,7 @@
                 
                 <!-- Scene 2: Frase 3 background with Frase 2 image panel -->
                 <div class="hero-scene" data-scene="2">
-                    <img src="images/Home/Fotos_a_usar/Frase 3.jpg" alt="Coffee background" class="hero-bg-image-static">
+                    <img id="hero-frase3" src="images/Home/Fotos_a_usar/Frase 3.jpg" alt="Coffee background" class="hero-bg-image-static">
                     <img src="images/Home/Logos/Frase 2 - pagina web.png" alt="Decorative Panel" class="encounter-left-panel-image">
                 </div>
                 
@@ -96,7 +98,8 @@
                                     </svg>
                                 </div>
                                 
-                                <img src="images/Home/Logos/Frase%20home.png" alt="AN ENCOUNTER. BETWEEN YOU AND THE BEST," class="encounter-hero-title-img">
+                                <img id="hero-title-img" src="images/Home/Logos/Frase%20home.png" alt="AN ENCOUNTER. BETWEEN YOU AND THE BEST," class="encounter-hero-title-img">
+                                <h1 id="hero-title-text" class="encounter-hero-title" style="display:none; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 500; color: white; margin-top: 1rem; margin-bottom: 1.5rem; line-height: 1.4;"></h1>
                                 
                                 <p class="encounter-hero-subtitle">and the encounter between you and those who make it possible.</p>
                                 
@@ -135,12 +138,12 @@
                 <div class="encounter-section-divider"></div>
             </section>
 
-            <nav class="navbar navbar-expand-lg navbar-burgundy">                
+            <nav class="navbar navbar-expand-lg navbar-burgundy">
                 <div class="container">
                     <div class="navbar-fixed-row">
                         <!-- Logo Images - always visible -->
                         <div class="navbar-fixed-col navbar-logo-section">
-                            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                            <a class="navbar-brand d-flex align-items-center" href="index-es.html">
                                 <img src="images/Home/Logos/Pictograma.png"  class="navbar-brand-image" alt="Encounter Colombian Coffee" style="width: 140px; height: 140px;">
                                 <img src="images/Home/Logos/Pictogramanombre.png" class="navbar-brand-wordmark" alt="Encounter Colombian Coffee" style="width: 150px; height: 100px;">
                             </a>
@@ -155,25 +158,28 @@
                         <div class="collapse navbar-collapse navbar-fixed-col navbar-nav-section" id="navbarNavContent">
                             <ul class="navbar-nav d-flex flex-row justify-content-center nav-separated mb-0">
                                 <li class="nav-item d-flex align-items-center">
-                                    <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Home" style="width: 80px; height: 80px; margin-right: 8px;">
-                                    <a class="nav-link active" href="index.html">Home</a>
+                                    <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Inicio" style="width: 80px; height: 80px; margin-right: 8px;">
+                                    <a class="nav-link active" href="index-es.html">Inicio</a>
                                 </li>
-        
+
                                 <li class="nav-item d-flex align-items-center">
-                                    <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="What we do" style="width: 80px; height: 80px; margin-right: 8px;">
-                                    <a class="nav-link" href="what-we-do.html">What we do?</a>
+                                    <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="¿Qué hacemos?" style="width: 80px; height: 80px; margin-right: 8px;">
+                                    <a class="nav-link" href="what-we-do-es.html">¿Qué hacemos?</a>
+                                </li>
+                                <li class="nav-item d-flex align-items-center">
+                                    <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Tienda" style="width: 80px; height: 80px; margin-right: 8px;">
+                                    <a class="nav-link" href="shop-es.html">Tienda</a>
+                                </li>
+                                <li class="nav-item d-flex align-items-center ms-3">
+                                    <button class="domain-switcher-btn" id="domainSwitcher" title="Cambiar región">
+                                        <span id="domainFlag"></span> <span id="domainLabel"></span>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <!-- Profile and Cart Buttons - always visible -->
-                        <div class="navbar-fixed-col navbar-profile-section d-flex align-items-center" style="gap: 15px;">
-                            <button type="button" class="btn btn-sm" id="openCountrySelectorBtn" style="background: var(--encounter-red); color: white; border: none; padding: 12px 18px; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#countrySelectorModal">🌍 Tienda</button>
-                            <a href="shop.html" class="nav-cart-icon">
-                                <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Cart" style="width: 80px; height: 80px; object-fit: contain;">
-                            </a>
-                            
-                        </div>
+
                     </div>
                 </div>
             </nav>
@@ -552,7 +558,7 @@
                                 <!-- Decorative vertical panel -->
                                 <div class="media-vertical-pill"></div>
                                 
-                                <div class="media-images-grid">
+                                <div class="media-images-grid" id="videos-grid">
                                     <!-- Image 1 with caption -->
                                     <div class="media-image-block">
                                         <video class="img-fluid" autoplay muted loop playsinline>
@@ -1025,6 +1031,36 @@
         <script src="js/animated-headline.js"></script>
         <script src="js/modernizr.js"></script>
         <script src="js/custom.js"></script>
+        <script src="js/video-carousel.js"></script>
+        <script src="js/content-loader.js"></script>
+        <script>
+            (function () {
+                var LABELS = {
+                    CO: { flag: '🇨🇴', label: '.com' },
+                    CA: { flag: '🇨🇦', label: '.ca'  }
+                };
+                function applyRegion(region) {
+                    var info = LABELS[region] || LABELS.CO;
+                    var flag = document.getElementById('domainFlag');
+                    var lbl  = document.getElementById('domainLabel');
+                    if (flag) flag.textContent = info.flag;
+                    if (lbl)  lbl.textContent  = info.label;
+                }
+                var btn = document.getElementById('domainSwitcher');
+                if (btn) {
+                    btn.addEventListener('click', function () {
+                        localStorage.removeItem('encounter_country');
+                        var modal = document.getElementById('countrySelectorModal');
+                        if (modal) {
+                            var bsModal = new bootstrap.Modal(modal, { backdrop: 'static', keyboard: false });
+                            bsModal.show();
+                            document.body.style.overflow = 'hidden';
+                        }
+                    });
+                }
+                applyRegion(localStorage.getItem('encounter_country') || 'CO');
+            })();
+        </script>
 
     </body>
 </html>

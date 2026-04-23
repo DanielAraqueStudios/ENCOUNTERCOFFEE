@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     let currentRating = 0;
     
     // ========== API CONFIGURATION ==========
-    const API_BASE_URL = 'http://localhost:3000/api';
+    const API_BASE_URL = 'http://localhost:3001/api';
     
     // ========== BACKEND API FUNCTIONS (Node.js) ==========
     async function submitReviewToBackend(formData) {

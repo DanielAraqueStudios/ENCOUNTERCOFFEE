@@ -25,6 +25,8 @@
     border-radius: 6px;
     padding: 0.75rem;
     font-size: 1rem;
+    background-color: #ffffff;
+    color: #333;
 }
 
 .review-form-container .form-control:focus {

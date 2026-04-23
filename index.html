@@ -74,7 +74,7 @@
                 
                 <!-- Scene 2: Frase 3 background with Frase 2 image panel -->
                 <div class="hero-scene" data-scene="2">
-                    <img src="images/Home/Fotos_a_usar/Frase 3.jpg" alt="Coffee background" class="hero-bg-image-static">
+                    <img id="hero-frase3" src="images/Home/Fotos_a_usar/Frase 3.jpg" alt="Coffee background" class="hero-bg-image-static">
                     <img src="images/Home/Logos/Frase 2 - pagina web.png" alt="Decorative Panel" class="encounter-left-panel-image">
                 </div>
                 
@@ -98,7 +98,8 @@
                                     </svg>
                                 </div>
                                 
-                                <img src="images/Home/Logos/Frase%20home.png" alt="AN ENCOUNTER. BETWEEN YOU AND THE BEST," class="encounter-hero-title-img">
+                                <img id="hero-title-img" src="images/Home/Logos/Frase%20home.png" alt="AN ENCOUNTER. BETWEEN YOU AND THE BEST," class="encounter-hero-title-img">
+                                <h1 id="hero-title-text" class="encounter-hero-title" style="display:none; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 500; color: white; margin-top: 1rem; margin-bottom: 1.5rem; line-height: 1.4;"></h1>
                                 
                                 
                                 
@@ -486,32 +487,7 @@
                         <!-- Left Column: Testimonials -->
                         <div class="col-lg-6 col-12 mb-5 mb-lg-0">
                             <!-- Review Submission Form -->
-                            <div class="review-form-container mb-5 p-4" style="background: rgba(124, 9, 15, 0.05); border-radius: 12px; border: 1px solid rgba(124, 9, 15, 0.2);">
-                                <h5 class="mb-4" style="color: var(--encounter-navy);">Share Your Experience</h5>
-                                
-                                <form id="reviewForm" class="custom-form">
-                                    <div class="mb-3">
-                                        <label for="reviewName" class="form-label">Your Name</label>
-                                        <input type="text" class="form-control" id="reviewName" name="name" placeholder="Enter your name" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="reviewText" class="form-label">Your Review</label>
-                                        <textarea class="form-control" id="reviewText" name="review" rows="4" placeholder="Share your thoughts about our coffee..." required></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Rating</label>
-                                        <div class="star-rating" id="starRating">
-                                            <i class="bi bi-star" data-value="1" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
-                                            <i class="bi bi-star" data-value="2" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
-                                            <i class="bi bi-star" data-value="3" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
-                                            <i class="bi bi-star" data-value="4" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
-                                            <i class="bi bi-star" data-value="5" style="cursor: pointer; font-size: 1.8rem; color: #ddd; transition: all 0.2s;"></i>
-                                        </div>
-                                        <input type="hidden" id="ratingValue" name="rating" value="0">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100" style="background: var(--encounter-red); border: none; padding: 0.75rem; font-weight: 600;">Submit Review</button>
-                                </form>
-                            </div>
+                            
 
                             <!-- Reviews List -->
                             <div class="testimonials-list" id="reviewsList">
@@ -528,6 +504,8 @@
                                 <button class="btn btn-sm" id="nextPageBtn" style="background: var(--encounter-red); color: white; border: none; padding: 0.5rem 1rem;">Next →</button>
                             </div>
                         </div>
+
+                        
                         
                         <!-- Right Column: Media Images -->
                         <div class="col-lg-6 col-12">
@@ -535,7 +513,7 @@
                                 <!-- Decorative vertical panel -->
                                 <div class="media-vertical-pill"></div>
                                 
-                                <div class="media-images-grid">
+                                <div id="videos-grid" class="media-images-grid">
                                     <!-- Image 1 with caption -->
                                     <div class="media-image-block">
                                         <video class="img-fluid" autoplay muted loop playsinline>
@@ -561,6 +539,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="review-form-container mb-5 p-4" style="background: rgba(124, 9, 15, 0.05); border-radius: 12px; border: 1px solid rgba(124, 9, 15, 0.2);">
+                                <h5 class="mb-4" style="color: var(--encounter-navy);">Share Your Experience</h5>
+                                
+                                <form id="reviewForm" class="custom-form">
+                                    <div class="mb-3">
+                                        <label for="reviewName" class="form-label">Your Name</label>
+                                        <input type="text" class="form-control" id="reviewName" name="name" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="reviewText" class="form-label">Your Review</label>
+                                        <textarea class="form-control" id="reviewText" name="review" rows="4" placeholder="Share your thoughts about our coffee..." required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Rating</label>
+                                        <div class="star-rating" id="starRating">
+                                            <i class="bi bi-star" data-value="1" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="2" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="3" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="4" style="cursor: pointer; font-size: 1.8rem; margin-right: 0.5rem; color: #ddd; transition: all 0.2s;"></i>
+                                            <i class="bi bi-star" data-value="5" style="cursor: pointer; font-size: 1.8rem; color: #ddd; transition: all 0.2s;"></i>
+                                        </div>
+                                        <input type="hidden" id="ratingValue" name="rating" value="0">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100" style="background: var(--encounter-red); border: none; padding: 0.75rem; font-weight: 600;">Submit Review</button>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </section>
@@ -938,12 +942,10 @@
                         </p>
 
                         <p class="footer-social-links">
-                            <a href="https://instagram.com/encountercoffee" target="_blank" class="footer-social-link">
+                            <a href="https://www.instagram.com/encountercolombiancoffee" target="_blank" class="footer-social-link">
                                 <i class="bi bi-instagram"></i>Instagram
                             </a><br>
-                            <a href="https://facebook.com/encountercoffee" target="_blank" class="footer-social-link">
-                                <i class="bi bi-facebook"></i>Facebook
-                            </a>
+                            
                         </p>
                     </div>
 
@@ -951,12 +953,12 @@
                         <h5 class="site-footer-title mb-4">Contact Information</h5>
 
                         <div class="mb-4">
-                            <p class="footer-body-text mb-1"><strong>Email:</strong></p>
+                            <p class="footer-label mb-1"><strong>Email:</strong></p>
                             <a href="mailto:info@encountercolombiancoffee.ca" class="footer-contact-link">info@encountercolombiancoffee.ca</a>
                         </div>
 
                         <div class="mb-4">
-                            <p class="footer-body-text mb-1"><strong>Website:</strong></p>
+                            <p class="footer-label mb-1"><strong>Website:</strong></p>
                             <a href="https://encountercolombiancoffee.ca" class="footer-contact-link">encountercolombiancoffee.ca</a>
                         </div>
                     </div>
@@ -1006,15 +1008,20 @@
                 var btn = document.getElementById('domainSwitcher');
                 if (btn) {
                     btn.addEventListener('click', function () {
-                        var current = localStorage.getItem('encounter_country') || 'CA';
-                        var next = LABELS[current].next;
-                        localStorage.setItem('encounter_country', next);
-                        applyRegion(next);
+                        localStorage.removeItem('encounter_country');
+                        var modal = document.getElementById('countrySelectorModal');
+                        if (modal) {
+                            var bsModal = new bootstrap.Modal(modal, { backdrop: 'static', keyboard: false });
+                            bsModal.show();
+                            document.body.style.overflow = 'hidden';
+                        }
                     });
                 }
                 applyRegion(localStorage.getItem('encounter_country') || 'CA');
             })();
         </script>
+        <script src="js/video-carousel.js"></script>
+        <script src="js/content-loader.js"></script>
 
     </body>
 </html>

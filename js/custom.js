@@ -4,21 +4,18 @@
   "use strict";
 
     // ========== COUNTRY SELECTOR MODAL LOGIC ==========
+     // localStorage.removeItem('encounter_country'); // TESTING: uncomment to reset popup
     $(document).ready(function() {
       var userCountry = localStorage.getItem('encounter_country');
-      
+
       if (!userCountry) {
-        setTimeout(function() {
-          var modal = document.getElementById('countrySelectorModal');
-          if (modal) {
-            var bsModal = new bootstrap.Modal(modal, {
-              backdrop: 'static',
-              keyboard: false
-            });
+        var modal = document.getElementById('countrySelectorModal');
+        if (modal) {
+          setTimeout(function() {
+            var bsModal = bootstrap.Modal.getOrCreateInstance(modal);
             bsModal.show();
-            document.body.style.overflow = 'hidden';
-          }
-        }, 500);
+          }, 500);
+        }
       }
       
       $('#select-colombia').on('click', function(e) {
@@ -145,7 +142,6 @@
       carouselContainer.addEventListener('mouseleave', () => {
         autoAdvance = setInterval(nextSlide, 5000);
       });
-    }
     }
 
     // MAGNETIC HOVER ANIMATION - Modern & Unique
@@ -355,16 +351,13 @@
       }
     }
     
-    // Initialize scene slideshow
-    if (heroScenes.length > 0) {
-      // Start Scene 1 internal slideshow
-      if (scene1BgImages.length > 1) {
-        scene1Interval = setInterval(nextScene1Background, 5000);
-      }
-      
-      // Switch between scenes every 10 seconds
-      setInterval(nextScene, 10000);
-    }
+    // Scene slideshow disabled — showing Scene 1 static
+    // if (heroScenes.length > 0) {
+    //   if (scene1BgImages.length > 1) {
+    //     scene1Interval = setInterval(nextScene1Background, 5000);
+    //   }
+    //   setInterval(nextScene, 10000);
+    // }
   
   
   })(window.jQuery);

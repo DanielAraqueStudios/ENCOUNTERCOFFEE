@@ -32,9 +32,8 @@
                 background: #f5f0e8;
             }
             .shop-iframe-section iframe {
-                flex: 1;
                 width: 100%;
-                min-height: 80vh;
+                height: 900px;
                 border: none;
                 display: block;
             }
@@ -103,8 +102,14 @@
             </nav>
 
             <!-- STORE IFRAME -->
+             <br>
+             <br>
+             <br>
+                          <br>
+             <br>
+             <br>
             <section class="shop-iframe-section">
-                <iframe id="storeFrame" src="" allowfullscreen loading="lazy" title="Encounter Coffee Store"></iframe>
+                <iframe id="storeFrame" src="" scrolling="no" allowfullscreen loading="lazy" title="Encounter Coffee Store"></iframe>
             </section>
 
             <!-- FOOTER -->
@@ -159,6 +164,62 @@
         <script src="js/custom.js"></script>
 
         <script>
+            // Auto-sizes the store iframe to its full content height so the outer
+            // page scrolls as one piece with no internal iframe scrollbar.
+            // For cross-origin stores (different domain) we cannot read the content
+            // height directly — we start at 3000px and refine via postMessage if
+            // the store sends resize info, or precisely on same-origin load.
+            (function () {
+                function autoSizeFrame() {
+                    var iframe = document.getElementById('storeFrame');
+                    if (!iframe) return;
+
+                    function applyHeight(h) {
+                        h = Math.max(Number(h) || 0, 600);
+                        iframe.style.height = h + 'px';
+                    }
+
+                    iframe.addEventListener('load', function () {
+                        try {
+                            // Same-origin: read exact content height
+                            var doc = iframe.contentWindow.document;
+                            var h = Math.max(
+                                doc.body.scrollHeight,
+                                doc.body.offsetHeight,
+                                doc.documentElement.scrollHeight,
+                                doc.documentElement.offsetHeight
+                            );
+                            if (h > 200) { applyHeight(h); }
+                        } catch (e) {
+                            // Cross-origin: keep the 3000px default set in CSS
+                        }
+                    });
+
+                    // Handle postMessage from stores that broadcast their height
+                    window.addEventListener('message', function (e) {
+                        if (e.source !== iframe.contentWindow) return;
+                        try {
+                            var d = (typeof e.data === 'string') ? JSON.parse(e.data) : e.data;
+                            var h = d && (d.height || d.scrollHeight || d.frameHeight || d.bodyHeight);
+                            if (h) applyHeight(h);
+                        } catch (_) {}
+                    });
+
+                    // Recalculate on window resize (same-origin only; cross-origin silently no-ops)
+                    window.addEventListener('resize', function () {
+                        try {
+                            var doc = iframe.contentWindow.document;
+                            var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+                            if (h > 200) applyHeight(h);
+                        } catch (e) {}
+                    });
+                }
+
+                document.addEventListener('DOMContentLoaded', autoSizeFrame);
+            })();
+        </script>
+
+        <script>
             (function () {
                 var STORES = {
                     CO: 'https://www.encountercolombiancoffee.com/tienda/',
@@ -185,10 +246,8 @@
                 }
 
                 document.getElementById('domainSwitcher').addEventListener('click', function () {
-                    var current = getRegion();
-                    var next    = LABELS[current].next;
-                    localStorage.setItem('encounter_country', next);
-                    applyRegion(next);
+                    localStorage.removeItem('encounter_country');
+                    window.location.href = 'index.html';
                 });
 
                 applyRegion(getRegion());

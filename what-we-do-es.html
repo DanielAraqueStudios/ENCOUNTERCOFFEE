@@ -58,7 +58,7 @@
 
         <main>
 
-            <nav class="navbar navbar-expand-lg navbar-burgundy">                
+            <nav class="navbar navbar-expand-lg navbar-burgundy">
                 <div class="container">
                     <div class="navbar-fixed-row">
                         <!-- Logo Images - always visible -->
@@ -78,25 +78,28 @@
                         <div class="collapse navbar-collapse navbar-fixed-col navbar-nav-section" id="navbarNavContent">
                             <ul class="navbar-nav d-flex flex-row justify-content-center nav-separated mb-0">
                                 <li class="nav-item d-flex align-items-center">
-                                    <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Inicio" style="width: 50px; height: 50px; margin-right: 8px;">
+                                    <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Inicio" style="width: 80px; height: 80px; margin-right: 8px;">
                                     <a class="nav-link" href="index-es.html">Inicio</a>
                                 </li>
-        
+
                                 <li class="nav-item d-flex align-items-center">
-                                    <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="¿Qué hacemos?" style="width: 60px; height: 60px; margin-right: 8px;">
+                                    <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="¿Qué hacemos?" style="width: 80px; height: 80px; margin-right: 8px;">
                                     <a class="nav-link active" href="what-we-do-es.html">¿Qué hacemos?</a>
+                                </li>
+                                <li class="nav-item d-flex align-items-center">
+                                    <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Tienda" style="width: 80px; height: 80px; margin-right: 8px;">
+                                    <a class="nav-link" href="shop-es.html">Tienda</a>
+                                </li>
+                                <li class="nav-item d-flex align-items-center ms-3">
+                                    <button class="domain-switcher-btn" id="domainSwitcher" title="Cambiar región">
+                                        <span id="domainFlag"></span> <span id="domainLabel"></span>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <!-- Profile and Cart Buttons - always visible -->
-                        <div class="navbar-fixed-col navbar-profile-section d-flex align-items-center" style="gap: 15px;">
-                            <button type="button" class="btn btn-sm" id="openCountrySelectorBtn" style="background: var(--encounter-red); color: white; border: none; padding: 12px 18px; border-radius: 6px; font-weight: 600; font-size: 1rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#countrySelectorModal">🌍 Tienda</button>
-                            <a href="shop-es.html" class="nav-cart-icon">
-                                <img src="images/Home/Pictogramas home/Pictogramas home-03.png" alt="Carrito" style="width: 45px; height: 45px; object-fit: contain;">
-                            </a>
-                           
-                        </div>
+
                     </div>
                 </div>
             </nav>
@@ -635,7 +638,7 @@ I’ve worked as a barista and  barista trainer. At Encounter Coffee, I’m also
                                 <!-- Decorative vertical panel -->
                                 <div class="media-vertical-pill"></div>
                                 
-                                <div class="media-images-grid">
+                                <div class="media-images-grid" id="videos-grid">
                                     <!-- Image 1 with caption -->
                                     <div class="media-image-block">
                                         <video class="img-fluid" autoplay muted loop playsinline>
@@ -1103,6 +1106,35 @@ I’ve worked as a barista and  barista trainer. At Encounter Coffee, I’m also
         <script src="js/animated-headline.js"></script>
         <script src="js/modernizr.js"></script>
         <script src="js/custom.js"></script>
+        <script src="js/video-carousel.js"></script>
+        <script src="js/content-loader.js"></script>
+        <script>
+            (function () {
+                var LABELS = {
+                    CO: { flag: '🇨🇴', label: '.com' },
+                    CA: { flag: '🇨🇦', label: '.ca'  }
+                };
+                function applyRegion(region) {
+                    var info = LABELS[region] || LABELS.CO;
+                    var flag = document.getElementById('domainFlag');
+                    var lbl  = document.getElementById('domainLabel');
+                    if (flag) flag.textContent = info.flag;
+                    if (lbl)  lbl.textContent  = info.label;
+                }
+                var btn = document.getElementById('domainSwitcher');
+                if (btn) {
+                    btn.addEventListener('click', function () {
+                        localStorage.removeItem('encounter_country');
+                        var modal = document.getElementById('countrySelectorModal');
+                        if (modal) {
+                            var bsModal = new bootstrap.Modal(modal, { backdrop: 'static', keyboard: false });
+                            bsModal.show();
+                        }
+                    });
+                }
+                applyRegion(localStorage.getItem('encounter_country') || 'CO');
+            })();
+        </script>
 
     </body>
 </html>

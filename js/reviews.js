@@ -1,9 +1,9 @@
-// Reviews Management Script - Node.js backend version
+// Reviews Management Script - PHP backend version
 
 // Global test function for debugging
 window.testReviewsAPI = function() {
-    console.log('Testing Reviews System (Node.js Backend)...');
-    fetch('http://localhost:3000/api/health')
+    console.log('Testing Reviews System (PHP Backend)...');
+    fetch('/api/health.php')
         .then(response => response.json())
         .then(data => {
             console.log('API Status:', data);
@@ -11,7 +11,7 @@ window.testReviewsAPI = function() {
         })
         .catch(error => {
             console.error('API check failed:', error);
-            alert('API check failed:\n' + error.message + '\n\nMake sure Node.js server is running:\nnpm install\nnpm start');
+            alert('API check failed:\n' + error.message + '\n\nMake sure PHP and Apache/Nginx are running on your server.');
         });
 };
 
@@ -25,16 +25,21 @@ document.addEventListener('DOMContentLoaded', async function() {
     const starRating = document.getElementById('starRating');
     const ratingValue = document.getElementById('ratingValue');
     
+    // If review list doesn't exist on this page, skip initialization
+    if (!reviewsList) {
+        return;
+    }
+    
     let currentPage = 1;
     let totalPages = 1;
     let currentRating = 0;
     
     // ========== API CONFIGURATION ==========
-    const API_BASE_URL = 'http://localhost:3001/api';
+    const API_BASE_URL = '/api';
     
-    // ========== BACKEND API FUNCTIONS (Node.js) ==========
+    // ========== BACKEND API FUNCTIONS (PHP) ==========
     async function submitReviewToBackend(formData) {
-        const response = await fetch(`${API_BASE_URL}/reviews`, {
+        const response = await fetch(`${API_BASE_URL}/reviews.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -55,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     
     async function loadReviewsFromBackend(page = 1) {
-        const response = await fetch(`${API_BASE_URL}/reviews?page=${page}&perPage=3`);
+        const response = await fetch(`${API_BASE_URL}/reviews.php?page=${page}&perPage=3`);
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -79,11 +84,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.log('Testing review submission...');
         const testData = {
             name: 'Test User',
-            review: 'This is a test review from Node.js backend',
+            review: 'This is a test review from PHP backend',
             rating: 5
         };
         
-        fetch(`${API_BASE_URL}/reviews`, {
+        fetch(`${API_BASE_URL}/reviews.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -98,16 +103,22 @@ document.addEventListener('DOMContentLoaded', async function() {
         })
         .catch(error => {
             console.error('Test failed:', error);
-            alert('Test failed:\n' + error.message + '\n\nMake sure Node.js server is running:\nnpm install\nnpm start');
+            alert('Test failed:\n' + error.message + '\n\nMake sure PHP and your web server are running.');
         });
     };
     
-    // Star rating interaction
-    const stars = starRating.querySelectorAll('i');
+    // Star rating interaction (only if element exists)
+    let stars = [];
+    if (starRating) {
+        stars = starRating.querySelectorAll('i');
+    }
+    
     stars.forEach(star => {
         star.addEventListener('click', function() {
             currentRating = this.dataset.value;
-            ratingValue.value = currentRating;
+            if (ratingValue) {
+                ratingValue.value = currentRating;
+            }
             
             // Update star display
             stars.forEach(s => {
@@ -135,24 +146,35 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     });
     
-    starRating.addEventListener('mouseout', function() {
-        stars.forEach(s => {
-            if (s.dataset.value <= currentRating) {
-                s.style.color = 'var(--encounter-golden)';
-            } else {
-                s.style.color = '#ddd';
-            }
+    if (starRating) {
+        starRating.addEventListener('mouseout', function() {
+            stars.forEach(s => {
+                if (s.dataset.value <= currentRating) {
+                    s.style.color = 'var(--encounter-golden)';
+                } else {
+                    s.style.color = '#ddd';
+                }
+            });
         });
-    });
+    }
     
     // Form submission handler
     if (reviewForm) {
         reviewForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            // Get form elements
+            const nameInput = document.getElementById('reviewName');
+            const reviewInput = document.getElementById('reviewText');
+            
+            if (!nameInput || !reviewInput) {
+                console.error('Review form elements not found');
+                return;
+            }
+            
             // Get form values
-            const name = document.getElementById('reviewName').value.trim();
-            const review = document.getElementById('reviewText').value.trim();
+            const name = nameInput.value.trim();
+            const review = reviewInput.value.trim();
             
             // Validate
             if (!name || !review || currentRating === 0) {
@@ -172,7 +194,9 @@ document.addEventListener('DOMContentLoaded', async function() {
                 showMessage('Thank you! Your review has been submitted.', 'success');
                 reviewForm.reset();
                 currentRating = 0;
-                ratingValue.value = 0;
+                if (ratingValue) {
+                    ratingValue.value = 0;
+                }
                 
                 // Reset stars
                 stars.forEach(s => {
@@ -208,7 +232,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             updatePagination();
         } catch (error) {
             console.error('Error loading reviews:', error);
-            reviewsList.innerHTML = '<div class="no-reviews-message">Error loading reviews. Make sure Node.js server is running on port 3000.</div>';
+            reviewsList.innerHTML = '<div class="no-reviews-message">Error loading reviews. Make sure PHP and your web server are running.</div>';
         }
     }
     
@@ -223,17 +247,17 @@ document.addEventListener('DOMContentLoaded', async function() {
             <div class="review-item">
                 <div class="review-header">
                     <div class="review-avatar">
-                        ${review.name.charAt(0).toUpperCase()}
+                        ${escapeHtml(review.name).charAt(0).toUpperCase()}
                     </div>
                     <div class="review-info">
-                        <div class="review-name">${review.name}</div>
+                        <div class="review-name">${escapeHtml(review.name)}</div>
                         <div class="review-rating">
                             ${getStarRating(review.rating)}
                         </div>
                         <div class="review-date">${formatDate(review.date)}</div>
                     </div>
                 </div>
-                <div class="review-text">${review.review}</div>
+                <div class="review-text">${escapeHtml(review.review)}</div>
             </div>
         `).join('');
     }
@@ -251,6 +275,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         return stars;
     }
     
+    // Escape HTML special characters to prevent XSS
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
     // Format date
     function formatDate(dateString) {
         const date = new Date(dateString);
@@ -260,34 +291,48 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Update pagination
     function updatePagination() {
+        if (!paginationContainer) {
+            return;
+        }
+        
         if (totalPages <= 1) {
             paginationContainer.style.display = 'none';
             return;
         }
         
         paginationContainer.style.display = 'flex';
-        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        if (pageInfo) {
+            pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        }
         
-        prevPageBtn.disabled = currentPage === 1;
-        nextPageBtn.disabled = currentPage === totalPages;
+        if (prevPageBtn) {
+            prevPageBtn.disabled = currentPage === 1;
+        }
+        if (nextPageBtn) {
+            nextPageBtn.disabled = currentPage === totalPages;
+        }
     }
     
-    // Pagination buttons
-    prevPageBtn.addEventListener('click', async function() {
-        if (currentPage > 1) {
-            currentPage--;
-            await loadReviews(currentPage);
-            window.scrollTo({ top: reviewsList.offsetTop - 100, behavior: 'smooth' });
-        }
-    });
+    // Pagination buttons (only if they exist)
+    if (prevPageBtn) {
+        prevPageBtn.addEventListener('click', async function() {
+            if (currentPage > 1) {
+                currentPage--;
+                await loadReviews(currentPage);
+                window.scrollTo({ top: reviewsList.offsetTop - 100, behavior: 'smooth' });
+            }
+        });
+    }
     
-    nextPageBtn.addEventListener('click', async function() {
-        if (currentPage < totalPages) {
-            currentPage++;
-            await loadReviews(currentPage);
-            window.scrollTo({ top: reviewsList.offsetTop - 100, behavior: 'smooth' });
-        }
-    });
+    if (nextPageBtn) {
+        nextPageBtn.addEventListener('click', async function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                await loadReviews(currentPage);
+                window.scrollTo({ top: reviewsList.offsetTop - 100, behavior: 'smooth' });
+            }
+        });
+    }
     
     // Show message
     function showMessage(message, type) {
@@ -296,7 +341,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         messageDiv.textContent = message;
         
         const formContainer = document.querySelector('.review-form-container');
-        formContainer.insertBefore(messageDiv, formContainer.firstChild);
+        if (formContainer) {
+            formContainer.insertBefore(messageDiv, formContainer.firstChild);
+        }
         
         // Remove message after 5 seconds
         setTimeout(() => {

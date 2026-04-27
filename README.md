@@ -431,31 +431,6 @@ ENCOUNTERCOFFEE/
 │   │   ├── portrait-young-handsome-businessman-wearing-suit-standing-with-crossed-arms-with-isolated-studio-white-background.jpg
 │   │   └── successful-asian-lady-boss-red-blazer-holding-clipboard-with-documens-pen-working-looking-happy-white-background.jpg
 │   └── New folder/               # Additional assets folder
-├── encounter-coffee-next/        # Next.js version (separate project)
-│   ├── .gitignore                # Next.js gitignore
-│   ├── .next/                    # Next.js build output (ignored)
-│   ├── node_modules/             # npm dependencies (ignored)
-│   ├── package.json              # npm package configuration
-│   ├── package-lock.json         # Locked dependency versions
-│   ├── next.config.ts            # Next.js configuration
-│   ├── tsconfig.json             # TypeScript configuration
-│   ├── next-env.d.ts             # Next.js TypeScript declarations
-│   ├── eslint.config.mjs         # ESLint configuration
-│   ├── postcss.config.mjs        # PostCSS configuration
-│   ├── README.md                 # Next.js project README
-│   ├── README-SETUP.md           # Setup instructions
-│   ├── public/                   # Public static assets
-│   │   ├── file.svg
-│   │   ├── globe.svg
-│   │   ├── next.svg
-│   │   ├── vercel.svg
-│   │   └── window.svg
-│   └── src/                      # Source code
-│       └── app/                  # Next.js App Router
-│           ├── favicon.ico       # Site favicon
-│           ├── globals.css       # Global styles
-│           ├── layout.tsx        # Root layout component
-│           └── page.tsx          # Homepage component
 ```
 
 ### HTML Naming Conventions

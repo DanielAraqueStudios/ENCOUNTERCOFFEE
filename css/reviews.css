@@ -136,8 +136,8 @@
 }
 
 .review-text {
-    color: var(--encounter-navy);
-    font-size: 0.95rem;
+    color: white;
+    font-size: 1.15rem;
     line-height: 1.6;
     margin-left: 66px;
 }

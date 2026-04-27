@@ -2,27 +2,80 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Commands
+## Quick Start
 
-**Start the reviews backend (required for review form to work):**
+**The backend is now pure PHP** — no build step, no dependencies, no installation required on shared hosting.
+
+### Local Development
 ```bash
-node server.js        # or: npm start
-# Runs on http://127.0.0.1:3000
-# Open pages at http://127.0.0.1:3000/index.html
+php -S localhost:8000        # Start built-in PHP server from project root
+# Open: http://localhost:8000/index.html
 ```
 
-**Install backend dependencies:**
-```bash
-npm install
-```
+Static pages work standalone; review submission/display and admin features require PHP. See [PHP-SETUP.md](PHP-SETUP.md) for hosting deployment.
 
-The static HTML pages work standalone without the server — only the review submission/display requires it.
+### File Structure
+```
+ENCOUNTERCOFFEE/
+├── index.html / index-es.html          (English / Spanish home)
+├── shop.html / shop-es.html            (Store pages with embedded iframe)
+├── what-we-do.html / what-we-do-es.html (About pages)
+├── admin/
+│   ├── index.html                      (Login page)
+│   └── dashboard.html                  (Admin console)
+├── api/                                (PHP backend — pure file-based)
+│   ├── reviews.php                     (GET/POST reviews)
+│   ├── health.php                      (Health check)
+│   ├── auth/                           (Session management)
+│   ├── content.php                     (Manage hero/mission text)
+│   ├── videos.php                      (Manage video list)
+│   └── upload/image.php                (Image upload)
+├── data/                               (⚠️ Must be writable: 755 or 777)
+│   ├── reviews.json
+│   ├── sessions.json
+│   ├── admin.json
+│   ├── content.json
+│   └── videos.json
+├── css/
+│   ├── templatemo-tiya-golf-club.css  (Base template)
+│   ├── encounter-custom.css           (Brand overrides + CSS variables)
+│   └── reviews.css                    (Review form/display)
+├── js/
+│   ├── custom.js                      (Country modal, hero scenes, carousel)
+│   ├── reviews.js                     (Review fetch/submit, star UI)
+│   └── content-loader.js              (Dynamic content injection)
+└── .htaccess                          (CORS headers, rewrites)
 
 ## Architecture
 
-### Two-layer structure
-- **Static frontend**: Plain HTML/CSS/JS pages, no build step needed. Open directly in browser or via the Express server.
-- **Node.js backend** (`server.js`): Express API on port 3000, file-based storage in `data/reviews.json`. Endpoints: `GET /api/reviews`, `POST /api/reviews`, `GET /api/health`.
+### Three-layer structure
+- **Static frontend**: Plain HTML/CSS/JS pages, no build step needed. Open directly in browser or via web server.
+- **PHP backend APIs**: Pure PHP on same domain, file-based JSON storage, no database needed.
+- **Admin panel**: Protected with login, manages reviews, content, videos, uploads.
+
+### API Endpoints by Feature
+
+**Public (no auth required):**
+- `GET /api/health.php` — Health check
+- `GET /api/reviews.php?page=1&perPage=3` — Fetch reviews with pagination
+- `POST /api/reviews.php` — Submit new review
+- `GET /api/content.php` — Fetch page content (hero, mission, features)
+- `GET /api/videos.php` — Fetch video list
+
+**Admin (requires valid sessionId):**
+- `POST /api/auth/login.php` — Login, receive sessionId
+- `POST /api/auth/verify.php` — Verify session still valid (24h expiry)
+- `POST /api/auth/logout.php` — Destroy session
+- `POST /api/content.php` — Update page content
+- `POST /api/videos.php` — Update video list
+- `POST /api/upload/image.php` — Upload images (JPEG/PNG/GIF/WebP, max 5MB)
+
+**Data persistence — all file-based, stored in `/data/`:**
+- `reviews.json` — Customer review list
+- `sessions.json` — Active admin sessions (auto-cleaned on verify/login)
+- `admin.json` — Admin credentials (password bcrypt-hashed)
+- `content.json` — Hero/mission/features text
+- `videos.json` — Featured videos metadata
 
 ### Page system
 Every page exists in two language variants:
@@ -56,11 +109,46 @@ The hero (`#encounter_hero`) uses a two-scene system driven by `custom.js`:
 Scenes transition via `.hero-scene` / `.hero-scene.active` opacity, switching every 10s. All hero background images must be `position: absolute` inside `.hero-bg-slideshow` — if any CSS in `encounter-custom.css` breaks (orphaned braces, malformed blocks), the images fall out of absolute positioning and render full-size in the document flow.
 
 ### JS files
-- `custom.js` — country modal, hero scene slideshow, carousel (`#heroCarousel` / `.carousel-card`), magnetic hover animation (brand statement clock section `#clockContainer`)
-- `reviews.js` — fetches/submits reviews via the Node API, handles star rating UI and pagination
+- `custom.js` — Country modal (first visit), hero scene transitions (10s cycle, 5s internal slideshow), carousel (`.carousel-card`), magnetic hover on `#clockContainer`. ⚠️ Line 7 has `localStorage.removeItem('encounter_country')` active during dev — comment out before production.
+- `reviews.js` — Fetch/display reviews with pagination, submit form, star rating UI, API calls to `/api/reviews.php`
+- `content-loader.js` — Dynamically load page content (hero title, mission, features) from `/api/content.php`
 
-### Known development quirk — country modal
-`custom.js` line 7 contains an active `localStorage.removeItem('encounter_country')` call that resets the country selector on every page load. It is intentionally left active during development so the modal always fires. Comment it out before any production deploy or when testing the post-selection flow.
+## Admin Panel
 
-### Future Next.js app
-`/encounter-coffee-next/` contains a boilerplate Next.js 16 + React 19 + TypeScript + Tailwind setup. It is not used by the live site yet — do not modify it unless explicitly working on the migration.
+### Access
+- **Login**: `/admin/index.html`
+- **Dashboard**: `/admin/dashboard.html` (after login)
+- **Default credentials**: username `admin`, password `admin123` (change in production!)
+
+### Features
+1. **Reviews Management** — View, delete customer reviews with ratings and statistics
+2. **Content Management** — Edit hero, mission, features text
+3. **Videos Management** — Manage featured videos list
+4. **Image Upload** — Upload images (JPEG, PNG, GIF, WebP, max 5MB)
+
+### Authentication Flow
+1. POST `/api/auth/login.php` — User logs in, receives `sessionId`
+2. `sessionId` stored in `localStorage` + sent to all admin API calls
+3. POST `/api/auth/verify.php` — Verify session is still valid (24-hour expiry)
+4. POST `/api/auth/logout.php` — Destroy session
+
+See [ADMIN-SETUP.md](ADMIN-SETUP.md) for complete API and session details.
+
+## Development Notes
+
+### Key Gotchas
+1. **Hero section CSS** — All background images in `.hero-bg-slideshow` must be `position: absolute`. If `encounter-custom.css` has orphaned braces or syntax errors, images fall into document flow and render full-size. Validate CSS carefully.
+2. **Country modal state** — `custom.js` line 7 has active `localStorage.removeItem('encounter_country')`. Intentionally active during dev so modal always fires. Comment out before production deploy or when testing post-selection flow.
+3. **Data directory permissions** — `/data/` must be writable (755 or 777) or file creation fails silently. Check this first if reviews/uploads don't persist.
+4. **Session cleanup** — Old sessions auto-cleaned on login/verify, not on a schedule. Monitor `/data/sessions.json` size in production.
+
+### CSS Variables
+All brand colors defined in `:root` inside `encounter-custom.css` (e.g., `--encounter-primary`, `--encounter-accent`). Never hardcode hex values — always use variables for consistency.
+
+### Testing Locally
+After `php -S localhost:8000`, test in browser console:
+```javascript
+window.testReviewsAPI()      // Verify API connectivity
+window.testReviewsSubmit()   // Verify form submission
+```
+Both should complete without errors.

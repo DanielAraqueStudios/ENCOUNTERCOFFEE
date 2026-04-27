@@ -18,29 +18,10 @@
         }
       }
       
-      $('#select-colombia').on('click', function(e) {
-        e.preventDefault();
-        localStorage.setItem('encounter_country', 'CO');
-        if (window.location.hostname.includes('encountercolombiancoffee')) {
-          window.location.href = '/index-es.html';
-        } else {
-          window.location.href = 'https://www.encountercolombiancoffee.com/';
-        }
-      });
-      
-      $('#select-canada').on('click', function(e) {
-        e.preventDefault();
-        localStorage.setItem('encounter_country', 'CA');
-        var modal = document.getElementById('countrySelectorModal');
-        if (modal) {
-          var bsModal = bootstrap.Modal.getInstance(modal);
-          if (bsModal) {
-            bsModal.hide();
-          } else {
-            modal.style.display = 'none';
-            modal.classList.remove('show');
-          }
-          document.body.style.overflow = '';
+      $('.country-btn[data-country]').on('click', function() {
+        var selectedCountry = this.getAttribute('data-country');
+        if (selectedCountry) {
+          localStorage.setItem('encounter_country', selectedCountry);
         }
       });
     });

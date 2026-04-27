@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Encounter Colombian Coffee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary: #3D405B;
+            --secondary: #5a5d7d;
+            --accent: #25D366;
+            --light: #F8F5EE;
+            --danger: #dc3545;
+        }
+
+        body {
+            background: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: var(--primary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 18px;
+            color: white !important;
+        }
+
+        .sidebar {
+            background: white;
+            min-height: 100vh;
+            padding: 30px 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+        }
+
+        .nav-link {
+            color: #333;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-link:hover {
+            background: #f0f0f0;
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-link i {
+            width: 20px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background: var(--primary);
+            color: white;
+            border-radius: 8px 8px 0 0;
+            padding: 20px;
+            border: none;
+        }
+
+        .card-header h5 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #2d2f45;
+        }
+
+        .btn-success {
+            background: var(--accent);
+            border: none;
+        }
+
+        .btn-success:hover {
+            background: #20BA58;
+        }
+
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin: 10px 0;
+            display: block;
+        }
+
+        .image-upload-group {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ddd;
+            transition: border-left-color 0.3s;
+        }
+
+        .image-upload-group.loaded {
+            border-left: 4px solid #28a745;
+        }
+
+        .current-image-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            padding: 8px;
+            background: #fff;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+
+        .logout-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #c00;
+        }
+
+        .tab-content-section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+
+        .tab-content-section:last-child {
+            border-bottom: none;
+        }
+
+        .form-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .review-item, .video-item {
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .review-item .item-content {
+            flex: 1;
+        }
+
+        .video-item .item-content {
+            flex: 1;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .order-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .order-buttons button {
+            padding: 4px 8px;
+            font-size: 12px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: #ddd;
+            display: block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand">
+                <i class="bi bi-cup-hot"></i> Admin Panel - Encounter Coffee
+            </span>
+            <div>
+                <span style="color: white; margin-right: 20px;">
+                    <i class="bi bi-person-circle"></i> <span id="adminUsername">Admin</span>
+                </span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2">
+                <div class="sidebar">
+                    <a class="nav-link active" href="#" onclick="switchPage('reviews')">
+                        <i class="bi bi-star-fill"></i> Reviews
+                    </a>
+                    <a class="nav-link" href="#" onclick="switchPage('content')">
+                        <i class="bi bi-file-text"></i> Content & Images
+                    </a>
+                    <a class="nav-link" href="#" onclick="switchPage('videos')">
+                        <i class="bi bi-play-circle"></i> Videos
+                    </a>
+                    <a class="nav-link" href="#" onclick="switchPage('settings')">
+                        <i class="bi bi-gear"></i> Settings
+                    </a>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="col-md-10">
+                <div class="content">
+
+                    <!-- Reviews Page -->
+                    <div id="reviews-page" class="page-content">
+                        <div class="page-header">
+                            <h2>Reviews Management</h2>
+                            <p>Manage customer reviews, reorder, and delete</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>All Reviews <span id="reviewCount" style="font-size: 14px; color: #ddd;">(0)</span></h5>
+                            </div>
+                            <div class="card-body" id="reviewsList">
+                                <div class="empty-state">
+                                    <i class="bi bi-inbox"></i>
+                                    <p>No reviews yet</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-lg mt-3" onclick="saveReviewOrder()" style="display:none;" id="saveReviewsBtn">
+                            <i class="bi bi-check-circle"></i> Save Review Order
+                        </button>
+                    </div>
+
+                    <!-- Content Page -->
+                    <div id="content-page" class="page-content" style="display: none;">
+                        <div class="page-header">
+                            <h2>Content & Image Management</h2>
+                            <p>Edit website images and text content</p>
+                        </div>
+
+                        <!-- Index Page Hero Images -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Home Page Hero Section</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content-section">
+                                    <h6 class="form-section-title">Hero Background Image</h6>
+                                    <div class="image-upload-group">
+                                        <label class="form-label"><strong>Background Image</strong></label>
+                                        <input type="file" class="form-control mb-2" id="indexHeroBackground" accept="image/*">
+                                        <img id="preview-indexHeroBackground" class="image-preview" style="display:none;">
+                                    </div>
+                                </div>
+
+                                <div class="tab-content-section">
+                                    <h6 class="form-section-title">Hero Title - Image or Text</h6>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Display Mode</strong></label>
+                                        <select class="form-control" id="indexHeroMode" onchange="toggleHeroMode()">
+                                            <option value="image">Image</option>
+                                            <option value="text">Text</option>
+                                        </select>
+                                    </div>
+                                    <div class="image-upload-group" id="heroImageUpload">
+                                        <label class="form-label"><strong>Title Image</strong></label>
+                                        <input type="file" class="form-control mb-2" id="indexHeroTitle" accept="image/*">
+                                        <img id="preview-indexHeroTitle" class="image-preview" style="display:none;">
+                                    </div>
+                                    <div class="image-upload-group" id="heroTextInput" style="display:none;">
+                                        <label class="form-label"><strong>Hero Title Text</strong></label>
+                                        <textarea class="form-control" id="indexHeroText" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Index Products -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Featured Products Images</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="image-upload-group">
+                                    <label class="form-label"><strong>Product 1 - Pods</strong></label>
+                                    <input type="file" class="form-control mb-2" id="product-pods" accept="image/*">
+                                    <img id="preview-product-pods" class="image-preview" style="display:none;">
+                                </div>
+                                <div class="image-upload-group">
+                                    <label class="form-label"><strong>Product 2 - Drips</strong></label>
+                                    <input type="file" class="form-control mb-2" id="product-drips" accept="image/*">
+                                    <img id="preview-product-drips" class="image-preview" style="display:none;">
+                                </div>
+                                <div class="image-upload-group">
+                                    <label class="form-label"><strong>Product 3 - Coffee Bag</strong></label>
+                                    <input type="file" class="form-control mb-2" id="product-coffee-bag" accept="image/*">
+                                    <img id="preview-product-coffee-bag" class="image-preview" style="display:none;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- What We Do Page -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>What We Do Page - Hero Images</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content-section">
+                                    <h6 class="form-section-title">Hero Background Images</h6>
+                                    <div class="image-upload-group">
+                                        <label class="form-label"><strong>Image 1</strong></label>
+                                        <input type="file" class="form-control mb-2" id="wwd-hero-img1" accept="image/*">
+                                        <img id="preview-wwd-hero-img1" class="image-preview" style="display:none;">
+                                    </div>
+                                    <div class="image-upload-group">
+                                        <label class="form-label"><strong>Image 2</strong></label>
+                                        <input type="file" class="form-control mb-2" id="wwd-hero-img2" accept="image/*">
+                                        <img id="preview-wwd-hero-img2" class="image-preview" style="display:none;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Team Members -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Team Member Images & Bios</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Victor -->
+                                <div class="tab-content-section">
+                                    <h6 class="form-section-title">Victor García Londoño</h6>
+                                    <div class="image-upload-group">
+                                        <label class="form-label"><strong>Profile Image</strong></label>
+                                        <input type="file" class="form-control mb-2" id="team-victor-img" accept="image/*">
+                                        <img id="preview-team-victor-img" class="image-preview" style="display:none;">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Bio</strong></label>
+                                        <textarea class="form-control" id="team-victor-bio" rows="5"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- John & Blanca -->
+                                <div class="tab-content-section">
+                                    <h6 class="form-section-title">John & Blanca</h6>
+                                    <div class="image-upload-group">
+                                        <label class="form-label"><strong>Profile Image</strong></label>
+                                        <input type="file" class="form-control mb-2" id="team-johnblanca-img" accept="image/*">
+                                        <img id="preview-team-johnblanca-img" class="image-preview" style="display:none;">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Bio</strong></label>
+                                        <textarea class="form-control" id="team-johnblanca-bio" rows="5"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Camila -->
+                                <div class="tab-content-section">
+                                    <h6 class="form-section-title">Camila</h6>
+                                    <div class="image-upload-group">
+                                        <label class="form-label"><strong>Profile Image</strong></label>
+                                        <input type="file" class="form-control mb-2" id="team-camila-img" accept="image/*">
+                                        <img id="preview-team-camila-img" class="image-preview" style="display:none;">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Bio</strong></label>
+                                        <textarea class="form-control" id="team-camila-bio" rows="5"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Nico -->
+                                <div class="tab-content-section">
+                                    <h6 class="form-section-title">Nico</h6>
+                                    <div class="image-upload-group">
+                                        <label class="form-label"><strong>Profile Image</strong></label>
+                                        <input type="file" class="form-control mb-2" id="team-nico-img" accept="image/*">
+                                        <img id="preview-team-nico-img" class="image-preview" style="display:none;">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Bio</strong></label>
+                                        <textarea class="form-control" id="team-nico-bio" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success btn-lg" onclick="saveAllContent()">
+                            <i class="bi bi-check-circle"></i> Save All Changes
+                        </button>
+                    </div>
+
+                    <!-- Videos Page -->
+                    <div id="videos-page" class="page-content" style="display: none;">
+                        <div class="page-header">
+                            <h2>Videos Management</h2>
+                            <p>Add, delete, and reorder featured videos</p>
+                        </div>
+
+                        <!-- Add New Video Form -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add New Video</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label"><strong>Video Title</strong></label>
+                                    <input type="text" class="form-control" id="newVideoTitle" placeholder="e.g., Our Story">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><strong>Description</strong></label>
+                                    <textarea class="form-control" id="newVideoDesc" rows="3" placeholder="Video description"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><strong>Video URL</strong></label>
+                                    <input type="text" class="form-control" id="newVideoUrl" placeholder="e.g., https://youtube.com/embed/VIDEO_ID">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label"><strong>Thumbnail Image URL</strong></label>
+                                    <input type="text" class="form-control" id="newVideoThumb" placeholder="e.g., images/thumbnail.jpg">
+                                </div>
+                                <button class="btn btn-primary" onclick="addNewVideo()">
+                                    <i class="bi bi-plus-circle"></i> Add Video
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Videos List -->
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h5>Featured Videos <span id="videoCount" style="font-size: 14px; color: #ddd;">(0)</span></h5>
+                            </div>
+                            <div class="card-body" id="videosList">
+                                <div class="empty-state">
+                                    <i class="bi bi-play-circle"></i>
+                                    <p>No videos yet. Add one to get started!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-success btn-lg mt-3" onclick="saveVideoOrder()" style="display:none;" id="saveVideosBtn">
+                            <i class="bi bi-check-circle"></i> Save Video Order
+                        </button>
+                    </div>
+
+                    <!-- Settings Page -->
+                    <div id="settings-page" class="page-content" style="display: none;">
+                        <div class="page-header">
+                            <h2>Settings</h2>
+                            <p>Admin panel settings</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <p><strong>Session ID:</strong> <code id="sessionInfo">...</code></p>
+                                <p><strong>Admin:</strong> <span id="adminInfo">...</span></p>
+                                <button class="btn btn-danger" onclick="logout()">Logout</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sessionId = localStorage.getItem('adminSessionId');
+        const adminUsername = localStorage.getItem('adminUsername');
+        const API_BASE = '/api';
+
+        // Check authentication
+        window.addEventListener('load', () => {
+            if (!sessionId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('adminUsername').textContent = adminUsername || 'Admin';
+            document.getElementById('adminInfo').textContent = adminUsername || 'Admin';
+            document.getElementById('sessionInfo').textContent = sessionId.substring(0, 16) + '...';
+
+            verifySession();
+            loadReviews();
+        });
+
+        function switchPage(page) {
+            document.querySelectorAll('.page-content').forEach(p => p.style.display = 'none');
+            const pageId = page + '-page';
+            document.getElementById(pageId).style.display = 'block';
+
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            event.target.closest('.nav-link').classList.add('active');
+
+            if (page === 'reviews') {
+                loadReviews();
+            } else if (page === 'content') {
+                loadContent();
+            } else if (page === 'videos') {
+                loadVideos();
+            }
+        }
+
+        async function verifySession() {
+            try {
+                const response = await fetch(API_BASE + '/auth/verify.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionId: sessionId })
+                });
+
+                if (!response.ok) logout();
+            } catch (err) {
+                console.error('Verification error:', err);
+            }
+        }
+
+        let currentReviews = [];
+
+        async function loadReviews() {
+            try {
+                const response = await fetch(API_BASE + '/reviews.php?perPage=100');
+                const data = await response.json();
+
+                if (data.success) {
+                    currentReviews = data.reviews || [];
+                    document.getElementById('reviewCount').textContent = `(${currentReviews.length})`;
+                    renderReviews();
+                    document.getElementById('saveReviewsBtn').style.display = currentReviews.length > 0 ? 'block' : 'none';
+                }
+            } catch (err) {
+                console.error('Load reviews error:', err);
+            }
+        }
+
+        async function deleteReview(reviewId) {
+            if (!confirm('Delete this review?')) return;
+
+            try {
+                const response = await fetch(API_BASE + '/reviews.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionId,
+                        action: 'delete',
+                        reviewId
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Review deleted!');
+                    loadReviews();
+                } else {
+                    alert('Error: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Delete error:', err);
+                alert('Error deleting review');
+            }
+        }
+
+        function moveReview(fromIdx, direction) {
+            const toIdx = fromIdx + direction;
+            if (toIdx < 0 || toIdx >= currentReviews.length) return;
+
+            [currentReviews[fromIdx], currentReviews[toIdx]] = [currentReviews[toIdx], currentReviews[fromIdx]];
+            renderReviews();
+        }
+
+        function renderReviews() {
+            const reviewsList = document.getElementById('reviewsList');
+            if (currentReviews.length === 0) {
+                reviewsList.innerHTML = '<div class="empty-state"><i class="bi bi-inbox"></i><p>No reviews yet</p></div>';
+            } else {
+                reviewsList.innerHTML = currentReviews.map((review, idx) => `
+                    <div class="review-item" data-review-id="${review.id}">
+                        <div class="item-content">
+                            <div><strong>${escapeHtml(review.name || 'Anonymous')}</strong></div>
+                            <div class="text-muted small">${formatDate(review.date)}</div>
+                            <div>${'★'.repeat(review.rating || 0)}${'☆'.repeat(5 - (review.rating || 0))}</div>
+                            <div>${escapeHtml(review.review || '').substring(0, 150)}${review.review?.length > 150 ? '...' : ''}</div>
+                        </div>
+                        <div class="item-actions">
+                            <div class="order-buttons">
+                                <button class="btn btn-sm btn-outline-secondary" ${idx === 0 ? 'disabled' : ''} onclick="moveReview(${idx}, -1)">
+                                    <i class="bi bi-arrow-up"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" ${idx === currentReviews.length - 1 ? 'disabled' : ''} onclick="moveReview(${idx}, 1)">
+                                    <i class="bi bi-arrow-down"></i>
+                                </button>
+                            </div>
+                            <button class="btn btn-sm btn-danger" onclick="deleteReview('${review.id}')">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        async function saveReviewOrder() {
+            try {
+                const response = await fetch(API_BASE + '/reviews.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionId,
+                        action: 'reorder',
+                        reviews: currentReviews
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Review order saved!');
+                } else {
+                    alert('Error: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Save error:', err);
+                alert('Error saving review order');
+            }
+        }
+
+        async function loadContent() {
+            try {
+                const response = await fetch(API_BASE + '/content.php');
+                const data = await response.json();
+
+                if (data.success && data.content) {
+                    const content = data.content;
+
+                    // Load Index Hero
+                    if (content.indexHero) {
+                        document.getElementById('indexHeroMode').value = content.indexHero.mode || 'image';
+                        if (content.indexHero.text) document.getElementById('indexHeroText').value = content.indexHero.text;
+
+                        // Helper to make path absolute
+                        function getImagePath(path) {
+                            if (!path) return '';
+                            return path.startsWith('/') ? path : '/' + path;
+                        }
+
+                        // Background image
+                        if (content.indexHero.backgroundImage) {
+                            const bgPreview = document.getElementById('preview-indexHeroBackground');
+                            if (bgPreview) {
+                                const imagePath = getImagePath(content.indexHero.backgroundImage);
+                                bgPreview.src = imagePath;
+                                bgPreview.style.display = 'block';
+                                bgPreview.onerror = function() {
+                                    this.style.border = '2px solid red';
+                                    this.alt = '(Image not found at ' + imagePath + ')';
+                                };
+                                const group = bgPreview.closest('.image-upload-group');
+                                if (group) {
+                                    group.classList.add('loaded');
+                                    let infoSpan = group.querySelector('.current-image-info');
+                                    if (!infoSpan) {
+                                        infoSpan = document.createElement('div');
+                                        infoSpan.className = 'current-image-info';
+                                        group.appendChild(infoSpan);
+                                    }
+                                    infoSpan.textContent = '📁 Current: ' + content.indexHero.backgroundImage;
+                                }
+                            }
+                        }
+
+                        // Title image
+                        if (content.indexHero.titleImage) {
+                            const titlePreview = document.getElementById('preview-indexHeroTitle');
+                            if (titlePreview) {
+                                const imagePath = getImagePath(content.indexHero.titleImage);
+                                titlePreview.src = imagePath;
+                                titlePreview.style.display = 'block';
+                                titlePreview.onerror = function() {
+                                    this.style.border = '2px solid red';
+                                    this.alt = '(Image not found at ' + imagePath + ')';
+                                };
+                                const group = titlePreview.closest('.image-upload-group');
+                                if (group) {
+                                    group.classList.add('loaded');
+                                    let infoSpan = group.querySelector('.current-image-info');
+                                    if (!infoSpan) {
+                                        infoSpan = document.createElement('div');
+                                        infoSpan.className = 'current-image-info';
+                                        group.appendChild(infoSpan);
+                                    }
+                                    infoSpan.textContent = '📁 Current: ' + content.indexHero.titleImage;
+                                }
+                            }
+                        }
+                    }
+
+                    // Load Products
+                    if (content.indexProducts) {
+                        content.indexProducts.forEach((product) => {
+                            const preview = document.getElementById('preview-product-' + product.id);
+                            if (preview && product.image) {
+                                const imagePath = product.image.startsWith('/') ? product.image : '/' + product.image;
+                                preview.src = imagePath;
+                                preview.style.display = 'block';
+                                preview.onerror = function() {
+                                    this.style.border = '2px solid red';
+                                    this.alt = '(Image not found)';
+                                };
+                                const group = preview.closest('.image-upload-group');
+                                if (group) {
+                                    group.classList.add('loaded');
+                                    let infoSpan = group.querySelector('.current-image-info');
+                                    if (!infoSpan) {
+                                        infoSpan = document.createElement('div');
+                                        infoSpan.className = 'current-image-info';
+                                        group.appendChild(infoSpan);
+                                    }
+                                    infoSpan.textContent = '📁 Current: ' + product.image;
+                                }
+                            }
+                        });
+                    }
+
+                    // Load What We Do Hero
+                    if (content.whatWeDo) {
+                        if (content.whatWeDo.heroImages) {
+                            loadImagePreviewsWWD(content.whatWeDo.heroImages);
+                        }
+                        if (content.whatWeDo.team) {
+                            loadTeamContent(content.whatWeDo.team);
+                        }
+                    }
+
+                    toggleHeroMode();
+                }
+            } catch (err) {
+                console.error('Load content error:', err);
+                alert('Error loading content');
+            }
+        }
+
+        function loadImagePreviews(images) {
+            const mapping = {
+                'scene1_img1': 'indexHeroScene1Img1',
+                'scene1_img2': 'indexHeroScene1Img2',
+                'scene2_bg': 'indexHeroScene2Bg',
+                'scene2_panel': 'indexHeroScene2Panel',
+                'titleImg': 'indexHeroTitleImg'
+            };
+
+            for (const [key, inputId] of Object.entries(mapping)) {
+                if (images[key]) {
+                    const preview = document.getElementById('preview-' + inputId);
+                    if (preview) {
+                        preview.src = images[key];
+                        preview.style.display = 'block';
+                        preview.onerror = () => preview.textContent = '(Image not found)';
+                        const group = preview.closest('.image-upload-group');
+                        if (group) {
+                            group.classList.add('loaded');
+                            let infoSpan = group.querySelector('.current-image-info');
+                            if (!infoSpan) {
+                                infoSpan = document.createElement('div');
+                                infoSpan.className = 'current-image-info';
+                                group.appendChild(infoSpan);
+                            }
+                            infoSpan.textContent = '📁 Current: ' + images[key];
+                        }
+                    }
+                }
+            }
+        }
+
+        function loadImagePreviewsWWD(images) {
+            const mapping = {
+                'scene1_img1': 'wwd-hero-img1',
+                'scene1_img2': 'wwd-hero-img2'
+            };
+
+            for (const [key, inputId] of Object.entries(mapping)) {
+                if (images[key]) {
+                    const preview = document.getElementById('preview-' + inputId);
+                    if (preview) {
+                        const imagePath = images[key].startsWith('/') ? images[key] : '/' + images[key];
+                        preview.src = imagePath;
+                        preview.style.display = 'block';
+                        preview.onerror = function() {
+                            this.style.border = '2px solid red';
+                            this.alt = '(Image not found)';
+                        };
+                        const group = preview.closest('.image-upload-group');
+                        if (group) {
+                            group.classList.add('loaded');
+                            let infoSpan = group.querySelector('.current-image-info');
+                            if (!infoSpan) {
+                                infoSpan = document.createElement('div');
+                                infoSpan.className = 'current-image-info';
+                                group.appendChild(infoSpan);
+                            }
+                            infoSpan.textContent = '📁 Current: ' + images[key];
+                        }
+                    }
+                }
+            }
+        }
+
+        function loadTeamContent(team) {
+            const teamMapping = {
+                'victor': { img: 'team-victor-img', bio: 'team-victor-bio' },
+                'johnBlanca': { img: 'team-johnblanca-img', bio: 'team-johnblanca-bio' },
+                'camila': { img: 'team-camila-img', bio: 'team-camila-bio' },
+                'nico': { img: 'team-nico-img', bio: 'team-nico-bio' }
+            };
+
+            for (const [key, ids] of Object.entries(teamMapping)) {
+                if (team[key]) {
+                    if (team[key].image) {
+                        const preview = document.getElementById('preview-' + ids.img);
+                        if (preview) {
+                            const imagePath = team[key].image.startsWith('/') ? team[key].image : '/' + team[key].image;
+                            preview.src = imagePath;
+                            preview.style.display = 'block';
+                            preview.onerror = function() {
+                                this.style.border = '2px solid red';
+                                this.alt = '(Image not found)';
+                            };
+                            const group = preview.closest('.image-upload-group');
+                            if (group) {
+                                group.classList.add('loaded');
+                                let infoSpan = group.querySelector('.current-image-info');
+                                if (!infoSpan) {
+                                    infoSpan = document.createElement('div');
+                                    infoSpan.className = 'current-image-info';
+                                    group.appendChild(infoSpan);
+                                }
+                                infoSpan.textContent = '📁 Current: ' + team[key].image;
+                            }
+                        }
+                    }
+                    if (team[key].bio) {
+                        const bioElem = document.getElementById(ids.bio);
+                        if (bioElem) bioElem.value = team[key].bio;
+                    }
+                }
+            }
+        }
+
+        function toggleHeroMode() {
+            const mode = document.getElementById('indexHeroMode').value;
+            document.getElementById('heroImageUpload').style.display = mode === 'image' ? 'block' : 'none';
+            document.getElementById('heroTextInput').style.display = mode === 'text' ? 'block' : 'none';
+        }
+
+        let currentVideos = [];
+
+        async function loadVideos() {
+            try {
+                const response = await fetch(API_BASE + '/videos.php');
+                const data = await response.json();
+
+                if (data.success) {
+                    currentVideos = data.videos?.featured || [];
+                    document.getElementById('videoCount').textContent = `(${currentVideos.length})`;
+                    renderVideos();
+                }
+            } catch (err) {
+                console.error('Load videos error:', err);
+            }
+        }
+
+        async function addNewVideo() {
+            const title = document.getElementById('newVideoTitle').value.trim();
+            const desc = document.getElementById('newVideoDesc').value.trim();
+            const url = document.getElementById('newVideoUrl').value.trim();
+            const thumb = document.getElementById('newVideoThumb').value.trim();
+
+            if (!title || !url) {
+                alert('Please fill in title and URL');
+                return;
+            }
+
+            try {
+                const response = await fetch(API_BASE + '/videos.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionId,
+                        action: 'add',
+                        video: { title, description: desc, url, thumbnail: thumb }
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Video added!');
+                    document.getElementById('newVideoTitle').value = '';
+                    document.getElementById('newVideoDesc').value = '';
+                    document.getElementById('newVideoUrl').value = '';
+                    document.getElementById('newVideoThumb').value = '';
+                    loadVideos();
+                } else {
+                    alert('Error: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Add video error:', err);
+                alert('Error adding video');
+            }
+        }
+
+        async function deleteVideo(videoId) {
+            if (!confirm('Delete this video?')) return;
+
+            try {
+                const response = await fetch(API_BASE + '/videos.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionId,
+                        action: 'delete',
+                        videoId
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Video deleted!');
+                    loadVideos();
+                } else {
+                    alert('Error: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Delete error:', err);
+                alert('Error deleting video');
+            }
+        }
+
+        function moveVideo(fromIdx, direction) {
+            const toIdx = fromIdx + direction;
+            if (toIdx < 0 || toIdx >= currentVideos.length) return;
+
+            [currentVideos[fromIdx], currentVideos[toIdx]] = [currentVideos[toIdx], currentVideos[fromIdx]];
+            renderVideos();
+        }
+
+        function renderVideos() {
+            const videosList = document.getElementById('videosList');
+            if (currentVideos.length === 0) {
+                videosList.innerHTML = '<div class="empty-state"><i class="bi bi-play-circle"></i><p>No videos yet. Add one to get started!</p></div>';
+            } else {
+                videosList.innerHTML = currentVideos.map((video, idx) => `
+                    <div class="video-item" data-video-id="${video.id}">
+                        <div class="item-content">
+                            <div><strong>${escapeHtml(video.title || 'Untitled')}</strong></div>
+                            <div class="text-muted small">${escapeHtml(video.description || '')}</div>
+                            <div style="margin-top: 8px;">
+                                <small><strong>URL:</strong> ${escapeHtml(video.url || '')}</small>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <div class="order-buttons">
+                                <button class="btn btn-sm btn-outline-secondary" ${idx === 0 ? 'disabled' : ''} onclick="moveVideo(${idx}, -1)">
+                                    <i class="bi bi-arrow-up"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" ${idx === currentVideos.length - 1 ? 'disabled' : ''} onclick="moveVideo(${idx}, 1)">
+                                    <i class="bi bi-arrow-down"></i>
+                                </button>
+                            </div>
+                            <button class="btn btn-sm btn-danger" onclick="deleteVideo(${video.id})">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            document.getElementById('saveVideosBtn').style.display = 'block';
+        }
+
+        async function saveVideoOrder() {
+            try {
+                const response = await fetch(API_BASE + '/videos.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionId,
+                        action: 'reorder',
+                        videos: currentVideos
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Video order saved!');
+                    document.getElementById('saveVideosBtn').style.display = 'none';
+                } else {
+                    alert('Error: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Save error:', err);
+                alert('Error saving video order');
+            }
+        }
+
+        async function saveAllContent() {
+            const content = collectFormData();
+
+            try {
+                const response = await fetch(API_BASE + '/content.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionId, content })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Content saved successfully!');
+                } else {
+                    alert('Error saving content: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Save error:', err);
+                alert('Error saving content');
+            }
+        }
+
+        function collectFormData() {
+            return {
+                indexHero: {
+                    mode: document.getElementById('indexHeroMode').value,
+                    text: document.getElementById('indexHeroText').value,
+                    backgroundImage: document.getElementById('preview-indexHeroBackground').src || '',
+                    titleImage: document.getElementById('preview-indexHeroTitle').src || ''
+                },
+                indexProducts: [
+                    { id: 'pods', name: 'Pods', image: document.getElementById('preview-product-pods').src || '', link: 'shop.html' },
+                    { id: 'drips', name: 'Drips', image: document.getElementById('preview-product-drips').src || '', link: 'shop.html' },
+                    { id: 'coffee-bag', name: 'Coffee Bag', image: document.getElementById('preview-product-coffee-bag').src || '', link: 'shop.html' }
+                ],
+                whatWeDo: {
+                    heroImages: {
+                        scene1_img1: document.getElementById('preview-wwd-hero-img1').src || '',
+                        scene1_img2: document.getElementById('preview-wwd-hero-img2').src || ''
+                    },
+                    team: {
+                        victor: { image: document.getElementById('preview-team-victor-img').src || '', bio: document.getElementById('team-victor-bio').value },
+                        johnBlanca: { image: document.getElementById('preview-team-johnblanca-img').src || '', bio: document.getElementById('team-johnblanca-bio').value },
+                        camila: { image: document.getElementById('preview-team-camila-img').src || '', bio: document.getElementById('team-camila-bio').value },
+                        nico: { image: document.getElementById('preview-team-nico-img').src || '', bio: document.getElementById('team-nico-bio').value }
+                    }
+                }
+            };
+        }
+
+        // File input preview handlers
+        document.addEventListener('change', (e) => {
+            if (e.target.type === 'file' && e.target.files.length > 0) {
+                const reader = new FileReader();
+                const previewId = 'preview-' + e.target.id;
+                const preview = document.getElementById(previewId);
+
+                reader.onload = (event) => {
+                    if (preview) {
+                        preview.src = event.target.result;
+                        preview.style.display = 'block';
+                    }
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('adminSessionId');
+            localStorage.removeItem('adminUsername');
+            window.location.href = 'index.html';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+    </script>
+</body>
+</html>

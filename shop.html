@@ -1,265 +1,46 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Encounter Colombian Coffee - Store. Premium single-origin Colombian coffee.">
-        <meta name="author" content="Encounter Coffee">
-        <title>Store - Encounter Colombian Coffee</title>
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
-        <link href="css/templatemo-tiya-golf-club.css" rel="stylesheet">
-        <link href="css/encounter-custom.css" rel="stylesheet">
-
+        <meta name="description" content="Redirecting to the Encounter Colombian Coffee store.">
+        <meta name="robots" content="noindex">
+        <title>Redirecting to Store...</title>
+        <meta http-equiv="refresh" content="0; url=https://www.encountercolombiancoffee.ca/store/">
+        <script>
+            (function () {
+                var target = 'https://www.encountercolombiancoffee.ca/store/';
+                try {
+                    localStorage.setItem('encounter_country', 'CA');
+                } catch (e) {}
+                window.location.replace(target);
+            })();
+        </script>
         <style>
             html, body {
-                height: 100%;
                 margin: 0;
-            }
-            .shop-wrapper {
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-            }
-            .shop-iframe-section {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
+                min-height: 100%;
+                font-family: Arial, sans-serif;
                 background: #f5f0e8;
+                color: #2f4466;
             }
-            .shop-iframe-section iframe {
-                width: 100%;
-                height: 900px;
-                border: none;
-                display: block;
+
+            body {
+                display: grid;
+                place-items: center;
+                padding: 2rem;
+                text-align: center;
             }
-            .domain-switcher-btn {
-                background: rgba(255,255,255,0.15);
-                border: 1.5px solid rgba(255,255,255,0.4);
-                color: #FBF6E0;
-                border-radius: 20px;
-                padding: 0.25rem 0.85rem;
-                font-size: 0.85rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                white-space: nowrap;
-                letter-spacing: 0.03em;
-            }
-            .domain-switcher-btn:hover {
-                background: rgba(255,255,255,0.25);
-                border-color: #DDC165;
-                color: #DDC165;
+
+            a {
+                color: #7c090f;
             }
         </style>
     </head>
-
     <body>
-        <div class="shop-wrapper">
-
-            <!-- NAVBAR -->
-            <nav class="navbar navbar-expand-lg navbar-burgundy">
-                <div class="container">
-                    <div class="navbar-fixed-row">
-                        <div class="navbar-fixed-col navbar-logo-section">
-                            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                                <img src="images/Home/Logos/Pictograma.png" class="navbar-brand-image" alt="Encounter Colombian Coffee" style="width: 140px; height: 140px;">
-                                <img src="images/Home/Logos/Pictogramanombre.png" class="navbar-brand-wordmark" alt="Encounter Colombian Coffee" style="width: 150px; height: 100px;">
-                            </a>
-                        </div>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#shopNavContent" aria-controls="shopNavContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse navbar-fixed-col navbar-nav-section" id="shopNavContent">
-                            <ul class="navbar-nav d-flex flex-row justify-content-center nav-separated mb-0">
-                                <li class="nav-item d-flex align-items-center">
-                                    <img src="images/Home/Pictogramas home/Pictogramasintento.png" alt="Home" style="width: 80px; height: 80px; margin-right: 8px;">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item d-flex align-items-center">
-                                    <img src="images/Home/Pictogramas home/Pictogramas06.png" alt="What we do" style="width: 80px; height: 80px; margin-right: 8px;">
-                                    <a class="nav-link" href="what-we-do.html">What we do?</a>
-                                </li>
-                                <li class="nav-item d-flex align-items-center">
-
-                                    <a class="nav-link active" href="shop.html">Store</a>
-                                </li>
-                                <li class="nav-item d-flex align-items-center ms-3">
-                                    <button class="domain-switcher-btn" id="domainSwitcher" title="Switch region">
-                                        <span id="domainFlag"></span> <span id="domainLabel"></span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- STORE IFRAME -->
-             <br>
-             <br>
-             <br>
-                          <br>
-             <br>
-             <br>
-            <section class="shop-iframe-section">
-                <iframe id="storeFrame" src="" scrolling="no" allowfullscreen loading="lazy" title="Encounter Coffee Store"></iframe>
-            </section>
-
-            <!-- FOOTER -->
-            <footer class="site-footer">
-                <div class="container">
-                    <div class="row gy-5 align-items-start">
-                        <div class="col-lg-6 col-12 footer-social-block">
-                            <h5 class="site-footer-title mb-4">Connect With Us</h5>
-                            <p class="footer-body-text">
-                                Do you want to contact us?<br>
-                                <strong>Follow us on:</strong>
-                            </p>
-                            <p class="footer-social-links">
-                                <a href="https://www.instagram.com/encountercolombiancoffee" target="_blank" class="footer-social-link">
-                                    <i class="bi bi-instagram"></i>Instagram
-                                </a>
-                            </p>
-                        </div>
-
-                        <div class="col-lg-6 col-12 footer-contact-block">
-                            <h5 class="site-footer-title mb-4">Contact Information</h5>
-                            <div class="mb-4">
-                                <p class="footer-label mb-1"><strong>Email:</strong></p>
-                                <a href="mailto:info@encountercolombiancoffee.ca" class="footer-contact-link">info@encountercolombiancoffee.ca</a>
-                            </div>
-                            <div class="mb-4">
-                                <p class="footer-label mb-1"><strong>Website:</strong></p>
-                                <a href="https://encountercolombiancoffee.ca" class="footer-contact-link">encountercolombiancoffee.ca</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="footer-bottom-row">
-                        <div class="col-12 text-center">
-                            <img src="images/Home/Logos/logo-footer.png" alt="Encounter Colombian Coffee" class="footer-logo">
-                            <p class="copyright-text">Copyright &copy; 2025 Encounter Coffee</p>
-                            <ul class="footer-legal-links" aria-label="Legal documents">
-                                <li><a href="docs/aviso-de-privacidad.pdf" target="_blank" rel="noopener">Privacy Notice</a></li>
-                                <li><a href="docs/politica-de-cookies.pdf" target="_blank" rel="noopener">Cookie Policy</a></li>
-                                <li><a href="docs/politica-de-tratamiento-de-datos.pdf" target="_blank" rel="noopener">Data Processing Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#81B29A" fill-opacity="1" d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
-            </footer>
-        </div>
-
-        <!-- JAVASCRIPT FILES -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/custom.js"></script>
-
-        <script>
-            // Auto-sizes the store iframe to its full content height so the outer
-            // page scrolls as one piece with no internal iframe scrollbar.
-            // For cross-origin stores (different domain) we cannot read the content
-            // height directly â€” we start at 3000px and refine via postMessage if
-            // the store sends resize info, or precisely on same-origin load.
-            (function () {
-                function autoSizeFrame() {
-                    var iframe = document.getElementById('storeFrame');
-                    if (!iframe) return;
-
-                    function applyHeight(h) {
-                        h = Math.max(Number(h) || 0, 600);
-                        iframe.style.height = h + 'px';
-                    }
-
-                    iframe.addEventListener('load', function () {
-                        try {
-                            // Same-origin: read exact content height
-                            var doc = iframe.contentWindow.document;
-                            var h = Math.max(
-                                doc.body.scrollHeight,
-                                doc.body.offsetHeight,
-                                doc.documentElement.scrollHeight,
-                                doc.documentElement.offsetHeight
-                            );
-                            if (h > 200) { applyHeight(h); }
-                        } catch (e) {
-                            // Cross-origin: keep the 3000px default set in CSS
-                        }
-                    });
-
-                    // Handle postMessage from stores that broadcast their height
-                    window.addEventListener('message', function (e) {
-                        if (e.source !== iframe.contentWindow) return;
-                        try {
-                            var d = (typeof e.data === 'string') ? JSON.parse(e.data) : e.data;
-                            var h = d && (d.height || d.scrollHeight || d.frameHeight || d.bodyHeight);
-                            if (h) applyHeight(h);
-                        } catch (_) {}
-                    });
-
-                    // Recalculate on window resize (same-origin only; cross-origin silently no-ops)
-                    window.addEventListener('resize', function () {
-                        try {
-                            var doc = iframe.contentWindow.document;
-                            var h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
-                            if (h > 200) applyHeight(h);
-                        } catch (e) {}
-                    });
-                }
-
-                document.addEventListener('DOMContentLoaded', autoSizeFrame);
-            })();
-        </script>
-
-        <script>
-            (function () {
-                var STORES = {
-                    CO: 'https://www.encountercolombiancoffee.com/tienda/',
-                    CA: 'https://www.encountercolombiancoffee.ca/store/'
-                };
-                var LABELS = {
-                    CO: { flag: '🇨🇴', label: '.com', next: 'CA' },
-                    CA: { flag: '🇨🇦', label: '.ca',  next: 'CO' }
-                };
-
-                function getRegion() {
-                    return localStorage.getItem('encounter_country') || 'CA';
-                }
-
-                function applyRegion(region) {
-                    var frame  = document.getElementById('storeFrame');
-                    var flag   = document.getElementById('domainFlag');
-                    var lbl    = document.getElementById('domainLabel');
-                    var info   = LABELS[region] || LABELS.CA;
-
-                    if (frame)  frame.src  = STORES[region] || STORES.CA;
-                    if (flag)   flag.textContent  = info.flag;
-                    if (lbl)    lbl.textContent   = info.label;
-                }
-
-                document.getElementById('domainSwitcher').addEventListener('click', function () {
-                    localStorage.removeItem('encounter_country');
-                    window.location.href = 'index.html';
-                });
-
-                applyRegion(getRegion());
-            })();
-        </script>
-
-        <!-- WhatsApp Floating Button -->
-        <a href="https://walink.co/01uznw" target="_blank" class="encounter-whatsapp-btn" title="Chat with us on WhatsApp">
-            <i class="bi bi-whatsapp"></i>
-        </a>
+        <main>
+            <p>Redirecting to the store...</p>
+            <p><a href="https://www.encountercolombiancoffee.ca/store/">Open the store</a></p>
+        </main>
     </body>
 </html>
-
-

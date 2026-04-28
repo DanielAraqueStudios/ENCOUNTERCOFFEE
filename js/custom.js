@@ -3,9 +3,57 @@
   
   "use strict";
 
+    var DOMAIN_REGION_MAP = {
+      CO: 'www.encountercolombiancoffee.com',
+      CA: 'www.encountercolombiancoffee.ca'
+    };
+
+    function getExpectedRegion(pathname) {
+      if (!pathname || !/\.html$/i.test(pathname)) {
+        return null;
+      }
+
+      return /-es\.html$/i.test(pathname) ? 'CO' : 'CA';
+    }
+
+    function isProductionEncounterHost(hostname) {
+      return /(^|\.)encountercolombiancoffee\.(ca|com)$/i.test(hostname || '');
+    }
+
+    function enforceCanonicalRegion() {
+      if (typeof window === 'undefined' || !window.location) {
+        return;
+      }
+
+      var expectedRegion = getExpectedRegion(window.location.pathname);
+      if (!expectedRegion || !isProductionEncounterHost(window.location.hostname)) {
+        return;
+      }
+
+      var expectedHost = DOMAIN_REGION_MAP[expectedRegion];
+      if (!expectedHost) {
+        return;
+      }
+
+      if (window.location.hostname !== expectedHost) {
+        window.location.replace(
+          'https://' +
+          expectedHost +
+          window.location.pathname +
+          window.location.search +
+          window.location.hash
+        );
+        return;
+      }
+
+      localStorage.setItem('encounter_country', expectedRegion);
+    }
+
     // ========== COUNTRY SELECTOR MODAL LOGIC ==========
      // localStorage.removeItem('encounter_country'); // TESTING: uncomment to reset popup
     $(document).ready(function() {
+      enforceCanonicalRegion();
+
       var userCountry = localStorage.getItem('encounter_country');
 
       if (!userCountry) {

@@ -2697,6 +2697,10 @@ body.theme-blue .site-footer {
     background-color: var(--encounter-navy);
 }
 
+body.theme-blue .site-footer-blue {
+    background-color: var(--encounter-navy) !important;
+}
+
 body.theme-blue .site-footer svg path {
     fill: #1E2D44; /* A darker navy for the wavy bottom, if desired, or match background */
 }
